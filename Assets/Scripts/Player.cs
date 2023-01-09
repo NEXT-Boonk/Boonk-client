@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
         // Mouse settings
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        head = GameObject.Find("Head").transform;
+        body = GameObject.Find("Player").transform;
+        controller = GetComponent<CharacterController>();
     }
 
     void FixedUpdate()

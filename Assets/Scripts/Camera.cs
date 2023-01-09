@@ -27,9 +27,11 @@ public class Camera : MonoBehaviour
         // Mouse settings
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        
+        /*
         playerDirection = transform.localPosition.normalized;
         zoomDist = transform.localPosition.magnitude;
+        */
     }
 
     // Update is called once per frame
@@ -44,7 +46,6 @@ public class Camera : MonoBehaviour
         rotationX -= mouseY;
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
         
-
         // Rotate camera
         transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
 
@@ -63,6 +64,5 @@ public class Camera : MonoBehaviour
         }
         transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * dist, Time.deltaTime * smooth);
         */
-
     } 
 }

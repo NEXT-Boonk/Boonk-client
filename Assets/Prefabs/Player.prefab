@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6822194510535070641}
   - component: {fileID: 6822194510535070642}
   - component: {fileID: 6822194510535070643}
-  - component: {fileID: 6822194510535070644}
   - component: {fileID: 6822194510535070640}
+  - component: {fileID: 4057770589882440799}
+  - component: {fileID: 2166438144579228546}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -86,25 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6822194510535070644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6822194510535070645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d06d0299fb8e2034593f431b65ac81cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 6822194510723491701}
-  body: {fileID: 6822194510535070641}
-  controller: {fileID: 6822194510535070640}
-  speed: 10
-  g: -9.81
-  jumpHeight: 3
-  sensitivity: 400
 --- !u!143 &6822194510535070640
 CharacterController:
   m_ObjectHideFlags: 0
@@ -123,6 +105,38 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4057770589882440799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822194510535070645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973145392b02a7e44b960d6810379648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 500
+--- !u!114 &2166438144579228546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822194510535070645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b307e28e360954b4f932d825c865a2cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  body: {fileID: 0}
+  controller: {fileID: 0}
+  speed: 10
+  g: -9.81
+  jumpHeight: 3
+  sensitivity: 400
 --- !u!1 &6822194510723491702
 GameObject:
   m_ObjectHideFlags: 0

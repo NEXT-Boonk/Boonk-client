@@ -32,24 +32,25 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        Camera();
+        RotatePlayer();
         Movement();
     }
 
-    private void Camera() 
+    private void RotatePlayer() 
     {
+        /*
         // Get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
-
+        
         rotationX -= mouseY;
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
         head.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
         body.Rotate(Vector3.up * mouseX);
+        */
+        
     }
-
-    int count = 0;
 
     private void Movement() 
     {   

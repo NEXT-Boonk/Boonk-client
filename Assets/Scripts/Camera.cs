@@ -9,17 +9,17 @@ public class Camera : MonoBehaviour
     
     [SerializeField] private float sensitivity = 500;
 
-    /*
+    [SerializeField] private Vector3 playerDirection;
+    [SerializeField] private float zoomDist;
+   /* 
     [SerializeField] private float zoomMin = 3.5f;
     [SerializeField] private float zoomMax = 15f;
     [SerializeField] private float zoomDeaf = 10f;
-    [SerializeField] private float zoomDist;
-
-    
     Vector3 dollyDir;
     public float dist;
     public float smooth = 5f;
     */
+    
 
     // Start is called before the first frame update
     void Start()

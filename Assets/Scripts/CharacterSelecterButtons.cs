@@ -14,7 +14,7 @@ public class CharacterSelecterButtons : MonoBehaviour
     public float positionOfNextOrPastCharacter;
     public GameObject characterSelectorMovementContainer;
     public int i;
-    public float lerpAmmount = 0.1f;
+    public float lerpAmmount = 0.75f;
     float t;
     bool rightClick = false;
     bool leftClick = false;
@@ -89,7 +89,7 @@ public class CharacterSelecterButtons : MonoBehaviour
         else
         {
             characterSelectorMovementContainer.transform.position = Vector3.Lerp(startPosition, slutPosition, t);
-            t = Mathf.Lerp(t, .3f, lerpAmmount);
+            t = Mathf.Lerp(t, .75f, lerpAmmount);
         }
     }
 
@@ -103,7 +103,7 @@ public class CharacterSelecterButtons : MonoBehaviour
         else
         {
             characterSelectorMovementContainer.transform.position = Vector3.Lerp(startPosition, slutPosition, t);
-            t = Mathf.Lerp(t, .5f, lerpAmmount);
+            t = Mathf.Lerp(t, .75f, lerpAmmount);
         }
     }
 

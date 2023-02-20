@@ -31,7 +31,7 @@ public class ThirdPersonMovement : MonoBehaviour
     
     private void ApplyGravity() 
     {
-        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
+        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime * Time.deltaTime;
         else velocity.y = -0.1f;
     }
 

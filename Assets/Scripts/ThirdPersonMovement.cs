@@ -10,7 +10,7 @@ public class ThirdPersonMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
 
-    private float turnSmoothTime = 0.1f; 
+    private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     private Vector3 velocity;
 
@@ -32,7 +32,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private void ApplyGravity() 
     {
         if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
-        else velocity.y = -0.1f;
+        else velocity.y = -1;
     }
 
     private void Move() 
@@ -64,6 +64,7 @@ public class ThirdPersonMovement : MonoBehaviour
     {   
         if (Input.GetButtonDown("Jump"))
         {
+            Debug.Log(controller.isGrounded);
             if (!controller.isGrounded) return;
             velocity.y += jumpForce;
         }   

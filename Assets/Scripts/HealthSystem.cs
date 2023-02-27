@@ -9,7 +9,8 @@ public class HealthSystem : MonoBehaviour
     public float currentHealth;
     public float damage;
     public Slider healthBar;
-    public GameObject deathScreen;  
+    public GameObject deathScreen;
+    float fillAmount;
 
 
     // Start is called before the first frame update
@@ -22,7 +23,13 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = currentHealth;
+
+
+        fillAmount = currentHealth / maxHealth;
+        healthBar.value = fillAmount;
+
+
+
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;

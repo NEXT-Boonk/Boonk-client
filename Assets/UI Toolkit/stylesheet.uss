@@ -1,5 +1,5 @@
 .unity-button:hover {
-    color: rgba(255, 0, 0, 255);
+    color: rgba(204, 204, 204, 255);
     background-image: url('project://database/Assets/UI%20Toolkit/DarkBtn.png?fileID=2800000&guid=b2b60bc9019dd004cb2f1387f006c88a&type=3#DarkBtn');
 }
 
@@ -15,4 +15,5 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 255);
 }

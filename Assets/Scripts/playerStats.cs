@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Stats", menuName = "ScriptableObjects/playerStat", order = 1)]
 
-public class playerStats : ScriptableObject
+[CreateAssetMenu(fileName = "Stats", menuName = "ScriptableObjects/PlayerStat", order = 1)]
+public class PlayerStats : ScriptableObject
 {
     public float attackSpeed;
     public int Range;

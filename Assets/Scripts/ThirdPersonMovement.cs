@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ThirdPersonMovement : MonoBehaviour
+public class ThirdPersonMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
@@ -23,6 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Update()
     {
+        if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
         Move();

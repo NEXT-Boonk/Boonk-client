@@ -56,7 +56,7 @@ public class ThirdPersonMovement : MonoBehaviour
             // the movement direction is calculated using the look direction
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
-            controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
+            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized); 
         }  
     }
 
@@ -64,7 +64,6 @@ public class ThirdPersonMovement : MonoBehaviour
     {   
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log(controller.isGrounded);
             if (!controller.isGrounded) return;
             velocity.y += jumpForce;
         }   

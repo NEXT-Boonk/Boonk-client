@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/stylesheet.uss?fileID=7433441132597879392&amp;guid=5ffbaa56b22b37d47af3fd1620f9bfdd&amp;type=3#stylesheet" />
+    <ui:VisualElement style="align-items: center; justify-content: center; height: 770px; background-color: rgba(255, 255, 255, 0.16);">
+        <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/MainMenuLogo.png?fileID=2800000&amp;guid=21e02adf81c5ecc4799df04bc521a13b&amp;type=3#MainMenuLogo&apos;); width: 20%; height: 30%; -unity-slice-top: 0;" />
+        <ui:Label text="Boonk" display-tooltip-when-elided="true" style="font-size: 56px; -unity-font-style: bold; -unity-text-align: middle-center; height: 53px; width: 1535px;" />
+        <ui:Button text="Start" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); font-size: 28px;" />
+        <ui:Button text="Settings" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); font-size: 28px;" />
+        <ui:Button text="Quit" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; background-color: rgba(0, 0, 0, 0); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); font-size: 28px;" />
+    </ui:VisualElement>
+</ui:UXML>

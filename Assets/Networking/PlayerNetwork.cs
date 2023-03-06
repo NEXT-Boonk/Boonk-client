@@ -11,6 +11,8 @@ public class PlayerNetwork : NetworkBehaviour
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 "NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public GameObject camera;
+
 
 
 
@@ -51,11 +53,24 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         };
     }
 
+    void Start()
+    {
+        // IF I'M THE PLAYER, STOP HERE (DON'T TURN MY OWN CAMERA OFF)
+        if (IsOwner) return;
+ 
+        camera.SetActive(false);
+
+    }
+
 
     
     private void Update() {
+        if(IsOwner) {}
+
+
         if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
+        camera.SetActive(true);
 
         if(Input.GetKeyDown(KeyCode.T)){
             randomNumber.Value = Random.Range(0,100); //changes the random number

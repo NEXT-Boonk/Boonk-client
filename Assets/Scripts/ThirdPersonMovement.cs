@@ -16,6 +16,8 @@ public class ThirdPersonMovement : NetworkBehaviour
     private float turnSmoothVelocity;
     private Vector3 velocity;
 
+    
+
     void Awake()
     {
         // hides the cursor 

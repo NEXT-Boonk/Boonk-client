@@ -45,7 +45,7 @@ public class ThirdPersonMovement : NetworkBehaviour
         float inputAD = Input.GetAxisRaw("Horizontal");
 
         // normalized direction vector
-        Vector3 direction = new Vector3(inputAD, 0, inputWS).normalized;
+        Vector3 direction = new Vector3(-inputAD, 0, -inputWS).normalized;
         
         // no movement if the direction vector's magnitude is too close to zero
         if (direction.magnitude >= 0.1) {
@@ -57,7 +57,7 @@ public class ThirdPersonMovement : NetworkBehaviour
             transform.rotation = Quaternion.Euler(0f, playerModelAngle, 0f);
             
             // the movement direction is calculated using the look direction
-            Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
+            Vector3 moveDirection = -(Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward);
 
             controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized); 
         }  

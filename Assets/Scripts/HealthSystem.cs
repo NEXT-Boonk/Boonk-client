@@ -11,6 +11,7 @@ public class HealthSystem : MonoBehaviour
     public Slider healthBar;
     public GameObject deathScreen;
     float fillAmount;
+    bool hit;
 
 
     // Start is called before the first frame update
@@ -27,8 +28,6 @@ public class HealthSystem : MonoBehaviour
 
         fillAmount = currentHealth / maxHealth;
         healthBar.value = fillAmount;
-
-
 
         if(currentHealth > maxHealth)
         {
@@ -56,4 +55,5 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth -= damage;
     }
+
 }

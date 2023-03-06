@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hunter
   m_EditorClassIdentifier: 
   attackSpeed: 250
-  Range: 0
+  Range: 1.5
   Stagger: 200
   Damage: 25
   Defense: 25

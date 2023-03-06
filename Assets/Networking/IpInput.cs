@@ -12,28 +12,60 @@ using System;
 public class IpInput : MonoBehaviour
 {
     
-    [SerializeField]private TMP_InputField ip; // makes a field in the Unity editor for the Input field(text mesh pro)
-    [SerializeField]private TMP_InputField port;
-    UnityTransport UT;
+    //[SerializeField]private TMP_InputField ip; // makes a field in the Unity editor for the Input field(text mesh pro)
+    //[SerializeField]private TMP_InputField port;
     
+
+    string ip;
+    string port;
+
+
+  public void SetIp(string _Ip){
+
+      ip = _Ip;
+
+    }
+
+  public void SetPort(string _Port){
+
+      port = _Port;
+
+    }
+
+    public string GetIp(){
+
+      return ip;
+
+    }
+
+  public string GetPort(){
+
+      return port;
+
+    }
+    
+    /*
+    
+       
+    */
 
     void Awake()
     {
-        UT = GetComponent<UnityTransport>(); // finds the UnityTransport component
-        port.contentType = TMP_InputField.ContentType.IntegerNumber; // makes the content of the input feild only allow Integer numbers
-        port.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric; // makes the port only accept Alphanumeric values
-        
+       // finds the UnityTransport component
+       // port.contentType = TMP_InputField.ContentType.IntegerNumber; // makes the content of the input feild only allow Integer numbers
+       // port.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric; // makes the port only accept Alphanumeric values
+
+     
+     
 
     }
-        
-    public void InputIp(){
 
-        UT.ConnectionData.Address = ip.text; //sets the Ip to the string in the input field
+    void Start(){
+    /*  UT.ConnectionData.Address = ip;
+      UT.ConnectionData.Port = UInt16.Parse(port);
         
+        NetworkManager.Singleton.StartHost();
+*/
     }
-    
-    public void InputPort(){
    
-        UT.ConnectionData.Port = UInt16.Parse(port.text); //sets the Port to a 5 digit number        
-    }
 }

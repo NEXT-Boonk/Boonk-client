@@ -6,7 +6,7 @@ using UnityEngine;
 public class playerStats : ScriptableObject
 {
     public float attackSpeed;
-    public int Range;
+    public float Range;
     public int Stagger;
     public int Damage;
     public int Defense;

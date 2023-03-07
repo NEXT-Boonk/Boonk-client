@@ -39,11 +39,17 @@ public class NetworkManagerUI : MonoBehaviour
 
         UT.ConnectionData.Port = UInt16.Parse(iP.GetPort());
         UT.ConnectionData.Address = iP.GetIp();
+
+        Debug.Log(iP.GetHost());
         
        // UT.ConnectionData.Ip = 
-       // UT.ConnectionData.Port = 
+       // UT.ConnectionData.Port =
+
+       if(iP.GetHost()) {
 
         NetworkManager.Singleton.StartHost();
+        }
+        else {NetworkManager.Singleton.StartClient();}
         
         //UT = FindObjectOfType<UnityTransport>(); // finds the object UnityTransport 
         //UT.ConnectionData.Address = "127.0.0.1";

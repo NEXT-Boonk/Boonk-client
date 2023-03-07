@@ -17,6 +17,8 @@ public class ServerJoin : MonoBehaviour
 
     public TextField ipPort;
     public Button joinButton;
+    public Button hostButton;
+
 
     UnityTransport UT;
     IpInput iP;
@@ -32,8 +34,10 @@ public class ServerJoin : MonoBehaviour
 
         ipPort = root.Q<TextField>( "IpPort" );
         joinButton = root.Q<Button>("JoinButton");
+        hostButton = root.Q<Button>("HostButton");
 
         joinButton.clicked += JoinButtonPressed;
+        hostButton.clicked += HostButtonPressed;
         
     }
 
@@ -52,9 +56,30 @@ public class ServerJoin : MonoBehaviour
         Debug.Log(input[1]);
         iP.SetIp(input[0]);
         iP.SetPort(input[1]);
+        iP.SetHost(false);
         SceneManager.LoadScene("Game");
 
-       
+       }
+
+       void HostButtonPressed()
+    {
+
+        if(ipPort.text == "Ip..." || ipPort.text == "" ){
+            return;
+        }
+        iP = FindObjectOfType<IpInput>();
+
+        input = ipPort.text.Split(":");
+        //string ip = Char.ToString(input[0]);
+
+        Debug.Log(input[0]);
+        Debug.Log(input[1]);
+        iP.SetIp(input[0]);
+        iP.SetPort(input[1]);
+        iP.SetHost(true);
+        SceneManager.LoadScene("Game");
+
+       }
 
         
 
@@ -64,7 +89,7 @@ public class ServerJoin : MonoBehaviour
 
         
        
-    }
+    
 
     // Update is called once per frame
     void Update()

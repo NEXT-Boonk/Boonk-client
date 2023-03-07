@@ -19,6 +19,8 @@ public class IpInput : MonoBehaviour
     string ip;
     string port;
 
+    bool host;
+
 
   public void SetIp(string _Ip){
 
@@ -41,6 +43,18 @@ public class IpInput : MonoBehaviour
   public string GetPort(){
 
       return port;
+
+    }
+
+    public void SetHost(bool _Host){
+
+      host = _Host;
+
+    }
+
+    public bool GetHost(){
+
+      return host;
 
     }
     

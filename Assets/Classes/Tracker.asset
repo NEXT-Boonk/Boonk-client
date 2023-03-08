@@ -18,3 +18,4 @@ MonoBehaviour:
   Damage: 10
   Defense: 10
   HP: 100
+  Recoil: 2

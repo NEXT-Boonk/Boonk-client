@@ -6,6 +6,19 @@ using UnityEngine.UI;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    [SerializeField] private Transform spawnedRockObjectPrefab;
+    [SerializeField] private Transform spawnedBowObjectPrefab;
+
+    [SerializeField] private Transform spawnedStartObjectPosition;
+
+    [SerializeField] private float rockSpeed;
+    [SerializeField] private float bowSpeedMax,bowSpeedMin,bowChargeSpeed;
+    private float bowSpeed;
+
+
+    private Transform spawnedObjectTransform;
+
+    public static List<Transform> spawnedObjectsList = new List<Transform>();
 
 /*This is a variable that is sent over the network, to change the type of variable, you can change the "int" to "float", "ensum", "bool", "struct". All value types, refrence type variables are not able to used with this.
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
@@ -50,12 +63,26 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 
         };
     }
-
-
-    
+    private void Start() {
+        bowSpeed = bowSpeedMin;
+    }
+   
     private void Update() {
         if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
+        if(Input.GetKeyDown(KeyCode.C)){
+            stoneServerRpc(new ServerRpcParams());
+        }
+        if(Input.GetKey(KeyCode.V)){
+            if(bowSpeed<bowSpeedMax)
+                bowSpeed = bowSpeed + bowChargeSpeed* Time.deltaTime;
+                Debug.Log("added"+bowSpeed);
+        }
+        if(Input.GetKeyUp(KeyCode.V)){
+            bowServerRpc(new ServerRpcParams());
+            bowSpeed = bowSpeedMin;
+        }
+
 
         if(Input.GetKeyDown(KeyCode.T)){
             randomNumber.Value = Random.Range(0,100); //changes the random number
@@ -103,7 +130,22 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         transform.position += moveDir * moveSpeed *Time.deltaTime;*/
     }
 
-
+    private void ServerSpawnTool(Transform spawnedObjectPrefab,Transform Position,float Speed)
+    {
+        spawnedObjectTransform = Instantiate(spawnedObjectPrefab,Position.position,Quaternion.LookRotation(spawnedStartObjectPosition.forward));
+        spawnedObjectTransform.GetComponent<Rigidbody>().velocity = spawnedStartObjectPosition.forward * Speed;
+        spawnedObjectTransform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(spawnedObjectTransform.GetComponent<Rigidbody>().velocity);
+        
+        spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
+        spawnedObjectsList.Add(spawnedObjectTransform);
+        if(spawnedObjectsList.Count > 100){
+            for (int i = 0; i < spawnedObjectsList.Count; i++) {
+                DestroyImmediate(spawnedObjectsList[i].gameObject);
+            }
+            spawnedObjectsList.Clear();
+        }
+        //randomNumber.Value = Random.Range(0,100); //changes the random number
+    }
     /*This is how to create a funktion that is run on the server, a serverRPC
     Note that it won't be run on the local client, but instead be run on the server
     If you wish to add parameters you will need to have them as value types, not refrence types
@@ -116,7 +158,14 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     private void testServerRpc(ServerRpcParams Rpc){
         Debug.Log("server rpc working" + Rpc.Receive.SenderClientId);
     }
-
+    [ServerRpc]
+    private void stoneServerRpc(ServerRpcParams Rpc){
+        ServerSpawnTool(spawnedRockObjectPrefab, spawnedStartObjectPosition, rockSpeed);
+    }
+    [ServerRpc]
+    private void bowServerRpc(ServerRpcParams Rpc){
+        ServerSpawnTool(spawnedBowObjectPrefab, spawnedStartObjectPosition,bowSpeed);
+    }
     /*
     A clientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
     The parameter ClientRpcParams can be used to specifi a specific client to run the function on.

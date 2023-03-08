@@ -9,6 +9,7 @@ public class ServerSelector : MonoBehaviour
 {
     private TextField ipInput;
     private Button joinButton;
+    private Button hostButton;
     private Button backButton;
     private UnityTransport transport;
     private string[] input;
@@ -22,9 +23,11 @@ public class ServerSelector : MonoBehaviour
 
         ipInput = root.Q<TextField>("InputIP");
         joinButton = root.Q<Button>("JoinButton");
+        hostButton = root.Q<Button>("HostButton");
         backButton = root.Q<Button>("BackButton");
 
         joinButton.clicked += JoinButton;
+		hostButton.clicked += HostButton;
         backButton.clicked += BackButton;
 	}
 

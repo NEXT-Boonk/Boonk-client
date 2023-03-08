@@ -174,9 +174,15 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void ServerSpawnTool(Transform spawnedObjectPrefab,Transform Position,float Speed)
     {
-        spawnedObjectTransform = Instantiate(spawnedObjectPrefab,Position.position,Quaternion.LookRotation(spawnedStartObjectPosition.forward));
+        spawnedObjectTransform = Instantiate(
+			spawnedObjectPrefab, 
+			Position.position,
+			Quaternion.LookRotation(spawnedStartObjectPosition.forward)
+		);
         spawnedObjectTransform.GetComponent<Rigidbody>().velocity = spawnedStartObjectPosition.forward * Speed;
-        spawnedObjectTransform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(spawnedObjectTransform.GetComponent<Rigidbody>().velocity);
+        spawnedObjectTransform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(
+			spawnedObjectTransform.GetComponent<Rigidbody>().velocity
+		);
         
         spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
         spawnedObjectsList.Add(spawnedObjectTransform);
@@ -186,9 +192,10 @@ public class PlayerNetwork : NetworkBehaviour
             }
             spawnedObjectsList.Clear();
         }
-        //randomNumber.Value = Random.Range(0,100); //changes the random number
     }
-    /*This is how to create a funktion that is run on the server, a serverRPC
+
+    /*
+	This is how to create a funktion that is run on the server, a serverRPC
     Note that it won't be run on the local client, but instead be run on the server
     If you wish to add parameters you will need to have them as value types, not refrence types
 

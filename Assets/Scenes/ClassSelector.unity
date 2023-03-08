@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 974079300}
   - component: {fileID: 974079299}
   m_Layer: 5
-  m_Name: MainMenu
+  m_Name: UIDocument
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: fccd54fb04b508741a6913964538b7c7, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: c2d4a3e2c4518f845acdbb96be8c9a9c, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: a7812b4a28234ec4f8a03c433f137d7d, type: 3}
   m_SortingOrder: 0
 --- !u!4 &974079300
 Transform:

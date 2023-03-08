@@ -47,7 +47,7 @@ public class NetworkManagerUI : MonoBehaviour
        // UT.ConnectionData.Ip = 
        // UT.ConnectionData.Port =
 
-       NetworkManager.Singleton.StartClient();
+       NetworkManager.Singleton.StartHost();
         /*
        if(data.GetHost()) {
 

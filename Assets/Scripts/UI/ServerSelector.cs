@@ -48,7 +48,7 @@ public class ServerSelector : MonoBehaviour
         data.SetIp(input[0]);
         data.SetPort(input[1]);
         data.SetHost(false);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("GameNetwork");
 
     }
 

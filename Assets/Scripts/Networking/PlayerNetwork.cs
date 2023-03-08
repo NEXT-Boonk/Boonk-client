@@ -39,7 +39,7 @@ public class PlayerNetwork : NetworkBehaviour
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 "NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public GameObject camera;
+    public GameObject playerCamera;
 
 
 
@@ -99,7 +99,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         // IF I'M THE PLAYER, STOP HERE (DON'T TURN MY OWN CAMERA OFF)
         if (IsOwner) return;
  
-        camera.SetActive(false);
+        playerCamera.SetActive(false);
         bowSpeed = bowSpeedMin;
     }
    
@@ -118,7 +118,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
         if(Input.GetKeyDown(KeyCode.C)){
-            stoneServerRpc(new ServerRpcParams());
+            StoneServerRpc(new ServerRpcParams());
         }
         if(Input.GetKey(KeyCode.V)){
             if(bowSpeed<bowSpeedMax)
@@ -126,11 +126,11 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
                 Debug.Log("added"+bowSpeed);
         }
         if(Input.GetKeyUp(KeyCode.V)){
-            bowServerRpc(new ServerRpcParams());
+            BowServerRpc(new ServerRpcParams());
             bowSpeed = bowSpeedMin;
         }
 
-        camera.SetActive(true);
+        playerCamera.SetActive(true);
 
         if(Input.GetKeyDown(KeyCode.T)){
             randomNumber.Value = Random.Range(0,100); //changes the random number

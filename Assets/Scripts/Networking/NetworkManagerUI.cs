@@ -34,8 +34,13 @@ public class NetworkManagerUI : MonoBehaviour
         UT = FindObjectOfType<UnityTransport>();
 
 
-        UT.ConnectionData.Port = UInt16.Parse(data.GetPort());
-        UT.ConnectionData.Address = data.GetIp();
+        try { 
+			UT.ConnectionData.Port = UInt16.Parse(data.GetPort());
+			UT.ConnectionData.Address = data.GetIp();
+		} catch(Exception error) {
+            Debug.LogError("Could not connect to server: " + error);
+            return;
+	    }
 
         Debug.Log(data.GetHost());
         

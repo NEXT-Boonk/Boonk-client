@@ -7,6 +7,23 @@ using UnityEngine.UI;
 public class PlayerNetwork : NetworkBehaviour
 {
 
+    NetworkManager nM;
+    TeamHandler tH;
+
+    private int team;
+    //Returns the team of the player
+    public int GetTeam()
+    {
+        return team;
+    }
+    //Sets the team of the player
+    public void SetTeam(int newTeam)
+    {
+        if (!IsServer) return;
+
+        team = newTeam;
+    }
+
 /*This is a variable that is sent over the network, to change the type of variable, you can change the "int" to "float", "ensum", "bool", "struct". All value types, refrence type variables are not able to used with this.
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 "NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
@@ -46,10 +63,23 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     */
 
     //This will send the struct defined above when one of it's values changes
+    //This will send the struct defined above when one of it's values changes
+    //Runs when an opbejct is spawned
     public override void OnNetworkSpawn() {
+
+        nM = FindObjectOfType<NetworkManager>();
+
+        if(nM != null){
+        tH = nM.GetComponent<TeamHandler>();
+        }
+        if (IsServer)//Checks if the server is the one trigger "OnNetworkSpawn"
+        {
+            tH.AddPlayer(this); //Runs the AddPlayer function form TeamHandler
+        }
+
+        
         customNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) => {
         Debug.Log(OwnerClientId + "; " + newValue._int + " and it's " + newValue._bool);
-
         };
     }
 

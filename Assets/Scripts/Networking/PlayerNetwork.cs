@@ -104,7 +104,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
    
 
-    public override void OnNetworkDespawn(){
+    public virtual void OnNetworkDespawn(){
 
         teamHandler.RemovePlayer(this);
 

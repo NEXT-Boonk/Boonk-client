@@ -1022,6 +1022,7 @@ GameObject:
   - component: {fileID: 1947103829817618115}
   - component: {fileID: 1486794650122512365}
   - component: {fileID: 5794417548588686513}
+  - component: {fileID: 2419894415587512768}
   - component: {fileID: -5151440240660271179}
   - component: {fileID: -6958847889010889795}
   m_Layer: 0
@@ -1119,6 +1120,26 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &2419894415587512768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3028926142407742898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95091891e107dc149990b08ceaf0e754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedRockObjectPrefab: {fileID: 6766518415631405367, guid: 4a352d0ba33af1a42b8b4e3c81e47ae0, type: 3}
+  spawnedBowObjectPrefab: {fileID: 0}
+  spawnedStartObjectPosition: {fileID: 0}
+  rockSpeed: 0
+  bowSpeedMax: 0
+  bowSpeedMin: 0
+  bowChargeSpeed: 0
+  playerCamera: {fileID: 0}
 --- !u!114 &-5151440240660271179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,7 +1164,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3028926142407742898}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8805339a795e4a4799ea07e867d4b6b, type: 3}
   m_Name: 

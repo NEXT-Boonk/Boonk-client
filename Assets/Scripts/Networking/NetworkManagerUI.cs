@@ -20,32 +20,64 @@ public class NetworkManagerUI : MonoBehaviour
 
     // Deifining Unity transport
     UnityTransport UT;
+    Data data;
     string ip;
-    string port = "9999";
-    
+    string port;
+
+
+
     //UnityTransport UT;
 
     private void Awake(){
+
+        data = FindObjectOfType<Data>();
+        UT = FindObjectOfType<UnityTransport>();
+
+
+        try { 
+			UT.ConnectionData.Port = UInt16.Parse(data.GetPort());
+			UT.ConnectionData.Address = data.GetIp();
+		} catch(Exception error) {
+            Debug.LogError("Could not connect to server: " + error);
+            return;
+	    }
+
+        Debug.Log(data.GetHost());
         
-        UT = FindObjectOfType<UnityTransport>(); // finds the object UnityTransport 
+       // UT.ConnectionData.Ip = 
+       // UT.ConnectionData.Port =
+
+       if(data.GetHost()) {
+
+        NetworkManager.Singleton.StartHost();
+        }
+        else {NetworkManager.Singleton.StartClient();}
+        
+        //UT = FindObjectOfType<UnityTransport>(); // finds the object UnityTransport 
         //UT.ConnectionData.Address = "127.0.0.1";
+
+        //UT.ConnectionData.Port = UInt16.Parse(port);
+        //UT.ConnectionData.Address = ip;
+
+        
         
         // Made by dantheman213
         // https://gist.github.com/dantheman213/db3118bed76199186acf7be87af0c1c4
-        // searches after an Ip from an avalibe Wi-fi eller Ethernet
+        // searches after an ip from an avalibe Wi-fi eller Ethernet
+        /*
         NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
 
 		foreach (NetworkInterface adapter in interfaces.Where(x => x.OperationalStatus == OperationalStatus.Up)) {
 			if (adapter.Name.ToLower() == "ethernet" || adapter.Name.ToLower() == "wi-fi") {
 
-			    IPInterfaceProperties props = adapter.GetIPProperties();
-			    UnicastIPAddressInformation result = props.UnicastAddresses.FirstOrDefault(x => x.Address.AddressFamily == AddressFamily.InterNetwork);
+			    ipInterfaceProperties props = adapter.GetIpProperties();
+			    UnicastipAddressInformation result = props.UnicastAddresses.FirstOrDefault(x => x.Address.AddressFamily == AddressFamily.InterNetwork);
 
 			    if (result != null) {
 				    ip = result.Address.ToString();
 			    }
 			}
-	    }
+	    }*/
     
         
         
@@ -58,14 +90,14 @@ public class NetworkManagerUI : MonoBehaviour
             }
              /*
             runs the game as a server
-            with the Ip of the local nertwork and a hard coded port
+            with the ip of the local nertwork and a hard coded port
             */
             else if(args[i] == "--launch-as-server") { 
                 UT.ConnectionData.Port = UInt16.Parse(port);
                 UT.ConnectionData.Address = ip;
                 NetworkManager.Singleton.StartServer();
             }
-            else if(args[i] == "--launch-as-host") { //køre programmet som en host med local Ip'en af det netværk systemet er forbundet til med porten 60000
+            else if(args[i] == "--launch-as-host") { //køre programmet som en host med local ip'en af det netværk systemet er forbundet til med porten 60000
                 UT.ConnectionData.Port = UInt16.Parse(port);
                 UT.ConnectionData.Address = ip;
                 NetworkManager.Singleton.StartHost();
@@ -89,8 +121,8 @@ public class NetworkManagerUI : MonoBehaviour
     }
 
     void Update(){
-        // prints the Ip and Port in the console
-        //Debug.Log("Ip:" + UT.ConnectionData.Address + " Port:" + UT.ConnectionData.Port);
+        // prints the ip and port in the console
+        //Debug.Log("ip:" + UT.ConnectionData.Address + " port:" + UT.ConnectionData.port);
     }
 
 }

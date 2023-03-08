@@ -42,12 +42,14 @@ public class NetworkManagerUI : MonoBehaviour
        // UT.ConnectionData.Ip = 
        // UT.ConnectionData.Port =
 
+       NetworkManager.Singleton.StartClient();
+        /*
        if(data.GetHost()) {
 
         NetworkManager.Singleton.StartHost();
         }
         else {NetworkManager.Singleton.StartClient();}
-        
+        */
         //UT = FindObjectOfType<UnityTransport>(); // finds the object UnityTransport 
         //UT.ConnectionData.Address = "127.0.0.1";
 
@@ -99,18 +101,6 @@ public class NetworkManagerUI : MonoBehaviour
             }
         }
 
-        server.onClick.AddListener(() => {  // when cliced starts a server
-            NetworkManager.Singleton.StartServer();
-        });
-        host.onClick.AddListener(() => { // when cliced starts a host 
-            NetworkManager.Singleton.StartHost();
-        });
-        client.onClick.AddListener(() => { // when cliced starts a client
-            NetworkManager.Singleton.StartClient();
-        });
-        disconnect.onClick.AddListener(() => { // when cliced starts shuts down server, host or client
-           NetworkManager.Singleton.Shutdown();
-        });
 
       
     }

@@ -7,13 +7,16 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
+    Button startButton;
+    Button quitButton;
+
     void Start()
     {
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
 
-        Button startButton = root.Q<Button>("start");
-        Button quitButton = root.Q<Button>("quit");
+        startButton = root.Q<Button>("start");
+        quitButton = root.Q<Button>("quit");
 
         startButton.clicked += StartButton;
         quitButton.clicked += QuitButton;

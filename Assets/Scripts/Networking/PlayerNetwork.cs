@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public class PlayerNetwork : NetworkBehaviour
 {
@@ -21,8 +18,8 @@ public class PlayerNetwork : NetworkBehaviour
 
     public static List<Transform> spawnedObjectsList = new List<Transform>();
 
-    NetworkManager nM;
-    TeamHandler tH;
+    NetworkManager networkManager;
+    TeamHandler teamHandler;
 
     private int team;
     //Returns the team of the player
@@ -42,7 +39,7 @@ public class PlayerNetwork : NetworkBehaviour
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 "NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-    public GameObject camera;
+    public GameObject playerCamera;
 
 
 
@@ -83,14 +80,14 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     //Runs when an opbejct is spawned
     public override void OnNetworkSpawn() {
 
-        nM = FindObjectOfType<NetworkManager>();
+        networkManager = FindObjectOfType<NetworkManager>();
 
-        if(nM != null){
-        tH = nM.GetComponent<TeamHandler>();
+        if(networkManager != null){
+        teamHandler = networkManager.GetComponent<TeamHandler>();
         }
         if (IsServer)//Checks if the server is the one trigger "OnNetworkSpawn"
         {
-            tH.AddPlayer(this); //Runs the AddPlayer function form TeamHandler
+            teamHandler.AddPlayer(this); //Runs the AddPlayer function form TeamHandler
         }
 
         
@@ -102,14 +99,14 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         // IF I'M THE PLAYER, STOP HERE (DON'T TURN MY OWN CAMERA OFF)
         if (IsOwner) return;
  
-        camera.SetActive(false);
+        playerCamera.SetActive(false);
         bowSpeed = bowSpeedMin;
     }
    
 
     public override void OnNetworkDespawn(){
 
-        tH.RemovePlayer(this);
+        teamHandler.RemovePlayer(this);
 
     }
 
@@ -121,7 +118,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
         if(Input.GetKeyDown(KeyCode.C)){
-            stoneServerRpc(new ServerRpcParams());
+            StoneServerRpc(new ServerRpcParams());
         }
         if(Input.GetKey(KeyCode.V)){
             if(bowSpeed<bowSpeedMax)
@@ -129,11 +126,11 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
                 Debug.Log("added"+bowSpeed);
         }
         if(Input.GetKeyUp(KeyCode.V)){
-            bowServerRpc(new ServerRpcParams());
+            BowServerRpc(new ServerRpcParams());
             bowSpeed = bowSpeedMin;
         }
 
-        camera.SetActive(true);
+        playerCamera.SetActive(true);
 
         if(Input.GetKeyDown(KeyCode.T)){
             randomNumber.Value = Random.Range(0,100); //changes the random number
@@ -175,8 +172,6 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
 
 
-    
-    //This is how to create a funktion that is run on the server, a serverRPC
     private void ServerSpawnTool(Transform spawnedObjectPrefab,Transform Position,float Speed)
     {
         spawnedObjectTransform = Instantiate(spawnedObjectPrefab,Position.position,Quaternion.LookRotation(spawnedStartObjectPosition.forward));
@@ -206,14 +201,17 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     private void TestServerRpc(ServerRpcParams Rpc){
         Debug.Log("server rpc working" + Rpc.Receive.SenderClientId);
     }
+
     [ServerRpc]
-    private void stoneServerRpc(ServerRpcParams Rpc){
+    private void StoneServerRpc(ServerRpcParams Rpc){
         ServerSpawnTool(spawnedRockObjectPrefab, spawnedStartObjectPosition, rockSpeed);
     }
+
     [ServerRpc]
-    private void bowServerRpc(ServerRpcParams Rpc){
+    private void BowServerRpc(ServerRpcParams Rpc){
         ServerSpawnTool(spawnedBowObjectPrefab, spawnedStartObjectPosition,bowSpeed);
     }
+
     /*
     A ClientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
     The parameter ClientRpcParams can be used to specifi a specific client to run the function on.

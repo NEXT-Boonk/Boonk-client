@@ -83,6 +83,14 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         };
     }
 
+    public virtual void OnNetworkDespawn(){
+
+        tH.RemovePlayer(this);
+
+    }
+
+
+
     void Start()
     {
         // IF I'M THE PLAYER, STOP HERE (DON'T TURN MY OWN CAMERA OFF)

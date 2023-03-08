@@ -10,9 +10,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-
-
-
 public class NetworkManagerUI : MonoBehaviour
 {
     // makes a field in the Unity editor for the Buttons

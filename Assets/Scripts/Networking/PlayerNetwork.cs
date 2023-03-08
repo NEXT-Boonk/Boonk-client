@@ -4,6 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerNetwork : NetworkBehaviour
 {
 
@@ -33,26 +34,28 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 
 
 
-//This is a struct, a refrence variable, not definable using the method above
+    // This is a struct, a refrence variable, not definable using the method above
     public struct MyCustomData: INetworkSerializable {
         public int _int;
         public bool _bool;
 
-        public void NetworkSerialize<T>(BufferSerializer<T>serializer) where T : IReaderWriter {
+        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter {
             serializer.SerializeValue(ref _int);
             serializer.SerializeValue(ref _bool);
         }
     }
 
 
-        /*This method can be used to define refrence variables, refrence variables are variables like "class", "Object", "array" and "string" 
-        among others. To refrence one of these, replace MyCustomData with the name of the refrence type one has already defined above.
-        */
-        private NetworkVariable<MyCustomData> customNumber = new NetworkVariable<MyCustomData>(
-        new MyCustomData{
-            _int = 51,
-            _bool = true,
-        }, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+	/*
+    This method can be used to define refrence variables, 
+    refrence variables are variables like "class", "Object", "array" and "string" 
+	among others. To refrence one of these, replace MyCustomData with the name of the refrence type one has already defined above.
+	*/
+	private NetworkVariable<MyCustomData> customNumber = new NetworkVariable<MyCustomData>(
+	new MyCustomData {
+	    _int = 51,
+	    _bool = true,
+	}, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         /*This kode will send a random number when the value changes, not at all times, given the "OnValueChanged" part of the code
     public override void OnNetworkSpawn() {
@@ -129,21 +132,14 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         }
         //This code is connected to the code under the line "[ServerRpc]" further down
         if(Input.GetKeyDown(KeyCode.U)){
-            testServerRpc(new ServerRpcParams());
+            TestServerRpc(new ServerRpcParams());
         }
 
         //This is connected to the clientrpc further down
         if(Input.GetKeyDown(KeyCode.O)){
-            //thanks to the parameter we only run the function on the client with the id of 1
+            // Thanks to the parameter, we only run the function on the client with the id of 1
             TestClientRpc(new ClientRpcParams {Send = new ClientRpcSendParams { TargetClientIds = new List<ulong>{1}}});
         }
-
-
-        
-
-
-
-        
 
         //The code below creates a simple movement system
         /*Vector3 moveDir = new Vector3(0,0,0);
@@ -157,7 +153,8 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
 
 
-    /*This is how to create a funktion that is run on the server, a serverRPC
+    /*
+    This is how to create a funktion that is run on the server, a serverRPC
     Note that it won't be run on the local client, but instead be run on the server
     If you wish to add parameters you will need to have them as value types, not refrence types
 
@@ -166,25 +163,17 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     Note that one has to put "[ServerRpc]" right above the code
     */
     [ServerRpc]
-    private void testServerRpc(ServerRpcParams Rpc){
+    private void TestServerRpc(ServerRpcParams Rpc){
         Debug.Log("server rpc working" + Rpc.Receive.SenderClientId);
     }
 
     /*
-    A clientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
+    A ClientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
     The parameter ClientRpcParams can be used to specifi a specific client to run the function on.
     This would f.eks. allow the server to tell a player that they have died and run the death command on it.
     */
-
     [ClientRpc]
     private void TestClientRpc(ClientRpcParams ClientRpcParams) {
         Debug.Log("ClientRPC");
     }
-
-
-    
-
-
-
-
 }

@@ -20,10 +20,29 @@ public class PlayerNetwork : NetworkBehaviour
 
     public static List<Transform> spawnedObjectsList = new List<Transform>();
 
+    NetworkManager nM;
+    TeamHandler tH;
+
+    private int team;
+    //Returns the team of the player
+    public int GetTeam()
+    {
+        return team;
+    }
+    //Sets the team of the player
+    public void SetTeam(int newTeam)
+    {
+        if (!IsServer) return;
+
+        team = newTeam;
+    }
+
 /*This is a variable that is sent over the network, to change the type of variable, you can change the "int" to "float", "ensum", "bool", "struct". All value types, refrence type variables are not able to used with this.
 https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 "NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public GameObject camera;
+
 
 
 
@@ -57,17 +76,45 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     */
 
     //This will send the struct defined above when one of it's values changes
+    //This will send the struct defined above when one of it's values changes
+    //Runs when an opbejct is spawned
     public override void OnNetworkSpawn() {
+
+        nM = FindObjectOfType<NetworkManager>();
+
+        if(nM != null){
+        tH = nM.GetComponent<TeamHandler>();
+        }
+        if (IsServer)//Checks if the server is the one trigger "OnNetworkSpawn"
+        {
+            tH.AddPlayer(this); //Runs the AddPlayer function form TeamHandler
+        }
+
+        
         customNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) => {
         Debug.Log(OwnerClientId + "; " + newValue._int + " and it's " + newValue._bool);
-
         };
     }
     private void Start() {
+        // IF I'M THE PLAYER, STOP HERE (DON'T TURN MY OWN CAMERA OFF)
+        if (IsOwner) return;
+ 
+        camera.SetActive(false);
         bowSpeed = bowSpeedMin;
     }
    
+
+    public virtual void OnNetworkDespawn(){
+
+        tH.RemovePlayer(this);
+
+    }
+
+    
     private void Update() {
+        if(IsOwner) {}
+
+
         if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
         if(Input.GetKeyDown(KeyCode.C)){
@@ -83,6 +130,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
             bowSpeed = bowSpeedMin;
         }
 
+        camera.SetActive(true);
 
         if(Input.GetKeyDown(KeyCode.T)){
             randomNumber.Value = Random.Range(0,100); //changes the random number

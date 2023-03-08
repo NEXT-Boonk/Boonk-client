@@ -487,7 +487,7 @@ RectTransform:
   m_Children:
   - {fileID: 1737853166}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1474195509}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IpInput, Assembly-CSharp
         m_MethodName: InputIp
         m_Mode: 1
@@ -1349,7 +1349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1474195509}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IpInput, Assembly-CSharp
         m_MethodName: InputPort
         m_Mode: 1
@@ -2206,7 +2206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1462162821
 GameObject:

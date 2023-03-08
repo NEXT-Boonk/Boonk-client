@@ -86,7 +86,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         };
     }
 
-    public virtual void OnNetworkDespawn(){
+    public override void OnNetworkDespawn(){
 
         tH.RemovePlayer(this);
 

@@ -20,7 +20,7 @@ public class NetworkManagerUI : MonoBehaviour
 
     // Deifining Unity transport
     UnityTransport UT;
-    IpInput iP;
+    Data data;
     string ip;
     string port;
 
@@ -30,19 +30,19 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Awake(){
 
-        iP = FindObjectOfType<IpInput>();
+        data = FindObjectOfType<Data>();
         UT = FindObjectOfType<UnityTransport>();
 
 
-        UT.ConnectionData.Port = UInt16.Parse(iP.GetPort());
-        UT.ConnectionData.Address = iP.GetIp();
+        UT.ConnectionData.Port = UInt16.Parse(data.GetPort());
+        UT.ConnectionData.Address = data.GetIp();
 
-        Debug.Log(iP.GetHost());
+        Debug.Log(data.GetHost());
         
        // UT.ConnectionData.Ip = 
        // UT.ConnectionData.Port =
 
-       if(iP.GetHost()) {
+       if(data.GetHost()) {
 
         NetworkManager.Singleton.StartHost();
         }

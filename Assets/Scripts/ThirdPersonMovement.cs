@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ThirdPersonMovement : MonoBehaviour
+public class ThirdPersonMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cam;
@@ -10,7 +12,7 @@ public class ThirdPersonMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity;
 
-    private float turnSmoothTime = 0.1f; 
+    private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     private Vector3 velocity;
 
@@ -23,6 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     void Update()
     {
+        if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
         Move();
@@ -32,7 +35,7 @@ public class ThirdPersonMovement : MonoBehaviour
     private void ApplyGravity() 
     {
         if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
-        else velocity.y = -0.1f;
+        else velocity.y = -1;
     }
 
     private void Move() 
@@ -42,7 +45,7 @@ public class ThirdPersonMovement : MonoBehaviour
         float inputAD = Input.GetAxisRaw("Horizontal");
 
         // normalized direction vector
-        Vector3 direction = new Vector3(inputAD, 0, inputWS).normalized;
+        Vector3 direction = new Vector3(-inputAD, 0, -inputWS).normalized;
         
         // no movement if the direction vector's magnitude is too close to zero
         if (direction.magnitude >= 0.1) {
@@ -54,9 +57,9 @@ public class ThirdPersonMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, playerModelAngle, 0f);
             
             // the movement direction is calculated using the look direction
-            Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
+            Vector3 moveDirection = -(Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward);
 
-            controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
+            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized); 
         }  
     }
 

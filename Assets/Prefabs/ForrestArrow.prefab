@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 6050021098363307049}
   - component: {fileID: 58599535688980250}
   m_Layer: 0
-  m_Name: Arrow skovfolk
+  m_Name: ForrestArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

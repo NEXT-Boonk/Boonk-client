@@ -7,22 +7,22 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
-    Button startButton;
+    Button playButton;
     Button quitButton;
 
-    void Start()
+    void Awake()
     {
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
 
-        startButton = root.Q<Button>("start");
-        quitButton = root.Q<Button>("quit");
+        playButton = root.Q<Button>("PlayButton");
+        quitButton = root.Q<Button>("QuitButton");
 
-        startButton.clicked += StartButton;
+        playButton.clicked += PlayButton;
         quitButton.clicked += QuitButton;
     }
 
-    void StartButton() { 
+    void PlayButton() { 
         SceneManager.LoadScene("ServerSelector");   
     }
 

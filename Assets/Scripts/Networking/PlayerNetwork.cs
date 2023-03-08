@@ -6,7 +6,6 @@ public class PlayerNetwork : NetworkBehaviour
 {
     [SerializeField] private Transform spawnedRockObjectPrefab;
     [SerializeField] private Transform spawnedBowObjectPrefab;
-
     [SerializeField] private Transform spawnedStartObjectPosition;
 
     [SerializeField] private float rockSpeed;
@@ -18,7 +17,7 @@ public class PlayerNetwork : NetworkBehaviour
 
     public static List<Transform> spawnedObjectsList = new List<Transform>();
 
-    NetworkManager networkManager;
+    private NetworkManager networkManager;
     TeamHandler teamHandler;
 
     private int team;
@@ -27,7 +26,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         return team;
     }
-    //Sets the team of the player
+    // Sets the team of the player
     public void SetTeam(int newTeam)
     {
         if (!IsServer) return;
@@ -35,14 +34,16 @@ public class PlayerNetwork : NetworkBehaviour
         team = newTeam;
     }
 
-/*This is a variable that is sent over the network, to change the type of variable, you can change the "int" to "float", "ensum", "bool", "struct". All value types, refrence type variables are not able to used with this.
-https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
-"NetworkVariableWritePermission.Owner" means that the client is able to change the variable, change this to server*/
+	/*
+	This is a variable that is sent over the network, to change the type of variable,
+	you can change the "int" to "float", "ensum", "bool", "struct". All value types, 
+	refrence type variables are not able to used with this.
+	https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
+	"NetworkVariableWritePermission.Owner" means that the client is able to change the variable, 
+	change this to server
+	*/
     private NetworkVariable<int> randomNumber = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public GameObject playerCamera;
-
-
-
 
     // This is a struct, a refrence variable, not definable using the method above
     public struct MyCustomData: INetworkSerializable {
@@ -83,9 +84,9 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
         networkManager = FindObjectOfType<NetworkManager>();
 
         if(networkManager != null){
-        teamHandler = networkManager.GetComponent<TeamHandler>();
+        	teamHandler = networkManager.GetComponent<TeamHandler>();
         }
-        if (IsServer)//Checks if the server is the one trigger "OnNetworkSpawn"
+        if (IsServer) //Checks if the server is the one trigger "OnNetworkSpawn"
         {
             teamHandler.AddPlayer(this); //Runs the AddPlayer function form TeamHandler
         }
@@ -104,27 +105,25 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
    
 
-    public override void OnNetworkDespawn(){
-
+    public override void OnNetworkDespawn() {
         teamHandler.RemovePlayer(this);
-
     }
 
     
     private void Update() {
-        if(IsOwner) {}
+		// This checks if the code is not run by the player, if so it does nothing.
+        if(!IsOwner) return; 
 
-
-        if(!IsOwner) return; //This checks if the code is not run by the player, if so it does nothing.
         //Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
-        if(Input.GetKeyDown(KeyCode.C)){
+        if(Input.GetKeyDown(KeyCode.C)) {
             StoneServerRpc(new ServerRpcParams());
         }
-        if(Input.GetKey(KeyCode.V)){
+
+        if(Input.GetKey(KeyCode.V)) {
             if(bowSpeed<bowSpeedMax)
                 bowSpeed = bowSpeed + bowChargeSpeed* Time.deltaTime;
-                Debug.Log("added"+bowSpeed);
         }
+
         if(Input.GetKeyUp(KeyCode.V)){
             BowServerRpc(new ServerRpcParams());
             bowSpeed = bowSpeedMin;
@@ -132,23 +131,24 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
 
         playerCamera.SetActive(true);
 
-        if(Input.GetKeyDown(KeyCode.T)){
+        if(Input.GetKeyDown(KeyCode.T)) {
             randomNumber.Value = Random.Range(0,100); //changes the random number
         }
-        if(Input.GetKeyDown(KeyCode.Y)){
-            if(customNumber.Value._int == 51){
-            customNumber.Value = new MyCustomData{
-                _int = 10,
-                _bool = false,
-            }; //sets a new struct
-            } else {
-            customNumber.Value = new MyCustomData{
-                _int = 51,
-                _bool = true,
-            };
 
+        if(Input.GetKeyDown(KeyCode.Y)) {
+            if(customNumber.Value._int == 51){
+				customNumber.Value = new MyCustomData{
+					_int = 10,
+					_bool = false,
+				}; //sets a new struct
+            } else {
+				customNumber.Value = new MyCustomData{
+					_int = 51,
+					_bool = true,
+				};
             }
         }
+
         //This code is connected to the code under the line "[ServerRpc]" further down
         if(Input.GetKeyDown(KeyCode.U)){
             TestServerRpc(new ServerRpcParams());
@@ -197,18 +197,18 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     Note that one has to put "[ServerRpc]" right above the code
     */
     [ServerRpc]
-    private void TestServerRpc(ServerRpcParams Rpc){
-        Debug.Log("server rpc working" + Rpc.Receive.SenderClientId);
+    private void TestServerRpc(ServerRpcParams rpc){
+        Debug.Log("Server rpc working: " + rpc.Receive.SenderClientId);
     }
 
     [ServerRpc]
-    private void StoneServerRpc(ServerRpcParams Rpc){
+    private void StoneServerRpc(ServerRpcParams _rpc){
         ServerSpawnTool(spawnedRockObjectPrefab, spawnedStartObjectPosition, rockSpeed);
     }
 
     [ServerRpc]
-    private void BowServerRpc(ServerRpcParams Rpc){
-        ServerSpawnTool(spawnedBowObjectPrefab, spawnedStartObjectPosition,bowSpeed);
+    private void BowServerRpc(ServerRpcParams _rpc){
+        ServerSpawnTool(spawnedBowObjectPrefab, spawnedStartObjectPosition, bowSpeed);
     }
 
     /*
@@ -217,7 +217,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     This would f.eks. allow the server to tell a player that they have died and run the death command on it.
     */
     [ClientRpc]
-    private void TestClientRpc(ClientRpcParams ClientRpcParams) {
+    private void TestClientRpc(ClientRpcParams _clientRpcParams) {
         Debug.Log("ClientRPC");
     }
 }

@@ -1,56 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using Unity.Netcode.Transports.UTP;
-using Unity.Netcode;
 using System; 
-using System.Linq;
-using System.Net.Sockets;
-
-
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 
 public class ServerSelector : MonoBehaviour
 {
-    TextField ipInput;
-    Button joinButton;
-    Button backButton;
+    private TextField ipInput;
+    private Button joinButton;
+    private Button backButton;
+    private UnityTransport transport;
+    private string[] input;
 
-    UnityTransport UT;
-    Data data;
+	void Awake() 
+	{
+        transport = FindObjectOfType<UnityTransport>();
 
-
-    string[] input;
-
-    void Start()
-    {
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
 
-        ipInput = root.Q<TextField>("IP_input");
-        joinButton = root.Q<Button>("join");
-        backButton = root.Q<Button>("back");
+        ipInput = root.Q<TextField>("InputIP");
+        joinButton = root.Q<Button>("JoinButton");
+        backButton = root.Q<Button>("BackButton");
 
         joinButton.clicked += JoinButton;
         backButton.clicked += BackButton;
-    }
+	}
 
     void JoinButton() { 
-
-        data = FindObjectOfType<Data>();
-
         input = ipInput.text.Split(":");
-        //string ip = Char.ToString(input[0]);
 
-        Debug.Log(input[0]);
-        Debug.Log(input[1]);
-        data.SetIp(input[0]);
-        data.SetPort(input[1]);
-        data.SetHost(false);
-        SceneManager.LoadScene("Game");
+		string ip;
+		ushort port;
 
+		// Try to parse IP and Port, return if invalid
+		try {
+			ip = input[0];
+			port = UInt16.Parse(input[1]);
+		} catch (IndexOutOfRangeException) {
+			Debug.Log("Invalid IP or Port");
+			return;
+		} catch (FormatException) {
+			Debug.Log("Invalid Port");
+			return;
+		}
+
+		// Set IP and Port on transport and connect as client
+		transport.ConnectionData.Address = ip;
+		transport.ConnectionData.Port = port;
+		NetworkManager.Singleton.StartClient();
+
+        SceneManager.LoadScene("GameFixed");
     }
+
+	void HostButton() {
+		// Set IP and Port (0.0.0.0:7777) and start a server as host
+		transport.ConnectionData.Address = "0.0.0.0";
+		transport.ConnectionData.Port = 7777;
+		NetworkManager.Singleton.StartHost();
+
+		SceneManager.LoadScene("GameFixed");
+	}
 
     void BackButton() {
         SceneManager.LoadScene("MainMenu");

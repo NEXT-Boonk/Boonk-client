@@ -15,6 +15,7 @@ public class ServerSelector : MonoBehaviour
 {
     TextField ipInput;
     Button joinButton;
+    Button hostButton;
     Button backButton;
 
     UnityTransport UT;
@@ -30,9 +31,11 @@ public class ServerSelector : MonoBehaviour
 
         ipInput = root.Q<TextField>("IP_input");
         joinButton = root.Q<Button>("join");
+        hostButton = root.Q<Button>("host");
         backButton = root.Q<Button>("back");
 
         joinButton.clicked += JoinButton;
+        hostButton.clicked += HostButton;
         backButton.clicked += BackButton;
     }
 
@@ -48,6 +51,22 @@ public class ServerSelector : MonoBehaviour
         data.SetIp(input[0]);
         data.SetPort(input[1]);
         data.SetHost(false);
+        SceneManager.LoadScene("Game");
+
+    }
+
+    void HostButton() { 
+
+        data = FindObjectOfType<Data>();
+
+        input = ipInput.text.Split(":");
+        //string ip = Char.ToString(input[0]);
+
+        Debug.Log(input[0]);
+        Debug.Log(input[1]);
+        data.SetIp(input[0]);
+        data.SetPort(input[1]);
+        data.SetHost(true);
         SceneManager.LoadScene("Game");
 
     }

@@ -174,22 +174,25 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void ServerSpawnTool(Transform spawnedObjectPrefab,Transform Position,float Speed)
     {
-        spawnedObjectTransform = Instantiate(
+        Transform spawnedObject = Instantiate(
 			spawnedObjectPrefab, 
 			Position.position,
 			Quaternion.LookRotation(spawnedStartObjectPosition.forward)
 		);
-        spawnedObjectTransform.GetComponent<Rigidbody>().velocity = spawnedStartObjectPosition.forward * Speed;
-        spawnedObjectTransform.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(
-			spawnedObjectTransform.GetComponent<Rigidbody>().velocity
+
+        spawnedObject.GetComponent<Rigidbody>().velocity = spawnedStartObjectPosition.forward * Speed;
+        spawnedObject.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(
+			spawnedObject.GetComponent<Rigidbody>().velocity
 		);
         
-        spawnedObjectTransform.GetComponent<NetworkObject>().Spawn(true);
-        spawnedObjectsList.Add(spawnedObjectTransform);
+        spawnedObject.GetComponent<NetworkObject>().Spawn(true);
+        spawnedObjectsList.Add(spawnedObject);
+
         if(spawnedObjectsList.Count > 100){
             for (int i = 0; i < spawnedObjectsList.Count; i++) {
                 DestroyImmediate(spawnedObjectsList[i].gameObject);
             }
+
             spawnedObjectsList.Clear();
         }
     }

@@ -52,18 +52,19 @@ public class ServerSelector : MonoBehaviour
 		// Set IP and Port on transport and connect as client
 		transport.ConnectionData.Address = ip;
 		transport.ConnectionData.Port = port;
-		NetworkManager.Singleton.StartClient();
 
         SceneManager.LoadScene("GameFixed");
+		NetworkManager.Singleton.StartClient();
     }
 
 	void HostButton() {
 		// Set IP and Port (0.0.0.0:7777) and start a server as host
 		transport.ConnectionData.Address = "0.0.0.0";
 		transport.ConnectionData.Port = 7777;
-		NetworkManager.Singleton.StartHost();
 
 		SceneManager.LoadScene("GameFixed");
+		NetworkManager.Singleton.StartHost();
+
 	}
 
     void BackButton() {

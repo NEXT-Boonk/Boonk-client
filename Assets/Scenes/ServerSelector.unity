@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2405834271236670235, guid: 267f2d48a6649924d8b31c85bf2c7e66, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[0].Prefab
+      value: 
+      objectReference: {fileID: 98776537348572698, guid: 51fc67849804e6943beee0d9d7165c92, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 267f2d48a6649924d8b31c85bf2c7e66, type: 3}
 --- !u!1 &973302345 stripped
@@ -197,8 +201,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fa1b11000237d4b907282aed79cf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamA: []
-  teamB: []
+  forrestTeam: []
+  snowTeam: []
 --- !u!1 &1389468413
 GameObject:
   m_ObjectHideFlags: 0

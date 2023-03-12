@@ -53,8 +53,18 @@ public class ServerSelector : MonoBehaviour
 		transport.ConnectionData.Address = ip;
 		transport.ConnectionData.Port = port;
 
-        SceneManager.LoadScene("GameFixed");
-		NetworkManager.Singleton.StartClient();
+        if (NetworkManager.Singleton.StartClient())
+        {
+            // Let the network change scene.
+            NetworkManager
+		        .Singleton
+		        .SceneManager
+		        .LoadScene("GameFixed", LoadSceneMode.Single);
+        }
+        else
+        {
+            Debug.LogError("Failed to start client.");
+        }
     }
 
 	void HostButton() {
@@ -62,9 +72,18 @@ public class ServerSelector : MonoBehaviour
 		transport.ConnectionData.Address = "0.0.0.0";
 		transport.ConnectionData.Port = 7777;
 
-		SceneManager.LoadScene("GameFixed");
-		NetworkManager.Singleton.StartHost();
-
+        if (NetworkManager.Singleton.StartHost())
+        {
+            // Let the network change scene.
+            NetworkManager
+		        .Singleton
+		        .SceneManager
+		        .LoadScene("GameFixed", LoadSceneMode.Single);
+        }
+        else
+        {
+            Debug.LogError("Failed to start host.");
+        }
 	}
 
     void BackButton() {

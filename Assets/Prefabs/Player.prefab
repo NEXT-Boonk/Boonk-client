@@ -101,13 +101,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95091891e107dc149990b08ceaf0e754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedRockObjectPrefab: {fileID: 0}
-  spawnedBowObjectPrefab: {fileID: 0}
-  spawnedStartObjectPosition: {fileID: 0}
+  rockPrefab: {fileID: 6766518415631405367, guid: 4a352d0ba33af1a42b8b4e3c81e47ae0, type: 3}
+  bowPrefab: {fileID: 6213881980038893574, guid: 0640947f8689dd7488b861245a3caefb, type: 3}
+  startPosition: {fileID: 7012300315812268085}
   rockSpeed: 0
   bowSpeedMax: 0
   bowSpeedMin: 0
   bowChargeSpeed: 0
+  bowSpeed: 0
+  team: 0
   playerCamera: {fileID: 4524553270726015385}
 --- !u!114 &4089053638687918854
 MonoBehaviour:
@@ -963,13 +965,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95091891e107dc149990b08ceaf0e754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedRockObjectPrefab: {fileID: 0}
-  spawnedBowObjectPrefab: {fileID: 0}
-  spawnedStartObjectPosition: {fileID: 0}
+  rockPrefab: {fileID: 0}
+  bowPrefab: {fileID: 0}
+  startPosition: {fileID: 0}
   rockSpeed: 0
   bowSpeedMax: 0
   bowSpeedMin: 0
   bowChargeSpeed: 0
+  bowSpeed: 0
+  team: 0
   playerCamera: {fileID: 4524553270726015385}
 --- !u!114 &6156134264148595362
 MonoBehaviour:

@@ -12,5 +12,4 @@ public class PlayerStats : ScriptableObject
     public int defense;
     public int health;
     public float recoil;
-
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float maxHealth;
+    float maxHealth;
     public float currentHealth;
     public Slider healthBar;
     public GameObject deathScreen;
@@ -16,6 +16,7 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = stats.HP;
         currentHealth = maxHealth;
         deathScreen.SetActive(false);
     }
@@ -26,9 +27,8 @@ public class HealthSystem : MonoBehaviour
 
 
         fillAmount = currentHealth / maxHealth;
+        Debug.Log(fillAmount);
         healthBar.value = fillAmount;
-
-
 
         if(currentHealth > maxHealth)
         {
@@ -44,8 +44,9 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage(float d)
     {
+
         Debug.Log("this gives damage");
-        currentHealth -= d;
+        currentHealth -= d/(1-stats.Defense);
         Debug.Log(d);
     }
 

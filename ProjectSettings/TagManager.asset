@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Club
   - Character
+  - Spear
+  - Bow
   layers:
   - Default
   - TransparentFX

@@ -6,12 +6,13 @@ public class WeaponDamage : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [SerializeField] PlayerStats stats;
     float damageGiven;
 
     void Start()
     {
         //damageGiven = stats.Damage;
-        damageGiven = 10;
+        damageGiven = stats.Damage;
     }
 
     // Update is called once per frame
@@ -22,11 +23,11 @@ public class WeaponDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("collision");
-        if (col.gameObject.CompareTag("Character"))
-        {
-            col.gameObject.GetComponent<HealthSystem>().TakeDamage(damageGiven);
-            Debug.Log("collision with character");
+        if (this.CompareTag("Club")) { 
+            if (col.gameObject.CompareTag("Character"))
+            {
+                col.gameObject.GetComponent<HealthSystem>().TakeDamage(damageGiven);
+            }
         }
     }
 }

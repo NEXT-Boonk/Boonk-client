@@ -9,7 +9,7 @@ public class PlayerStats : ScriptableObject
     public float Range;
     public int Stagger;
     public int Damage;
-    public int Defense;
+    public float Defense;
     public int HP;
     public float Recoil;
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hunter
   m_EditorClassIdentifier: 
   attackSpeed: 250
-  Range: 1.5
-  Stagger: 200
-  Damage: 25
-  Defense: 25
-  HP: 100
-  Recoil: 0.2
+  range: 1.5
+  stagger: 200
+  damage: 25
+  defense: 25
+  health: 100
+  recoil: 0.2

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Tracker
   m_EditorClassIdentifier: 
   attackSpeed: 1500
-  Range: 25
-  Stagger: 500
-  Damage: 10
-  Defense: 10
-  HP: 100
-  Recoil: 2
+  range: 25
+  stagger: 500
+  damage: 10
+  defense: 10
+  health: 100
+  recoil: 2

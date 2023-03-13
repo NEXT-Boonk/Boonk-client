@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Brute
   m_EditorClassIdentifier: 
   attackSpeed: 750
-  Range: 0.6
-  Stagger: 300
-  Damage: 30
-  Defense: 40
-  HP: 100
-  Recoil: 1
+  range: 0.6
+  stagger: 300
+  damage: 30
+  defense: 40
+  health: 100
+  recoil: 1

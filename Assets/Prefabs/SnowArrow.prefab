@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: -7304883920163743966}
   - component: {fileID: 548729934477743976}
   m_Layer: 0
-  m_Name: Arrow snefolk
+  m_Name: SnowArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

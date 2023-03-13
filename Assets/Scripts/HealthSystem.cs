@@ -7,11 +7,11 @@ public class HealthSystem : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
-    public float damage;
     public Slider healthBar;
     public GameObject deathScreen;
     float fillAmount;
 
+    [SerializeField] PlayerStats stats;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +35,6 @@ public class HealthSystem : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        if (Input.anyKey)
-        {
-            DamageSystem();
-        }
-
         if(currentHealth <= 0)
         {
             deathScreen.SetActive(true);
@@ -47,13 +42,12 @@ public class HealthSystem : MonoBehaviour
 
     }
 
-    void DamageSystem()
+    public void TakeDamage(float d)
     {
-        TakeDamage();
+        Debug.Log("this gives damage");
+        currentHealth -= d;
+        Debug.Log(d);
     }
 
-    void TakeDamage()
-    {
-        currentHealth -= damage;
-    }
+
 }

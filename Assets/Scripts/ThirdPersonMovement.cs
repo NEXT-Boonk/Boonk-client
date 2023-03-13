@@ -25,7 +25,6 @@ public class ThirdPersonMovement : NetworkBehaviour
 
     void Update()
     {
-        if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
         Move();

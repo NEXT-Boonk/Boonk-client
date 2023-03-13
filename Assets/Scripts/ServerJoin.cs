@@ -21,7 +21,7 @@ public class ServerJoin : MonoBehaviour
 
 
     UnityTransport UT;
-    Data data;
+    IpInput iP;
 
     string[] input;
 
@@ -32,7 +32,7 @@ public class ServerJoin : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        ipPort = root.Q<TextField>( "IP_input" );
+        ipPort = root.Q<TextField>( "IpPort" );
         joinButton = root.Q<Button>("JoinButton");
         hostButton = root.Q<Button>("HostButton");
 
@@ -47,16 +47,16 @@ public class ServerJoin : MonoBehaviour
         if(ipPort.text == "Ip..." || ipPort.text == "" ){
             return;
         }
-        data = FindObjectOfType<Data>();
+        iP = FindObjectOfType<IpInput>();
 
         input = ipPort.text.Split(":");
         //string ip = Char.ToString(input[0]);
 
         Debug.Log(input[0]);
         Debug.Log(input[1]);
-        data.SetIp(input[0]);
-        data.SetPort(input[1]);
-        data.SetHost(false);
+        iP.SetIp(input[0]);
+        iP.SetPort(input[1]);
+        iP.SetHost(false);
         SceneManager.LoadScene("Game");
 
        }
@@ -67,16 +67,16 @@ public class ServerJoin : MonoBehaviour
         if(ipPort.text == "Ip..." || ipPort.text == "" ){
             return;
         }
-        data = FindObjectOfType<Data>();
+        iP = FindObjectOfType<IpInput>();
 
         input = ipPort.text.Split(":");
         //string ip = Char.ToString(input[0]);
 
         Debug.Log(input[0]);
         Debug.Log(input[1]);
-        data.SetIp(input[0]);
-        data.SetPort(input[1]);
-        data.SetHost(true);
+        iP.SetIp(input[0]);
+        iP.SetPort(input[1]);
+        iP.SetHost(true);
         SceneManager.LoadScene("Game");
 
        }

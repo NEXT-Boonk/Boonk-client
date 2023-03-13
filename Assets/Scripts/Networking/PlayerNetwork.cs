@@ -107,7 +107,7 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
    
 
-    public override void OnNetworkDespawn(){
+    public virtual void OnNetworkDespawn(){
 
         tH.RemovePlayer(this);
 
@@ -175,8 +175,8 @@ https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
     }
 
 
-    /*
-    This is how to create a funktion that is run on the server, a serverRPC
+    
+    //This is how to create a funktion that is run on the server, a serverRPC
     private void ServerSpawnTool(Transform spawnedObjectPrefab,Transform Position,float Speed)
     {
         spawnedObjectTransform = Instantiate(spawnedObjectPrefab,Position.position,Quaternion.LookRotation(spawnedStartObjectPosition.forward));

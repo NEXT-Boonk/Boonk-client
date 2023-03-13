@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerNetwork : NetworkBehaviour
 {
     [SerializeField] private Transform rockPrefab;
-    [SerializeField] private Transform bowPrefab;
+    [SerializeField] private Transform arrowPrefab;
     [SerializeField] private Transform startPosition;
 
     [SerializeField] private float rockSpeed;
-    [SerializeField] private float bowSpeedMax,bowSpeedMin,bowChargeSpeed;
-    [SerializeField] private float bowSpeed;
+    [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
+    private float arrowSpeed;
 
     private Transform spawnedObjectTransform;
     public static List<Transform> spawnedObjectsList = new();
@@ -87,7 +87,7 @@ public class PlayerNetwork : NetworkBehaviour
         if (IsOwner) return;
  
         playerCamera.SetActive(false);
-        bowSpeed = bowSpeedMin;
+        arrowSpeed = arrowSpeedMin;
     }
    
 
@@ -106,13 +106,13 @@ public class PlayerNetwork : NetworkBehaviour
         }
 
         if(Input.GetKey(KeyCode.V)) {
-            if(bowSpeed<bowSpeedMax)
-                bowSpeed = bowSpeed + bowChargeSpeed* Time.deltaTime;
+            if(arrowSpeed < arrowSpeedMax)
+                arrowSpeed = arrowSpeed + arrowChargeSpeed* Time.deltaTime;
         }
 
         if(Input.GetKeyUp(KeyCode.V)){
-            BowServerRpc(new ServerRpcParams());
-            bowSpeed = bowSpeedMin;
+            ArrowServerRpc(new ServerRpcParams());
+            arrowSpeed = arrowSpeedMin;
         }
 
         playerCamera.SetActive(true);
@@ -145,23 +145,10 @@ public class PlayerNetwork : NetworkBehaviour
             // Thanks to the parameter, we only run the function on the client with the id of 1
             TestClientRpc(new ClientRpcParams {Send = new ClientRpcSendParams { TargetClientIds = new List<ulong>{1}}});
         }
-
-        // The code below creates a simple movement system
-        /*
-	    Vector3 moveDir = new Vector3(0,0,0);
-        if (Input.GetKey(KeyCode.W)) moveDir.z = +1f;
-        if (Input.GetKey(KeyCode.S)) moveDir.z = -1f;
-        if (Input.GetKey(KeyCode.A)) moveDir.x = -1f;
-        if (Input.GetKey(KeyCode.D)) moveDir.x = +1f;
-
-        float moveSpeed = 3f;
-        transform.position += moveDir * moveSpeed *Time.deltaTime;
-	    */
     }
 
 
-    private void ServerSpawnTool(Transform prefab, Transform Position, float Speed)
-    {
+    private void ServerSpawnTool(Transform prefab, Transform Position, float Speed) {
         Transform spawnedObject = Instantiate(
 			prefab, 
 			Position.position,
@@ -206,8 +193,8 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
     [ServerRpc]
-    private void BowServerRpc(ServerRpcParams _rpc){
-        ServerSpawnTool(bowPrefab, startPosition, bowSpeed);
+    private void ArrowServerRpc(ServerRpcParams _rpc){
+        ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
     }
 
     /*

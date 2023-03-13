@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class cameraScript : MonoBehaviour
+public class CameraScript : MonoBehaviour
 {
 
     [SerializeField] private Transform enemy;
     [SerializeField] Transform player;
+
     [Space]
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera playerCamera;
     [SerializeField] float cameraSlack;
     [SerializeField] float cameraDistance;
     [SerializeField] float lockOnDistance = 50f;
@@ -32,24 +33,19 @@ public class cameraScript : MonoBehaviour
 
     [SerializeField] private bool lockOn;
 
-    void Update()
-    {
+    void Update() {
         // changes between freecamera and lockon camera
-        if (Input.GetKeyDown("q"))
-        {
-            if (lockOn == true)
-            {
+        if (Input.GetKeyDown("q")) {
+            if (lockOn == true) {
                 slukLockOn();
 
             }
-            else if (lockOn == false)
-            {
+            else if (lockOn == false) {
                 GameObject[] players = GameObject.FindGameObjectsWithTag("lockOnObjectTag");
                 GameObject[] enemies = players;
                 enemy = secondClosestTransform(player.transform.position, enemies, lockOnDistance);
 
-                if (enemy != null)
-                {
+                if (enemy != null) {
                     lockOn = true;
                     cinemachineBrain.enabled = false;
                 }
@@ -71,9 +67,9 @@ public class cameraScript : MonoBehaviour
             float extraHeight = Mathf.Lerp(minHeight, maxHeight, Mathf.InverseLerp(0, lockOnDistance, distanceToTarget));
 
             pivotPoint = Vector3.MoveTowards(current, target + Vector3.up * extraHeight, Vector3.Distance(current, target) * cameraSlack);
-            camera.transform.position = pivotPoint;
-            camera.transform.LookAt((enemy.position + player.position) / 2);
-            camera.transform.position -= transform.forward * cameraDistance;
+            playerCamera.transform.position = pivotPoint;
+            playerCamera.transform.LookAt((enemy.position + player.position) / 2);
+            playerCamera.transform.position -= transform.forward * cameraDistance;
         }
     }
 
@@ -120,7 +116,4 @@ public class cameraScript : MonoBehaviour
 
         return secondClosestTransform;
     }
-
-
-
 }

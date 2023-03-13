@@ -4,14 +4,14 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ThirdPersonMovement : NetworkBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float gravity = 9.8f;
-
-    [SerializeField] public Transform cameraTransform;
-    [SerializeField] private float moveSpeed = 10.0f; 
-    [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private Transform cameraTransform;
+    
+    [SerializeField] private float gravity;
+    [SerializeField] private float moveSpeed; 
+    [SerializeField] private float jumpForce;
 
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -22,7 +22,6 @@ public class ThirdPersonMovement : NetworkBehaviour
         // Hides the cursor 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        cameraTransform = GetComponentInChildren<Transform>();
     }
 
     void Update() {
@@ -30,12 +29,12 @@ public class ThirdPersonMovement : NetworkBehaviour
         ApplyGravity();  
         Jump();  
         Move();
+        controller.Move(velocity * Time.deltaTime);
     }
     
-    private void ApplyGravity() 
-    {
-        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime * Time.deltaTime;
-        else velocity.y = -0.1f;
+    private void ApplyGravity() {
+        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
+        else velocity.y = -1f;
     }
 
     private void Move() {
@@ -44,7 +43,7 @@ public class ThirdPersonMovement : NetworkBehaviour
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
 
         // Normalized direction vector, to move the player.
-        Vector3 direction = new Vector3(-inputVertical, 0, -inputHorizontal).normalized;
+        Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
         
         // Don't move, if the direction vector's magnitude is too close to zero.
         if (direction.magnitude >= 0.1) {
@@ -56,15 +55,14 @@ public class ThirdPersonMovement : NetworkBehaviour
             transform.rotation = Quaternion.Euler(0f, playerAngle, 0f);
             
             // The movement direction is calculated using the look direction.
-            Vector3 moveDirection = -(Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward);
+            Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized); 
         }  
     }
 
     private void Jump() {
-        if (Input.GetButtonDown("Jump"))
-        {
+        if (Input.GetButtonDown("Jump")) {
             if (!controller.isGrounded) return;
             velocity.y += jumpForce;
         }

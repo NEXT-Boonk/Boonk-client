@@ -179,9 +179,13 @@ PrefabInstance:
       value: NetworkManager
       objectReference: {fileID: 0}
     - target: {fileID: 2405834271236670235, guid: 267f2d48a6649924d8b31c85bf2c7e66, type: 3}
+      propertyPath: NetworkConfig.PlayerPrefab
+      value: 
+      objectReference: {fileID: 4196876361671034216, guid: 3d39150ef475dbf4c97c59124f20b38c, type: 3}
+    - target: {fileID: 2405834271236670235, guid: 267f2d48a6649924d8b31c85bf2c7e66, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.data[0].Prefab
       value: 
-      objectReference: {fileID: 98776537348572698, guid: 51fc67849804e6943beee0d9d7165c92, type: 3}
+      objectReference: {fileID: 4196876361671034216, guid: 3d39150ef475dbf4c97c59124f20b38c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 267f2d48a6649924d8b31c85bf2c7e66, type: 3}
 --- !u!1 &973302345 stripped

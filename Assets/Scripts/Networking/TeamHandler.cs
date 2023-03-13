@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public enum Team { 
+public enum Team
+{ 
     Forrest = 0,
     Snow = 1
 }

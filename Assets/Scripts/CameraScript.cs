@@ -5,47 +5,48 @@ using Cinemachine;
 
 public class CameraScript : MonoBehaviour
 {
-
-    [SerializeField] private Transform enemy;
-    [SerializeField] Transform player;
+    [SerializeField] private Transform player;
+    private Transform enemy;
 
     [Space]
     [SerializeField] private Camera playerCamera;
-    [SerializeField] float cameraSlack;
-    [SerializeField] float cameraDistance;
-    [SerializeField] float lockOnDistance = 50f;
+    [SerializeField] private float cameraSlack;
+    [SerializeField] private float cameraDistance;
+    [SerializeField] private float lockOnDistance = 50f;
 
     [Space]
-    [Range(0, 5)] [SerializeField] float maxHeight;
-    [Range(-0.01f, -1)] [SerializeField] float minHeight;
+    [Range(0, 5)] [SerializeField] private float maxHeight;
+    [Range(-0.01f, -1)] [SerializeField] private float minHeight;
 
     [Space]
-    [SerializeField] CinemachineBrain cinemachineBrain;
+    [SerializeField] private CinemachineBrain cinemachineBrain;
+    [SerializeField] private bool lockOn;
 
     private Vector3 pivotPoint;
 
-    // sætter 
     void Start()
     {
         pivotPoint = transform.position;
         cinemachineBrain = GetComponent<CinemachineBrain>();
     }
 
-    [SerializeField] private bool lockOn;
-
-    void Update() {
+    void Update()
+    {
         // changes between freecamera and lockon camera
-        if (Input.GetKeyDown("q")) {
-            if (lockOn == true) {
-                slukLockOn();
-
+        if (Input.GetKeyDown(KeyCode.Q))
+	    {
+            if (lockOn == true)
+	        {
+                DisableLockOn();
             }
-            else if (lockOn == false) {
-                GameObject[] players = GameObject.FindGameObjectsWithTag("lockOnObjectTag");
-                GameObject[] enemies = players;
-                enemy = secondClosestTransform(player.transform.position, enemies, lockOnDistance);
+            else if (lockOn == false)
+	        {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("LockOn");
 
-                if (enemy != null) {
+                enemy = SecondClosestTransform(player.transform.position, enemies, lockOnDistance);
+
+                if (enemy != null)
+		        {
                     lockOn = true;
                     cinemachineBrain.enabled = false;
                 }
@@ -58,9 +59,10 @@ public class CameraScript : MonoBehaviour
             Vector3 current = pivotPoint;
             Vector3 target = player.transform.position + Vector3.up;
             float distanceToTarget = Vector3.Distance(player.position, enemy.position);
+
             if (distanceToTarget > lockOnDistance)
             {
-                slukLockOn();
+                DisableLockOn();
                 return;
             }
 
@@ -73,7 +75,7 @@ public class CameraScript : MonoBehaviour
         }
     }
 
-    void slukLockOn()
+    void DisableLockOn()
     {
         lockOn = false;
         cinemachineBrain.enabled = true;
@@ -81,36 +83,36 @@ public class CameraScript : MonoBehaviour
     }
 
 
-    // returns the SecondClosest tranfrom from an array of transforms
-    Transform secondClosestTransform(Vector3 position, GameObject[] gameObjects, float maxDistance)
+    // Returns the SecondClosest tranfrom from an array of transforms
+    Transform SecondClosestTransform(Vector3 position, GameObject[] gameObjects, float maxDistance)
     {
         Transform closestTransform = null;
         Transform secondClosestTransform = null;
+
         float closestDistance = Mathf.Infinity;
         float secondClosestDistance = Mathf.Infinity;
 
         foreach (GameObject gm in gameObjects)
-        {
+	    {
             float distance = Vector3.Distance(position, gm.transform.position);
 
             if (distance < closestDistance)
-            {
+	        {
                 secondClosestDistance = closestDistance;
                 secondClosestTransform = closestTransform;
 
                 closestDistance = distance;
                 closestTransform = gm.transform;
             }
-            else if (distance < secondClosestDistance)
-            {
+	        else if (distance < secondClosestDistance)
+	        {
                 secondClosestDistance = distance;
                 secondClosestTransform = gm.transform;
             }
         }
 
         if (secondClosestDistance >= maxDistance)
-        {
-
+	    {
             secondClosestTransform = null;
         }
 

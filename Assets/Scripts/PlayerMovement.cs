@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement : NetworkBehaviour 
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cameraTransform;
@@ -18,13 +18,15 @@ public class PlayerMovement : NetworkBehaviour
     private Vector3 velocity;
 
 
-    void Awake() {
+    void Awake() 
+    {
         // Hides the cursor 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Update() {
+    void Update() 
+    {
         if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
@@ -32,12 +34,14 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
     
-    private void ApplyGravity() {
+    private void ApplyGravity() 
+    {
         if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
         else velocity.y = -1f;
     }
 
-    private void Move() {
+    private void Move() 
+    {
         // Reads input.
         float inputVertical = Input.GetAxisRaw("Vertical");
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
@@ -46,7 +50,8 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
         
         // Don't move, if the direction vector's magnitude is too close to zero.
-        if (direction.magnitude >= 0.1) {
+        if (direction.magnitude >= 0.1) 
+	    {
             // Calculate the player's look direction.
             float lookDirectionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
             
@@ -61,8 +66,10 @@ public class PlayerMovement : NetworkBehaviour
         }  
     }
 
-    private void Jump() {
-        if (Input.GetButtonDown("Jump")) {
+    private void Jump() 
+    {
+        if (Input.GetButtonDown("Jump")) 
+	    {
             if (!controller.isGrounded) return;
             velocity.y += jumpForce;
         }

@@ -32,9 +32,10 @@ public class ThirdPersonMovement : NetworkBehaviour
         Move();
     }
     
-    private void ApplyGravity() {
-        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
-        else velocity.y = -1;
+    private void ApplyGravity() 
+    {
+        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime * Time.deltaTime;
+        else velocity.y = -0.1f;
     }
 
     private void Move() {

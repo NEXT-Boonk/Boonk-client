@@ -1,25 +1,27 @@
 using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerNetwork : NetworkBehaviour
 {
     [SerializeField] private int snowTeamTicket;
     [SerializeField] private int forestTeamTicket;
     [Space]
-    [SerializeField] private Transform rockPrefab;
-    [SerializeField] private Transform arrowPrefab;
+    [SerializeField] private GameObject rockPrefab;
+    [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform startPosition;
 
     [Space]
     [SerializeField] private float rockSpeed;
     [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
     private float arrowSpeed;
-
-    public static List<Transform> spawnedObjects = new();
+    [Space]
+    [SerializeField] private int snowTeamTicket;
+    [SerializeField] private int forestTeamTicket;
+    public static List<GameObject> spawnedObjects = new();
 
     private NetworkManager networkManager;
-    public GameObject playerCamera;
+    public Camera playerCamera;
 
     private TeamHandler teamHandler;
     public Team team;
@@ -28,7 +30,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
-        playerCamera.SetActive(false);
+        playerCamera.gameObject.SetActive(false);
         arrowSpeed = arrowSpeedMin;
     }
    
@@ -44,10 +46,9 @@ public class PlayerNetwork : NetworkBehaviour
             Debug.LogError("Missing NetworkManager");
 		}
 
-        // Checks if the server is the one trigger "OnNetworkSpawn".
-        if (IsServer)
-	    {
-            teamHandler.AddPlayer(this); // Runs the AddPlayer method form TeamHandler.
+        // Checks if the server is the one to trigger "OnNetworkSpawn".
+        if (IsServer) {
+            teamHandler.AddPlayer(this);
         }
     }
 
@@ -58,11 +59,9 @@ public class PlayerNetwork : NetworkBehaviour
     
     private void Update()
     {
-		// This checks if the code is not run by the owner, if so it does nothing.
+		// This checks if the code is NOT run by the owner, if so it does nothing.
         if(!IsOwner) return; 
-
-        playerCamera.SetActive(true);
-        
+        playerCamera.gameObject.SetActive(true);
 
         // v  replace with death function
         if(Input.GetKeyDown(KeyCode.Y))
@@ -90,28 +89,28 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
 
-    private void ServerSpawnTool(Transform prefab, Transform Position, float Speed)
+    private void ServerSpawnTool(GameObject prefab, Transform Position, float Speed)
     {
-        Transform spawnedObject = Instantiate(
+        GameObject newObject = Instantiate(
 			prefab, 
 			Position.position,
 			Quaternion.LookRotation(startPosition.forward)
 		);
 
-        spawnedObject.GetComponent<Rigidbody>().velocity = startPosition.forward * Speed;
-        spawnedObject.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(
-			spawnedObject.GetComponent<Rigidbody>().velocity
+        newObject.GetComponent<Rigidbody>().velocity = startPosition.forward * Speed;
+        newObject.GetComponent<Rigidbody>().rotation = Quaternion.LookRotation(
+			newObject.GetComponent<Rigidbody>().velocity
 		);
         
-        spawnedObject.GetComponent<NetworkObject>().Spawn(true);
-        spawnedObjects.Add(spawnedObject);
+        newObject.GetComponent<NetworkObject>().Spawn(true);
+        spawnedObjects.Add(newObject);
 
         // Despawn objects if too many. Should be refactored to disapear over time.
         if(spawnedObjects.Count > 100)
 	    {
             for (int i = 0; i < spawnedObjects.Count; i++)
 	        {
-                Destroy(spawnedObjects[i].gameObject);
+                Destroy(spawnedObjects[i]);
             }
 
             spawnedObjects.Clear();

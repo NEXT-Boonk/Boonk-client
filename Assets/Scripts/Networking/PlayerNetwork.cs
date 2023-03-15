@@ -8,32 +8,27 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] private Transform arrowPrefab;
     [SerializeField] private Transform startPosition;
 
+    [Space]
     [SerializeField] private float rockSpeed;
     [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
     private float arrowSpeed;
 
-    private Transform spawnedObjectTransform;
     public static List<Transform> spawnedObjects = new();
 
     private NetworkManager networkManager;
+    public GameObject playerCamera;
 
     private TeamHandler teamHandler;
     public Team team;
-    public GameObject playerCamera;
 
-    // This is a struct, a refrence variable, not definable using the method above
-    public struct MyCustomData: INetworkSerializable
+    private void Start()
     {
-        public int _int;
-        public bool _bool;
-
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-	    {
-            serializer.SerializeValue(ref _int);
-            serializer.SerializeValue(ref _bool);
-        }
+        // Don't despawn camera if we are the owner.
+        if (!IsOwner) return;
+        playerCamera.SetActive(false);
+        arrowSpeed = arrowSpeedMin;
     }
-
+   
     // This will send the struct defined above when one of it's values changes.
     public override void OnNetworkSpawn()
     {
@@ -53,21 +48,10 @@ public class PlayerNetwork : NetworkBehaviour
         }
     }
 
-    private void Start()
-    {
-        // Don't despawn camera if we are the owner.
-        if (IsOwner) return;
- 
-        playerCamera.SetActive(false);
-        arrowSpeed = arrowSpeedMin;
-    }
-   
-
     public override void OnNetworkDespawn()
     {
         teamHandler.RemovePlayer(this);
     }
-
     
     private void Update()
     {
@@ -85,20 +69,13 @@ public class PlayerNetwork : NetworkBehaviour
         if(Input.GetKey(KeyCode.V))
 	    {
             if(arrowSpeed < arrowSpeedMax)
-                arrowSpeed = arrowSpeed + arrowChargeSpeed * Time.deltaTime;
+                arrowSpeed += arrowChargeSpeed * Time.deltaTime;
         }
 
         if(Input.GetKeyUp(KeyCode.V))
 	    {
             ArrowServerRpc(new ServerRpcParams());
             arrowSpeed = arrowSpeedMin;
-        }
-
-        // This is connected to the ClientRpc further down
-        if(Input.GetKeyDown(KeyCode.O))
-	    {
-            // Thanks to the parameter, we only run the function on the client with the id of 1
-            TestClientRpc(new ClientRpcParams {Send = new ClientRpcSendParams { TargetClientIds = new List<ulong>{1}}});
         }
     }
 
@@ -141,16 +118,5 @@ public class PlayerNetwork : NetworkBehaviour
     private void ArrowServerRpc(ServerRpcParams _rpc)
     {
         ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
-    }
-
-    /*
-    A ClientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
-    The parameter ClientRpcParams can be used to specifi a specific client to run the function on.
-    This would f.eks. allow the server to tell a player that they have died and run the death command on it.
-    */
-    [ClientRpc]
-    private void TestClientRpc(ClientRpcParams _clientRpcParams)
-    {
-        Debug.Log("ClientRPC");
     }
 }

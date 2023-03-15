@@ -1,26 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField] PlayerStats stats;
     float damageGiven;
 
     void Start()
     {
-        // damageGiven = stats.Damage;
         damageGiven = stats.damage;
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (this.CompareTag("Club")) { 
-            if (col.gameObject.CompareTag("Character"))
+        if (CompareTag("Club")) { 
+            if (collider.gameObject.CompareTag("Character"))
             {
-                col.gameObject.GetComponent<HealthSystem>().TakeDamage(damageGiven);
+                collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
             }
         }
     }

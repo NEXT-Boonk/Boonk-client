@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraScript : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Transform player;
     private Transform enemy;

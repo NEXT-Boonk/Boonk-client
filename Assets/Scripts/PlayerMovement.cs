@@ -14,6 +14,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private bool isWalking; 
     private bool isRunning; 
+    private bool isJumping; 
 
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -36,9 +37,10 @@ public class PlayerMovement : NetworkBehaviour
         Jump();  
         Move();
 
+        // NOTE: Should always get called as last thing!
+        HandleAnimations();
         // Apply velocity.
         controller.Move(velocity * Time.deltaTime); 
-        HandleAnimations();
     }
 
     // This function is responsible for applying forces to the player.
@@ -112,12 +114,15 @@ public class PlayerMovement : NetworkBehaviour
             
             // Apply a vertical force to the character's velocity, making them jump.
             velocity.y += jumpForce;
-        }   
+            isJumping = true;
+
+            return;
+        }
     }
 
     private void HandleAnimations() 
     {
-        if (isWalking == true)
+        if (isWalking)
 		{
             animator.SetBool("isWalking", true);
 		}
@@ -126,13 +131,22 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetBool("isWalking", false);
 	    }
 
-        if (isRunning == true)
+        if (isWalking && isRunning)
         {
             animator.SetBool("isRunning", true);
 	    }
         else
         { 
             animator.SetBool("isRunning", false);
+	    }
+
+        if (isJumping)
+        {
+            animator.SetTrigger("isJumping");
+	    }
+        else
+	    { 
+            animator.ResetTrigger("isJumping");
 	    }
     }
 }

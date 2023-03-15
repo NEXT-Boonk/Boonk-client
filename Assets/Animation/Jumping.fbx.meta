@@ -24,7 +24,19 @@ ModelImporter:
       retargeting quality.\n\t'Spine' has translation animation that will be discarded.\n\t'Chest'
       has translation animation that will be discarded.\n\t'UpperChest' has translation
       animation that will be discarded.\n"
-    animationRetargetingWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Jump':\n\tLeftLowerLeg
+      average position error 0.1 mm and maximum position error 1.1 mm at time 1:
+      4 (25.9%) Frame 34\n\tLeftUpperArm average position error 23.0 mm and maximum
+      position error 67.4 mm at time 2: 3 (79.6%) Frame 63\n\tLeftLowerArm average
+      position error 23.0 mm and maximum position error 67.4 mm at time 2: 3 (79.6%)
+      Frame 63\n\tLeftHand average position error 23.0 mm and maximum position error
+      67.4 mm at time 2: 3 (79.6%) Frame 63\n\tRightUpperArm average position error
+      23.0 mm and maximum position error 67.4 mm at time 2: 3 (79.6%) Frame 63\n\tRightLowerArm
+      average position error 23.1 mm and maximum position error 67.4 mm at time 2:
+      3 (79.6%) Frame 63\n\tRightHand average position error 23.0 mm and maximum
+      position error 67.4 mm at time 2: 3 (79.6%) Frame 63\n\tHead average position
+      error 23.0 mm and maximum position error 67.4 mm at time 2: 3 (79.6%) Frame
+      63\n"
     animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
     importConstraints: 0

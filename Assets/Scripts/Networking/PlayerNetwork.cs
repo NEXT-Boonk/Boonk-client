@@ -25,10 +25,11 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void Start()
     {
+        arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
         playerCamera.gameObject.SetActive(false);
-        arrowSpeed = arrowSpeedMin;
+        
     }
    
     // This will send the struct defined above when one of it's values changes.

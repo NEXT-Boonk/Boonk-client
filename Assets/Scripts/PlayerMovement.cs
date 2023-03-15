@@ -4,29 +4,27 @@ using Unity.Netcode;
 public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float gravity = 9.8f;
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float moveSpeed; 
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float gravity;
 
-    [SerializeField] public Transform cameraTransform;
-    [SerializeField] private float moveSpeed = 10.0f; 
-    [SerializeField] private float jumpForce = 5.0f;
-
-    private readonly float turnSmoothTime = 0.1f; 
+    private float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     
-    public Vector3 velocity;
+    private Vector3 velocity;
 
     void Awake()
     {
         // Hide the cursor.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        cameraTransform = GetComponentInChildren<Transform>();
     }
     
     void Update()
     {
         if(!IsOwner) return;
-
+        
         // Call movement functions.
         ApplyGravity();  
         Jump();  
@@ -56,11 +54,11 @@ public class PlayerMovement : NetworkBehaviour
     private void Move() 
     {
         // Get input.
-        float inputWS = Input.GetAxisRaw("Vertical");
-        float inputAD = Input.GetAxisRaw("Horizontal");
+        float inputVertical = Input.GetAxisRaw("Vertical");
+        float inputHorizontal = Input.GetAxisRaw("Horizontal");
 
         // Normalize the direction vector.
-        Vector3 direction = new Vector3(inputAD, 0, inputWS).normalized;
+        Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
         
         // No movement if the direction vector's magnitude is too close to zero.
         if (direction.magnitude >= 0.1) {
@@ -90,7 +88,6 @@ public class PlayerMovement : NetworkBehaviour
             
             // Apply a vertical force to the character's velocity, making them jump.
             velocity.y += jumpForce;
-        }
+        }   
     }
-
 }

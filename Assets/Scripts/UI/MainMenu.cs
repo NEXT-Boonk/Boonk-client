@@ -22,11 +22,13 @@ public class MainMenu : MonoBehaviour
         quitButton.clicked += QuitButton;
     }
 
-    void PlayButton() { 
+    void PlayButton()
+    { 
         SceneManager.LoadScene("ServerSelector");   
     }
 
-    void QuitButton() {
+    void QuitButton()
+    {
         Application.Quit();
     }
 }

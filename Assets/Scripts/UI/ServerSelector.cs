@@ -31,7 +31,8 @@ public class ServerSelector : MonoBehaviour
         backButton.clicked += BackButton;
 	}
 
-    void JoinButton() { 
+    void JoinButton()
+    { 
         input = ipInput.text.Split(":");
 
 		string ip;
@@ -67,7 +68,8 @@ public class ServerSelector : MonoBehaviour
         }
     }
 
-	void HostButton() {
+	void HostButton()
+    {
 		// Set IP and Port (0.0.0.0:7777) and start a server as host
 		transport.ConnectionData.Address = "0.0.0.0";
 		transport.ConnectionData.Port = 7777;

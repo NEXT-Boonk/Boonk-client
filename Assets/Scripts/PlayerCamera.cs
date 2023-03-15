@@ -1,13 +1,14 @@
 using UnityEngine;
 using Cinemachine;
+using Unity.Netcode;
 
-public class PlayerCamera : MonoBehaviour
+public class PlayerCamera : NetworkBehaviour
 {
     [SerializeField] private Transform player;
     private Transform enemy;
 
     [Space]
-    [SerializeField] private Camera playerCamera;
+    [SerializeField] private GameObject playerCamera;
     [SerializeField] private float cameraSlack;
     [SerializeField] private float cameraDistance;
     [SerializeField] private float lockOnDistance = 50f;
@@ -26,10 +27,17 @@ public class PlayerCamera : MonoBehaviour
     {
         pivotPoint = transform.position;
         cinemachineBrain = GetComponent<CinemachineBrain>();
+        /*playerCamera.gameObject.SetActive(false);
+        cinemachineBrain.gameObject.SetActive(false);*/
+        
     }
 
     void Update()
     {
+        playerCamera.gameObject.SetActive(false);
+        if(!IsOwner) return; 
+        playerCamera.gameObject.SetActive(true);
+        //cinemachineBrain.gameObject.SetActive(true);
         // changes between freecamera and lockon camera
         if (Input.GetKeyDown(KeyCode.Q))
 	    {

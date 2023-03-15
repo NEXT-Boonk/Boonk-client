@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    [SerializeField] private int snowTeamTicket;
+    [SerializeField] private int forestTeamTicket;
+    [Space]
     [SerializeField] private Transform rockPrefab;
     [SerializeField] private Transform arrowPrefab;
     [SerializeField] private Transform startPosition;
@@ -59,7 +62,14 @@ public class PlayerNetwork : NetworkBehaviour
         if(!IsOwner) return; 
 
         playerCamera.SetActive(true);
+        
 
+        // v  replace with death function
+        if(Input.GetKeyDown(KeyCode.Y))
+	    {
+            PlayerDeathServerRpc(new ServerRpcParams());
+        }
+      
         // Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
         if(Input.GetKeyDown(KeyCode.C))
 	    {
@@ -108,6 +118,25 @@ public class PlayerNetwork : NetworkBehaviour
         }
     }
 
+    private void PlayerTicketRemove(Team teamRemovedTicket)
+    {
+        if(teamRemovedTicket == Team.Forrest)
+        {
+            snowTeamTicket--;
+            Debug.Log(teamRemovedTicket+" "+snowTeamTicket);
+        }
+        else
+        {
+            forestTeamTicket--;
+            Debug.Log(teamRemovedTicket+" "+forestTeamTicket);
+        }
+    }
+
+    [ServerRpc]
+    private void PlayerDeathServerRpc(ServerRpcParams _rpc)
+    {
+        PlayerTicketRemove(team);
+    }
     [ServerRpc]
     private void StoneServerRpc(ServerRpcParams _rpc)
     {
@@ -119,4 +148,6 @@ public class PlayerNetwork : NetworkBehaviour
     {
         ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
     }
+
+    
 }

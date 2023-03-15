@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonMovement : MonoBehaviour
@@ -12,60 +10,82 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
-    private Vector3 velocity;
+    
+    public Vector3 velocity;
 
     void Awake()
     {
-        // hides the cursor 
+        // Hide the cursor.
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
+    
     void Update()
     {
+        // Call movement functions.
         ApplyGravity();  
         Jump();  
         Move();
+
+        // Apply velocity.
         controller.Move(velocity * Time.deltaTime); 
     }
-    
-    private void ApplyGravity() 
+
+    // This function is responsible for applying forces to the player.
+    public void ApplyForce(Vector3 force)
     {
-        if (!controller.isGrounded) velocity.y -= gravity * Time.deltaTime;
-        else velocity.y = -0.1f;
+        velocity = velocity + force * Time.deltaTime;
+    }
+    
+    // This function is responsible for applying gravity to the player.
+    private void ApplyGravity() 
+    {   
+        // Gravity is applied to the player if it isn't already grounded.
+        if (!controller.isGrounded) ApplyForce(new Vector3(0, -gravity));
+        // Otherwise the player is still pushed slightly downwards to ensure it stays grounded.
+        else velocity.y = -1f;
+        // This is to ensure the ground check works when the jump-function is called.
     }
 
+    // This function is responsible for making the character move.
     private void Move() 
     {
-        // gets input
+        // Get input.
         float inputWS = Input.GetAxisRaw("Vertical");
         float inputAD = Input.GetAxisRaw("Horizontal");
 
-        // normalized direction vector
+        // Normalize the direction vector.
         Vector3 direction = new Vector3(inputAD, 0, inputWS).normalized;
         
-        // no movement if the direction vector's magnitude is too close to zero
+        // No movement if the direction vector's magnitude is too close to zero.
         if (direction.magnitude >= 0.1) {
-            // a trig function is used to calculate the player's look direction
+            // A trig function is used to calculate the player's look direction.
             float lookDirectionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             
-            // a smoothing function is used to smooth the rotation of the player model
+            // A smoothing function is used to smooth the rotation of the player model.
             float playerModelAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, lookDirectionAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, playerModelAngle, 0f);
             
-            // the movement direction is calculated using the look direction
+            // Calculate the movement direction using the look direction.
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
+            // Apply movement to the player.
             controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
         }  
     }
 
+    // This function is responsible for making the character jump.
     private void Jump() 
     {   
+        // If the "Jump" button is pressed...
         if (Input.GetButtonDown("Jump"))
         {
+            // Check if the character is on the ground. If not, do nothing.
             if (!controller.isGrounded) return;
+            
+            // Apply a vertical force to the character's velocity, making them jump.
             velocity.y += jumpForce;
         }   
     }
+
 }

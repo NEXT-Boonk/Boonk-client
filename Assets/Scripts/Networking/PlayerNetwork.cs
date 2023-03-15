@@ -8,62 +8,27 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] private Transform arrowPrefab;
     [SerializeField] private Transform startPosition;
 
+    [Space]
     [SerializeField] private float rockSpeed;
     [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
     private float arrowSpeed;
 
-    private Transform spawnedObjectTransform;
-    public static List<Transform> spawnedObjectsList = new();
+    public static List<Transform> spawnedObjects = new();
 
     private NetworkManager networkManager;
+    public GameObject playerCamera;
 
     private TeamHandler teamHandler;
     public Team team;
 
-	// This is a variable that is sent over the network.
-	// From here: https://www.youtube.com/watch?v=3yuBOB3VrCk&t=1487s&ab_channel=CodeMonkey
-    private NetworkVariable<int> randomNumber = new(
-	    1,
-	    NetworkVariableReadPermission.Everyone,
-    	NetworkVariableWritePermission.Owner
-	);
-    public GameObject playerCamera;
-
-    // This is a struct, a refrence variable, not definable using the method above
-    public struct MyCustomData: INetworkSerializable
+    private void Start()
     {
-        public int _int;
-        public bool _bool;
-
-        public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
-	    {
-            serializer.SerializeValue(ref _int);
-            serializer.SerializeValue(ref _bool);
-        }
+        // Don't despawn camera if we are the owner.
+        if (!IsOwner) return;
+        playerCamera.SetActive(false);
+        arrowSpeed = arrowSpeedMin;
     }
-
-
-	/*
-    This method can be used to define refrence variables, 
-    refrence variables are variables like "class", "Object", "array" and "string" 
-	among others. To refrence one of these, replace MyCustomData with the name of 
-    the refrence type one has already defined above.
-	*/
-	private NetworkVariable<MyCustomData> customNumber = new NetworkVariable<MyCustomData>(
-	new MyCustomData {
-	    _int = 51,
-	    _bool = true,
-	}, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
-    /*
-    // This kode will send a random number when the value changes, not at all times, given the "OnValueChanged" part of the code
-    public override void OnNetworkSpawn() {
-        randomNumber.OnValueChanged += (int previousValue, int newValue) => {
-            Debug.Log(OwnerClientId + "number: " + randomNumber.Value);
-        };
-    }
-    */
-
+   
     // This will send the struct defined above when one of it's values changes.
     public override void OnNetworkSpawn()
     {
@@ -81,28 +46,12 @@ public class PlayerNetwork : NetworkBehaviour
 	    {
             teamHandler.AddPlayer(this); // Runs the AddPlayer method form TeamHandler.
         }
-        
-        customNumber.OnValueChanged += (MyCustomData previousValue, MyCustomData newValue) => 
-	    {
-            Debug.Log(OwnerClientId + "; " + newValue._int + " and it's " + newValue._bool);
-        };
     }
-
-    private void Start()
-    {
-        // Don't despawn camera if we are the owner.
-        if (IsOwner) return;
- 
-        playerCamera.SetActive(false);
-        arrowSpeed = arrowSpeedMin;
-    }
-   
 
     public override void OnNetworkDespawn()
     {
         teamHandler.RemovePlayer(this);
     }
-
     
     private void Update()
     {
@@ -120,49 +69,13 @@ public class PlayerNetwork : NetworkBehaviour
         if(Input.GetKey(KeyCode.V))
 	    {
             if(arrowSpeed < arrowSpeedMax)
-                arrowSpeed = arrowSpeed + arrowChargeSpeed * Time.deltaTime;
+                arrowSpeed += arrowChargeSpeed * Time.deltaTime;
         }
 
         if(Input.GetKeyUp(KeyCode.V))
 	    {
             ArrowServerRpc(new ServerRpcParams());
             arrowSpeed = arrowSpeedMin;
-        }
-
-        if(Input.GetKeyDown(KeyCode.T))
-	    {
-            randomNumber.Value = Random.Range(0,100); //changes the random number
-        }
-
-        if(Input.GetKeyDown(KeyCode.Y))
-	    {
-            if(customNumber.Value._int == 51)
-	        {
-				customNumber.Value = new MyCustomData {
-					_int = 10,
-					_bool = false,
-				}; //sets a new struct
-            } 
-	        else 
-	        {
-				customNumber.Value = new MyCustomData {
-					_int = 51,
-					_bool = true,
-				};
-            }
-        }
-
-        // This code is connected to the code under the line "[ServerRpc]" further down
-        if(Input.GetKeyDown(KeyCode.U)) 
-	    {
-            TestServerRpc(new ServerRpcParams());
-        }
-
-        // This is connected to the ClientRpc further down
-        if(Input.GetKeyDown(KeyCode.O))
-	    {
-            // Thanks to the parameter, we only run the function on the client with the id of 1
-            TestClientRpc(new ClientRpcParams {Send = new ClientRpcSendParams { TargetClientIds = new List<ulong>{1}}});
         }
     }
 
@@ -181,33 +94,18 @@ public class PlayerNetwork : NetworkBehaviour
 		);
         
         spawnedObject.GetComponent<NetworkObject>().Spawn(true);
-        spawnedObjectsList.Add(spawnedObject);
+        spawnedObjects.Add(spawnedObject);
 
         // Despawn objects if too many. Should be refactored to disapear over time.
-        if(spawnedObjectsList.Count > 100)
+        if(spawnedObjects.Count > 100)
 	    {
-            for (int i = 0; i < spawnedObjectsList.Count; i++)
+            for (int i = 0; i < spawnedObjects.Count; i++)
 	        {
-                DestroyImmediate(spawnedObjectsList[i].gameObject);
+                Destroy(spawnedObjects[i].gameObject);
             }
 
-            spawnedObjectsList.Clear();
+            spawnedObjects.Clear();
         }
-    }
-
-    /*
-	This is how to create a funktion that is run on the server, a serverRPC
-    NOTE: that it won't be run on the local client, but instead be run on the server
-    If you wish to add parameters you will need to have them as value types, not refrence types
-
-    You can track which client sent the code to the server, by putting a parameter of "serverRpcParams parameter name", and calling 
-    Receive.SenderClientId, this gives you the id of the player sending the funktion, which could be used to identify where the effect should occur
-    Note that one has to put "[ServerRpc]" right above the code
-    */
-    [ServerRpc]
-    private void TestServerRpc(ServerRpcParams rpc)
-    {
-        Debug.Log("Server rpc working: " + rpc.Receive.SenderClientId);
     }
 
     [ServerRpc]
@@ -220,16 +118,5 @@ public class PlayerNetwork : NetworkBehaviour
     private void ArrowServerRpc(ServerRpcParams _rpc)
     {
         ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
-    }
-
-    /*
-    A ClientRpc is a function that the server activates that is then run on the clients instead of the server, opposite of a serverRpc.
-    The parameter ClientRpcParams can be used to specifi a specific client to run the function on.
-    This would f.eks. allow the server to tell a player that they have died and run the death command on it.
-    */
-    [ClientRpc]
-    private void TestClientRpc(ClientRpcParams _clientRpcParams)
-    {
-        Debug.Log("ClientRPC");
     }
 }

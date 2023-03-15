@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerMovement : NetworkBehaviour 
 {
@@ -27,7 +24,6 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update() 
     {
-        if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
         Move();

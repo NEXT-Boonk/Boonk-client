@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
-    Button playButton;
-    Button quitButton;
+    private Button playButton;
+    private Button quitButton;
 
     void Awake()
     {

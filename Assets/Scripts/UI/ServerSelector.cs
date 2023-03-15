@@ -60,7 +60,7 @@ public class ServerSelector : MonoBehaviour
             NetworkManager
 		        .Singleton
 		        .SceneManager
-		        .LoadScene("GameFixed", LoadSceneMode.Single);
+		        .LoadScene("Game", LoadSceneMode.Single);
         }
         else
         {
@@ -80,7 +80,7 @@ public class ServerSelector : MonoBehaviour
             NetworkManager
 		        .Singleton
 		        .SceneManager
-		        .LoadScene("GameFixed", LoadSceneMode.Single);
+		        .LoadScene("Game", LoadSceneMode.Single);
         }
         else
         {

@@ -8,6 +8,7 @@ TagManager:
   - Character
   - Spear
   - Bow
+  - LockOn
   layers:
   - Default
   - TransparentFX

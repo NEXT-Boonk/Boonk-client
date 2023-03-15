@@ -4,6 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Club
+  - Character
+  - Spear
+  - LockOn
+  - Arrow
   - lockOnObjectTag
   layers:
   - Default

@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214d0404a1bbc0c45978652169f67c82, type: 3}
   m_Name: Tracker
   m_EditorClassIdentifier: 
-  attackSpeed: 1500
-  Range: 25
-  Stagger: 500
-  Damage: 10
-  Defense: 10
-  HP: 100
-  Recoil: 2
+  damage: 10
+  defense: 10
+  health: 100

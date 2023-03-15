@@ -5,26 +5,24 @@ public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator animator;
+    
+    [SerializeField] private float gravity;
     [SerializeField] private float moveSpeed; 
     [SerializeField] private float jumpForce;
     [SerializeField] private float sprintMultiplier;
     [SerializeField] private float gravity;
 
-<<<<<<< Updated upstream
-    bool sprinting = false;
-=======
-    [SerializeField] public Transform cameraTransform;
-    [SerializeField] private float moveSpeed = 10.0f; 
     [SerializeField] private float sprintMultiplier = 1.4f;
-    [SerializeField] private float jumpForce = 5.0f;
->>>>>>> Stashed changes
+    private bool isWalking; 
+    private bool isRunning; 
 
-    private float turnSmoothTime = 0.1f; 
+    private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     
     private Vector3 velocity;
 
-    void Awake()
+    void Awake() 
     {
         // Hide the cursor.
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,6 +40,7 @@ public class PlayerMovement : NetworkBehaviour
 
         // Apply velocity.
         controller.Move(velocity * Time.deltaTime); 
+        HandleAnimations();
     }
 
     // This function is responsible for applying forces to the player.
@@ -69,17 +68,20 @@ public class PlayerMovement : NetworkBehaviour
 
         // Normalize the direction vector.
         Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
-        
-        // No movement if the direction vector's magnitude is too close to zero.
-        if (direction.magnitude >= 0.1) {
-            // A trig function is used to calculate the player's look direction.
+
+        // Don't move, if the direction vector's magnitude is too close to zero.
+        if (direction.magnitude >= 0.1)
+        {
+            isWalking = true;
+
+            // Calculate the player's look direction.
             float lookDirectionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
-            
-            // A smoothing function is used to smooth the rotation of the player model.
-            float playerModelAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, lookDirectionAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, playerModelAngle, 0f);
-            
-            // Calculate the movement direction using the look direction.
+
+            // Smooth the rotation of the player model.
+            float playerAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, lookDirectionAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, playerAngle, 0f);
+
+            // The movement direction is calculated using the look direction.
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             // Apply movement to the player.
@@ -93,6 +95,12 @@ public class PlayerMovement : NetworkBehaviour
 >>>>>>> Stashed changes
             else controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
         }  
+            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized);
+        }
+        else
+        {
+            isWalking = false;
+        }
     }
 
     // This function is responsible for making the character jump.
@@ -107,5 +115,21 @@ public class PlayerMovement : NetworkBehaviour
             // Apply a vertical force to the character's velocity, making them jump.
             velocity.y += jumpForce;
         }   
+    }
+
+    private void HandleAnimations() 
+    {
+        if (isWalking == true && isRunning == true)
+        {
+            animator.SetBool("isRunning", true);
+	    }
+        else if (isWalking == true)
+		{
+            animator.SetBool("isWalking", true);
+		}
+        else
+        { 
+            animator.SetBool("isWalking", false);
+	    }
     }
 }

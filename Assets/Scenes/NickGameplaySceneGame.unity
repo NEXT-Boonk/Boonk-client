@@ -1172,7 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1c86b8ac0dd9d214791ddbe1aa2388e3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1c86b8ac0dd9d214791ddbe1aa2388e3, type: 3}
       propertyPath: m_Controller
@@ -1417,7 +1417,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614124211}
-  m_LocalRotation: {x: 0.1130761, y: 0.000000034458132, z: -0.000000003921542, w: 0.99358636}
+  m_LocalRotation: {x: 0.1130761, y: -0.000000034458136, z: 0.0000000039215426, w: 0.99358636}
   m_LocalPosition: {x: 0, y: 0, z: -0.0000038146973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2096,7 +2096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8805339a795e4a4799ea07e867d4b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
   currentHealth: 300
   healthBar: {fileID: 1814821848}
   deathScreen: {fileID: 958467542}
@@ -2571,7 +2570,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163772145}
-  m_LocalRotation: {x: 0.12406999, y: 0.0000000042683586, z: -5.3369886e-10, w: 0.9922735}
+  m_LocalRotation: {x: 0.12406999, y: -0.0000000042683608, z: 5.3369914e-10, w: 0.9922735}
   m_LocalPosition: {x: 0, y: 5.56, z: -20.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2701,7 +2700,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355019377}
-  m_LocalRotation: {x: 0.12406998, y: 0.0000000042683577, z: -5.336988e-10, w: 0.9922735}
+  m_LocalRotation: {x: 0.12406998, y: -0.0000000042683603, z: 5.3369914e-10, w: 0.9922735}
   m_LocalPosition: {x: 0, y: 0, z: -0.0000038146973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2838,7 +2837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8805339a795e4a4799ea07e867d4b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
   currentHealth: 300
   healthBar: {fileID: 1814821848}
   deathScreen: {fileID: 958467542}
@@ -2867,7 +2865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467917496}
-  m_LocalRotation: {x: 0.1350594, y: 0.00000001476463, z: -0.0000000020125421, w: 0.9908375}
+  m_LocalRotation: {x: 0.13505942, y: -8.719026e-16, z: 1.7869098e-17, w: 0.9908375}
   m_LocalPosition: {x: 0, y: 0, z: -0.0000076293945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4110,7 +4108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8805339a795e4a4799ea07e867d4b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 300
   currentHealth: 300
   healthBar: {fileID: 1814821848}
   deathScreen: {fileID: 958467542}

@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a254d023544e2649ac7160295fdd554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
   player: {fileID: 4196876361671034229}
   playerCamera: {fileID: 6976744443921172053}
   cameraSlack: 0
@@ -261,9 +260,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 4196876361671034219}
   cameraTransform: {fileID: 3347560219344688493}
-  gravity: 50
   moveSpeed: 10
   jumpForce: 20
+  sprintMultiplier: 2
+  gravity: 50
 --- !u!114 &-807253297451510934
 MonoBehaviour:
   m_ObjectHideFlags: 0

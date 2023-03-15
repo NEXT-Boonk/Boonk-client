@@ -16,6 +16,6 @@ MonoBehaviour:
   Range: 0.6
   Stagger: 300
   Damage: 30
-  Defense: 40
+  Defense: 0.4
   HP: 100
   Recoil: 1

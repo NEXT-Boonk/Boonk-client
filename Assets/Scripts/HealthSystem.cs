@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float maxHealth;
+    float maxHealth;
     public float currentHealth;
-    public float damage;
     public Slider healthBar;
     public GameObject deathScreen;
     float fillAmount;
 
+    [SerializeField] PlayerStats stats;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = stats.health;
         currentHealth = maxHealth;
         deathScreen.SetActive(false);
     }
@@ -24,16 +25,12 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         fillAmount = currentHealth / maxHealth;
+        Debug.Log(fillAmount);
         healthBar.value = fillAmount;
 
         if(currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
-        }
-
-        if (Input.anyKey)
-        {
-            DamageSystem();
         }
 
         if(currentHealth <= 0)
@@ -43,13 +40,13 @@ public class HealthSystem : MonoBehaviour
 
     }
 
-    void DamageSystem()
+    public void TakeDamage(float d)
     {
-        TakeDamage();
+
+        Debug.Log("this gives damage");
+        currentHealth -= d/(1-stats.defense);
+        Debug.Log(d);
     }
 
-    void TakeDamage()
-    {
-        currentHealth -= damage;
-    }
+
 }

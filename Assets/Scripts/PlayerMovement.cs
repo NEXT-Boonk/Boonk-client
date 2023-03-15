@@ -10,7 +10,14 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float sprintMultiplier;
     [SerializeField] private float gravity;
 
+<<<<<<< Updated upstream
     bool sprinting = false;
+=======
+    [SerializeField] public Transform cameraTransform;
+    [SerializeField] private float moveSpeed = 10.0f; 
+    [SerializeField] private float sprintMultiplier = 1.4f;
+    [SerializeField] private float jumpForce = 5.0f;
+>>>>>>> Stashed changes
 
     private float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -76,10 +83,14 @@ public class PlayerMovement : NetworkBehaviour
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             // Apply movement to the player.
+<<<<<<< Updated upstream
             if (Input.GetKeyDown(KeyCode.LeftShift)) sprinting = true;
             if (Input.GetKeyUp(KeyCode.LeftShift)) sprinting = false; 
 
             if (sprinting) controller.Move(moveDirection.normalized * moveSpeed * sprintMultiplier * Time.deltaTime); 
+=======
+            if (Input.GetButtonDown("Run")) controller.Move(moveDirection.normalized * moveSpeed * sprintMultiplier * Time.deltaTime); 
+>>>>>>> Stashed changes
             else controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
         }  
     }

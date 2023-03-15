@@ -7,8 +7,8 @@ TagManager:
   - Club
   - Character
   - Spear
-  - Bow
   - LockOn
+  - Arrow
   layers:
   - Default
   - TransparentFX

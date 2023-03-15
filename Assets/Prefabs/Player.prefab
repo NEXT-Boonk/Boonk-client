@@ -380,6 +380,8 @@ MonoBehaviour:
   gravity: 50
   moveSpeed: 10
   jumpForce: 20
+  sprintMultiplier: 2
+  gravity: 50
 --- !u!114 &-807253297451510934
 MonoBehaviour:
   m_ObjectHideFlags: 0

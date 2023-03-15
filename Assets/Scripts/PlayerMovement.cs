@@ -5,10 +5,14 @@ public class PlayerMovement : NetworkBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator animator;
     
     [SerializeField] private float gravity;
     [SerializeField] private float moveSpeed; 
     [SerializeField] private float jumpForce;
+
+    private bool isWalking; 
+    private bool isRunning; 
 
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -23,9 +27,10 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update() 
     {
-        ApplyGravity();  
-        Jump();  
+        ApplyGravity();
+        Jump();
         Move();
+        HandleAnimations();
         controller.Move(velocity * Time.deltaTime);
     }
     
@@ -43,22 +48,28 @@ public class PlayerMovement : NetworkBehaviour
 
         // Normalized direction vector, to move the player.
         Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
-        
+
         // Don't move, if the direction vector's magnitude is too close to zero.
-        if (direction.magnitude >= 0.1) 
-	    {
+        if (direction.magnitude >= 0.1)
+        {
+            isWalking = true;
+
             // Calculate the player's look direction.
             float lookDirectionAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
-            
+
             // Smooth the rotation of the player model.
             float playerAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, lookDirectionAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, playerAngle, 0f);
-            
+
             // The movement direction is calculated using the look direction.
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
-            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized); 
-        }  
+            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized);
+        }
+        else
+        {
+            isWalking = false;
+        }
     }
 
     private void Jump() 
@@ -68,5 +79,21 @@ public class PlayerMovement : NetworkBehaviour
             if (!controller.isGrounded) return;
             velocity.y += jumpForce;
         }
+    }
+
+    private void HandleAnimations() 
+    {
+        if (isWalking == true && isRunning == true)
+        {
+            animator.SetBool("isRunning", true);
+	    }
+        else if (isWalking == true)
+		{
+            animator.SetBool("isWalking", true);
+		}
+        else
+        { 
+            animator.SetBool("isWalking", false);
+	    }
     }
 }

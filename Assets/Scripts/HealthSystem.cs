@@ -24,8 +24,6 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         fillAmount = currentHealth / maxHealth;
         Debug.Log(fillAmount);
         healthBar.value = fillAmount;

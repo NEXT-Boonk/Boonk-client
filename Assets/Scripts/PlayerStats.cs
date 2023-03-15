@@ -6,11 +6,10 @@ using UnityEngine;
 public class PlayerStats : ScriptableObject
 {
     public float attackSpeed;
-    public float Range;
-    public int Stagger;
-    public int Damage;
-    public float Defense;
-    public int HP;
-    public float Recoil;
-
+    public float range;
+    public int stagger;
+    public int damage;
+    public int defense;
+    public int health;
+    public float recoil;
 }

@@ -64,6 +64,16 @@ public class PlayerMovement : NetworkBehaviour
         float inputVertical = Input.GetAxisRaw("Vertical");
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
 
+        if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
+        if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+
+        float movementMultiplier = 1;
+
+        if (isRunning)
+        {
+        	movementMultiplier *= sprintMultiplier; 
+	    }
+
         // Normalize the direction vector.
         Vector3 direction = new Vector3(inputHorizontal, 0, inputVertical).normalized;
 
@@ -83,17 +93,6 @@ public class PlayerMovement : NetworkBehaviour
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             // Apply movement to the player.
-            if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
-            if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
-
-            float movementMultiplier = 1;
-
-            if (isRunning)
-            {
-                movementMultiplier += sprintMultiplier; 
-	        }
-		       
-		
 		    controller.Move(moveDirection.normalized * moveSpeed * movementMultiplier * Time.deltaTime);
 
             return;

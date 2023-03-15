@@ -12,7 +12,7 @@ public class WeaponDamage : MonoBehaviour
     void Start()
     {
         //damageGiven = stats.Damage;
-        damageGiven = stats.Damage;
+        damageGiven = stats.damage;
     }
 
     // Update is called once per frame

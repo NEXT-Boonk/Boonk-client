@@ -16,7 +16,7 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = stats.HP;
+        maxHealth = stats.health;
         currentHealth = maxHealth;
         deathScreen.SetActive(false);
     }
@@ -44,7 +44,7 @@ public class HealthSystem : MonoBehaviour
     {
 
         Debug.Log("this gives damage");
-        currentHealth -= d/(1-stats.Defense);
+        currentHealth -= d/(1-stats.defense);
         Debug.Log(d);
     }
 

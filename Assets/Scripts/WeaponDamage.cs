@@ -11,14 +11,8 @@ public class WeaponDamage : MonoBehaviour
 
     void Start()
     {
-        //damageGiven = stats.Damage;
-        damageGiven = stats.Damage;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // damageGiven = stats.Damage;
+        damageGiven = stats.damage;
     }
 
     private void OnTriggerEnter(Collider col)

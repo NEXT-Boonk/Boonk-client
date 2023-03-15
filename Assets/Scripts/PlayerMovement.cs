@@ -12,7 +12,7 @@ public class PlayerMovement : NetworkBehaviour
     private float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     
-    public Vector3 velocity;
+    private Vector3 velocity;
 
     void Awake()
     {

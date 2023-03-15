@@ -15,9 +15,6 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] private float rockSpeed;
     [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
     private float arrowSpeed;
-    [Space]
-    [SerializeField] private int snowTeamTicket;
-    [SerializeField] private int forestTeamTicket;
     public static List<GameObject> spawnedObjects = new();
 
     private NetworkManager networkManager;

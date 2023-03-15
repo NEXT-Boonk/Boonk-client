@@ -26,7 +26,7 @@ public class ThirdPersonMovement : NetworkBehaviour
     }
 
     void Update() {
-        if(!IsOwner) return;
+        //if(!IsOwner) return;
         ApplyGravity();  
         Jump();  
         Move();
@@ -44,7 +44,7 @@ public class ThirdPersonMovement : NetworkBehaviour
         float inputHorizontal = Input.GetAxisRaw("Horizontal");
 
         // Normalized direction vector, to move the player.
-        Vector3 direction = new Vector3(-inputVertical, 0, -inputHorizontal).normalized;
+        Vector3 direction = new Vector3(-inputHorizontal, 0, -inputVertical).normalized;
         
         // Don't move, if the direction vector's magnitude is too close to zero.
         if (direction.magnitude >= 0.1) {

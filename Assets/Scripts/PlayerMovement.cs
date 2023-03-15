@@ -11,9 +11,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float moveSpeed; 
     [SerializeField] private float jumpForce;
     [SerializeField] private float sprintMultiplier;
-    [SerializeField] private float gravity;
 
-    [SerializeField] private float sprintMultiplier = 1.4f;
     private bool isWalking; 
     private bool isRunning; 
 
@@ -85,22 +83,23 @@ public class PlayerMovement : NetworkBehaviour
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             // Apply movement to the player.
-<<<<<<< Updated upstream
-            if (Input.GetKeyDown(KeyCode.LeftShift)) sprinting = true;
-            if (Input.GetKeyUp(KeyCode.LeftShift)) sprinting = false; 
+            if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
 
-            if (sprinting) controller.Move(moveDirection.normalized * moveSpeed * sprintMultiplier * Time.deltaTime); 
-=======
-            if (Input.GetButtonDown("Run")) controller.Move(moveDirection.normalized * moveSpeed * sprintMultiplier * Time.deltaTime); 
->>>>>>> Stashed changes
-            else controller.Move(moveDirection.normalized * moveSpeed * Time.deltaTime); 
-        }  
-            controller.Move(moveSpeed * Time.deltaTime * moveDirection.normalized);
+            float movementMultiplier = 1;
+
+            if (isRunning)
+            {
+                movementMultiplier += sprintMultiplier; 
+	        }
+		       
+		
+		    controller.Move(moveDirection.normalized * moveSpeed * movementMultiplier * Time.deltaTime);
+
+            return;
         }
-        else
-        {
-            isWalking = false;
-        }
+
+        isWalking = false;
     }
 
     // This function is responsible for making the character jump.
@@ -119,17 +118,22 @@ public class PlayerMovement : NetworkBehaviour
 
     private void HandleAnimations() 
     {
-        if (isWalking == true && isRunning == true)
-        {
-            animator.SetBool("isRunning", true);
-	    }
-        else if (isWalking == true)
+        if (isWalking == true)
 		{
             animator.SetBool("isWalking", true);
 		}
         else
         { 
             animator.SetBool("isWalking", false);
+	    }
+
+        if (isRunning == true)
+        {
+            animator.SetBool("isRunning", true);
+	    }
+        else
+        { 
+            animator.SetBool("isRunning", false);
 	    }
     }
 }

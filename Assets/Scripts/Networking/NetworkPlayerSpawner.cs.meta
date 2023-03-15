@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Networking/NetworkPlayerSpawner.cs.meta
 guid: b6e22f7e090b93f48a20c1f88dce82ee
+========
+guid: 9614ba828ff56404981f365a356ccab1
+>>>>>>>> ticketlogic:Assets/Scripts/Networking/NetworkUtils.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

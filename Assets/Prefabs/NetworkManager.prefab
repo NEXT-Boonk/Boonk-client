@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2405834271236670228}
   - component: {fileID: 2405834271236670235}
   - component: {fileID: 2405834271236670234}
-  - component: {fileID: 5688555690756087734}
-  - component: {fileID: 8314239457743632860}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -52,10 +50,20 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 2405834271236670234}
-    PlayerPrefab: {fileID: 7829199209911829762, guid: 51fc67849804e6943beee0d9d7165c92, type: 3}
+    PlayerPrefab: {fileID: 4196876361671034216, guid: 3d39150ef475dbf4c97c59124f20b38c, type: 3}
     NetworkPrefabs:
     - Override: 0
-      Prefab: {fileID: 7829199209911829762, guid: 51fc67849804e6943beee0d9d7165c92, type: 3}
+      Prefab: {fileID: 4196876361671034216, guid: 3d39150ef475dbf4c97c59124f20b38c, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 8773276557215669945, guid: 4a352d0ba33af1a42b8b4e3c81e47ae0, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 3078174943099427934, guid: 52c716621002a644a85ccce3e9c74b66, type: 3}
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
@@ -67,7 +75,7 @@ MonoBehaviour:
     TimeResyncInterval: 30
     EnsureNetworkVariableLengthSafety: 0
     EnableSceneManagement: 1
-    ForceSamePrefabs: 1
+    ForceSamePrefabs: 0
     RecycleNetworkIds: 1
     NetworkIdRecycleDelay: 120
     RpcHashSize: 0
@@ -87,12 +95,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ProtocolType: 0
-  m_MaxPacketQueueSize: 128
+  m_MaxPacketQueueSize: 512
   m_MaxPayloadSize: 6144
   m_HeartbeatTimeoutMS: 500
   m_ConnectTimeoutMS: 1000
   m_MaxConnectAttempts: 60
-  m_DisconnectTimeoutMS: 30000
+  m_DisconnectTimeoutMS: 10000
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
@@ -101,27 +109,3 @@ MonoBehaviour:
     PacketDelayMS: 0
     PacketJitterMS: 0
     PacketDropRate: 0
---- !u!114 &5688555690756087734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405834271236670232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba1220904afa1a844996fae6d40c3537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8314239457743632860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405834271236670232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e93cc48eec3981b499ef79e5570f2ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

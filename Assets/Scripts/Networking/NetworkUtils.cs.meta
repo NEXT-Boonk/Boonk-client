@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Networking/NetworkPlayerSpawner.cs.meta
+guid: 095b1ca7280e5b4448afcadef159811b
+========
+guid: 9614ba828ff56404981f365a356ccab1
+>>>>>>>> ticketlogic:Assets/Scripts/Networking/NetworkUtils.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

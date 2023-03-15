@@ -3,81 +3,72 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
+public enum Team
+{ 
+    Forrest = 0,
+    Snow = 1
+}
+
 public class TeamHandler : MonoBehaviour
 {
-    public static TeamHandler instance;
+    // Serialized for testing
+    [SerializeField] private List<PlayerNetwork> forrestTeam = new List<PlayerNetwork>();
+    [SerializeField] private List<PlayerNetwork> snowTeam = new List<PlayerNetwork>(); 
 
-    [SerializeField] private List<PlayerNetwork> teamA = new List<PlayerNetwork>(); //Serialized for testing
-    [SerializeField] private List<PlayerNetwork> teamB = new List<PlayerNetwork>(); //Serialized for testing
-
-    /*
-    makes the team handler a singleton, making sure it isnt destroyed on scenetransitions
-    */
-    private void Awake()
-    {
-        
-    }
-    //[Server]
-    /*
-    adds players to 1 of 2 teams depending on how many players are in each team, 
-    always adding a new player to the team with the lowest amount of player
-    */
     public void AddPlayer(PlayerNetwork player)
     {
-        //Set team
-        if (teamA.Count <= teamB.Count)
+        // Adds a team to the player.
+        if (forrestTeam.Count <= snowTeam.Count)
         {
-            player.SetTeam(0);
-            //player.SetColor(Color.green);
-            teamA.Add(player);
+            player.team = Team.Forrest;
+            forrestTeam.Add(player);
+            // player.SetColor(Color.green);
         }
         else
         {
-            player.SetTeam(1);
-            //player.SetColor(Color.red);
-            teamB.Add(player);
+            player.team = Team.Snow;
+            snowTeam.Add(player);
+            // player.SetColor(Color.red);
         }
     }
 
-    //[Server]
-    
-    //Removes a player from their current team
-    
     public void RemovePlayer(PlayerNetwork player)
     {
-        if (player.GetTeam() == 0)
+        // Removes a player from their current team
+        if (player.team == Team.Forrest)
         {
-            teamA.Remove(player);
+            forrestTeam.Remove(player);
         }
-        else if (player.GetTeam() == 1)
+        else if (player.team == Team.Snow)
         {
-            teamB.Remove(player);
+            snowTeam.Remove(player);
         }
         else
         {
-            Debug.LogError("Player was removed with a team other than 0 or 1");
+            Debug.LogError("Player was not assigned at team.");
         }
     }
-    //Changes the team of the player to the oppisite of their current team 
+
     public void ChangeTeam(PlayerNetwork player)
     {
-        if (player.GetTeam() == 0)
+        // Changes the players current team. 
+        if (player.team == Team.Forrest)
         {
-            player.SetTeam(1);
-            //player.SetColor(Color.red);
-            teamA.Remove(player);
-            teamB.Add(player);
+            player.team = Team.Snow;
+            forrestTeam.Remove(player);
+            snowTeam.Add(player);
+            // player.SetColor(Color.red);
         }
-        else if (player.GetTeam() == 1)
+        else if (player.team == Team.Snow)
         {
-            player.SetTeam(0);
-            //player.SetColor(Color.green);
-            teamB.Remove(player);
-            teamA.Add(player);
+            player.team = Team.Forrest;
+            snowTeam.Remove(player);
+            forrestTeam.Add(player);
+            // player.SetColor(Color.green);
         }
         else
         {
-            Debug.Log("Player with team other than 0 or 1 tried to change team");
+            Debug.Log("Player was not assigned a team.");
         }
     }
 }

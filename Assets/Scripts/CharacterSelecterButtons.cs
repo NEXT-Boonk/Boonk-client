@@ -18,6 +18,8 @@ public class CharacterSelecterButtons : MonoBehaviour
     float t;
     bool rightClick = false;
     bool leftClick = false;
+
+    
     private void Start()
     {
         nextButton.onClick.AddListener(NextOnClick);
@@ -25,8 +27,6 @@ public class CharacterSelecterButtons : MonoBehaviour
         positionOfSelectingCharacter = 0;
         i = 1;
     }
-
-
 
     private void Update()
     {
@@ -44,7 +44,6 @@ public class CharacterSelecterButtons : MonoBehaviour
 
 
     }
-
 
     void NextOnClick()
     {
@@ -106,47 +105,4 @@ public class CharacterSelecterButtons : MonoBehaviour
             t = Mathf.Lerp(t, .75f, lerpAmmount);
         }
     }
-
-
-
-
-    /*   
-       
-       public GameObject characterSelectorMovementContainer;
-       public int i;
-
-       // Start is called before the first frame update
-       void Start()
-       {
-
-           i = 1;
-       }
-
-       void NextOnClick()
-       {
-           characterSelectorMovementContainer.transform.position -= new Vector3(1.5f, 0, 0 );
-           i += 1;
-           if(i > 2)
-           {
-               i = 0;
-               characterSelectorMovementContainer.transform.position += new Vector3(4.5f, 0, 0);
-           }
-       }
-
-       void PastOnClick()
-       {
-           characterSelectorMovementContainer.transform.position += new Vector3(1.5f, 0, 0);
-           i -= 1;
-           if (i < 0)
-           {
-               i = 2;
-               characterSelectorMovementContainer.transform.position -= new Vector3(4.5f, 0, 0);
-           }
-       }
-
-       // Update is called once per frame
-       void Update()
-       {
-           Debug.Log(i);
-       }*/
 }

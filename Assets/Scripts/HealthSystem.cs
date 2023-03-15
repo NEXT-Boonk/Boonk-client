@@ -23,12 +23,8 @@ public class HealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         fillAmount = currentHealth / maxHealth;
         healthBar.value = fillAmount;
-
-
 
         if(currentHealth > maxHealth)
         {

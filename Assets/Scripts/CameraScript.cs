@@ -3,53 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class cameraScript : MonoBehaviour
+public class CameraScript : MonoBehaviour
 {
-
-    [SerializeField] private Transform enemy;
-    [SerializeField] Transform player;
-    [Space]
-    [SerializeField] private Camera camera;
-    [SerializeField] float cameraSlack;
-    [SerializeField] float cameraDistance;
-    [SerializeField] float lockOnDistance = 50f;
+    [SerializeField] private Transform player;
+    private Transform enemy;
 
     [Space]
-    [Range(0, 5)] [SerializeField] float maxHeight;
-    [Range(-0.01f, -1)] [SerializeField] float minHeight;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private float cameraSlack;
+    [SerializeField] private float cameraDistance;
+    [SerializeField] private float lockOnDistance = 50f;
 
     [Space]
-    [SerializeField] CinemachineBrain cinemachineBrain;
+    [Range(0, 5)] [SerializeField] private float maxHeight;
+    [Range(-0.01f, -1)] [SerializeField] private float minHeight;
+
+    [Space]
+    [SerializeField] private CinemachineBrain cinemachineBrain;
+    [SerializeField] private bool lockOn;
 
     private Vector3 pivotPoint;
 
-    // sætter 
     void Start()
     {
         pivotPoint = transform.position;
         cinemachineBrain = GetComponent<CinemachineBrain>();
     }
 
-    [SerializeField] private bool lockOn;
-
     void Update()
     {
         // changes between freecamera and lockon camera
-        if (Input.GetKeyDown("q"))
-        {
+        if (Input.GetKeyDown(KeyCode.Q))
+	    {
             if (lockOn == true)
-            {
-                slukLockOn();
-
+	        {
+                DisableLockOn();
             }
             else if (lockOn == false)
-            {
-                GameObject[] players = GameObject.FindGameObjectsWithTag("lockOnObjectTag");
-                GameObject[] enemies = players;
-                enemy = secondClosestTransform(player.transform.position, enemies, lockOnDistance);
+	        {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("LockOn");
+
+                enemy = SecondClosestTransform(player.transform.position, enemies, lockOnDistance);
 
                 if (enemy != null)
-                {
+		        {
                     lockOn = true;
                     cinemachineBrain.enabled = false;
                 }
@@ -62,22 +59,23 @@ public class cameraScript : MonoBehaviour
             Vector3 current = pivotPoint;
             Vector3 target = player.transform.position + Vector3.up;
             float distanceToTarget = Vector3.Distance(player.position, enemy.position);
+
             if (distanceToTarget > lockOnDistance)
             {
-                slukLockOn();
+                DisableLockOn();
                 return;
             }
 
             float extraHeight = Mathf.Lerp(minHeight, maxHeight, Mathf.InverseLerp(0, lockOnDistance, distanceToTarget));
 
             pivotPoint = Vector3.MoveTowards(current, target + Vector3.up * extraHeight, Vector3.Distance(current, target) * cameraSlack);
-            camera.transform.position = pivotPoint;
-            camera.transform.LookAt((enemy.position + player.position) / 2);
-            camera.transform.position -= transform.forward * cameraDistance;
+            playerCamera.transform.position = pivotPoint;
+            playerCamera.transform.LookAt((enemy.position + player.position) / 2);
+            playerCamera.transform.position -= transform.forward * cameraDistance;
         }
     }
 
-    void slukLockOn()
+    void DisableLockOn()
     {
         lockOn = false;
         cinemachineBrain.enabled = true;
@@ -85,42 +83,39 @@ public class cameraScript : MonoBehaviour
     }
 
 
-    // returns the SecondClosest tranfrom from an array of transforms
-    Transform secondClosestTransform(Vector3 position, GameObject[] gameObjects, float maxDistance)
+    // Returns the SecondClosest tranfrom from an array of transforms
+    Transform SecondClosestTransform(Vector3 position, GameObject[] gameObjects, float maxDistance)
     {
         Transform closestTransform = null;
         Transform secondClosestTransform = null;
+
         float closestDistance = Mathf.Infinity;
         float secondClosestDistance = Mathf.Infinity;
 
         foreach (GameObject gm in gameObjects)
-        {
+	    {
             float distance = Vector3.Distance(position, gm.transform.position);
 
             if (distance < closestDistance)
-            {
+	        {
                 secondClosestDistance = closestDistance;
                 secondClosestTransform = closestTransform;
 
                 closestDistance = distance;
                 closestTransform = gm.transform;
             }
-            else if (distance < secondClosestDistance)
-            {
+	        else if (distance < secondClosestDistance)
+	        {
                 secondClosestDistance = distance;
                 secondClosestTransform = gm.transform;
             }
         }
 
         if (secondClosestDistance >= maxDistance)
-        {
-
+	    {
             secondClosestTransform = null;
         }
 
         return secondClosestTransform;
     }
-
-
-
 }

@@ -20,7 +20,7 @@ public class CameraScript : MonoBehaviour
 
     [Space]
     [SerializeField] private CinemachineBrain cinemachineBrain;
-    [SerializeField] private bool lockOn;
+     private bool lockOn;
 
     private Vector3 pivotPoint;
 

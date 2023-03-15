@@ -1,5 +1,5 @@
-using Unity.Netcode;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerMovement : NetworkBehaviour 
 {
@@ -13,7 +13,6 @@ public class PlayerMovement : NetworkBehaviour
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
     private Vector3 velocity;
-
 
     void Awake() 
     {

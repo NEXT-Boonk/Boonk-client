@@ -23,6 +23,8 @@ public class PlayerNetwork : NetworkBehaviour
     private TeamHandler teamHandler;
     public Team team;
 
+
+
     private void Start()
     {
         arrowSpeed = arrowSpeedMin;
@@ -36,7 +38,6 @@ public class PlayerNetwork : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         networkManager = FindObjectOfType<NetworkManager>();
-
         if(networkManager != null)
 	    {
         	teamHandler = networkManager.GetComponent<TeamHandler>();
@@ -47,6 +48,18 @@ public class PlayerNetwork : NetworkBehaviour
         // Checks if the server is the one to trigger "OnNetworkSpawn".
         if (IsServer) {
             teamHandler.AddPlayer(this);
+        }
+
+        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
+
+
+        if (teHa.forrestTeam.Contains(this))
+        {
+            transform.position = new Vector3(2.5f, 3.3f, 16.0f);
+
+        } else
+        {
+            transform.position = new Vector3(2.5f, 3.3f, -15.0f);
         }
     }
 

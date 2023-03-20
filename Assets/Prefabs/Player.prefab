@@ -254,9 +254,10 @@ GameObject:
   - component: {fileID: 8473732332229873046}
   - component: {fileID: -807253297451510934}
   - component: {fileID: 6935672989330760947}
+  - component: {fileID: 5901291334239498804}
   m_Layer: 0
   m_Name: Player
-  m_TagString: LockOn
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +415,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3364ff23467d6d04e9b740f6182798d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5901291334239498804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196876361671034216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8805339a795e4a4799ea07e867d4b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 472241f6d84bf2548a53f763c3e96998, type: 2}
+  currentHealth: 0
+  healthBar: {fileID: 3383143726306881494}
 --- !u!1 &4196876363266683523
 GameObject:
   m_ObjectHideFlags: 0

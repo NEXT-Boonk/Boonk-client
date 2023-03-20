@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class PlayerHealth : MonoBehaviour
+using Unity.Netcode;
+public class PlayerHealth : NetworkBehaviour
 {
     [SerializeField] PlayerStats stats;
 
     float maxHealth;
-    public float currentHealth;
+    [SerializeField] private float currentHealth;
     public Slider healthBar;
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) return;
         float fillAmount = currentHealth / maxHealth;
         healthBar.value = fillAmount;
 
@@ -38,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage / (1 - stats.defense);
+        currentHealth += damage / (0 - stats.defense/10);
     }
 
 

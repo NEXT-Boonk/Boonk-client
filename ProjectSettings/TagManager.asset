@@ -9,6 +9,8 @@ TagManager:
   - Spear
   - LockOn
   - Arrow
+  - lockOnObjectTag
+  - Rock
   layers:
   - Default
   - TransparentFX

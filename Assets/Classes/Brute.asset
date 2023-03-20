@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214d0404a1bbc0c45978652169f67c82, type: 3}
   m_Name: Brute
   m_EditorClassIdentifier: 
-  attackSpeed: 750
-  range: 0
-  stagger: 0
-  damage: 0
-  defense: 0
-  health: 100
-  recoil: 0
+  damage: 50
+  defense: 30
+  health: 300

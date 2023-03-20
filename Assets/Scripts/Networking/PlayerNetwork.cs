@@ -55,6 +55,8 @@ public class PlayerNetwork : NetworkBehaviour
             teamHandler.AddPlayer(this);
         }
 
+        playerSpawn();
+
         
     }
 

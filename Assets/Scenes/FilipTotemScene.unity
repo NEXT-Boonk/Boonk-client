@@ -642,8 +642,8 @@ GameObject:
   - component: {fileID: 802258798}
   - component: {fileID: 802258797}
   - component: {fileID: 802258802}
-  - component: {fileID: 802258801}
   - component: {fileID: 802258800}
+  - component: {fileID: 802258803}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -734,23 +734,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &802258801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802258795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598bedc18703c1348a2de7a04abcf5c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 802258802}
-  gravity: 9.8
-  cameraTransform: {fileID: 385885740}
-  moveSpeed: 10
-  jumpForce: 5
 --- !u!143 &802258802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -769,6 +752,25 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &802258803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802258795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa91d90d7090b84085fbe5f92bcd37a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 802258802}
+  cameraTransform: {fileID: 1100134123}
+  animator: {fileID: 0}
+  gravity: 9.82
+  moveSpeed: 15
+  jumpForce: 2
+  sprintMultiplier: 1.5
 --- !u!1 &951690123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,16 +1087,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a254d023544e2649ac7160295fdd554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
   player: {fileID: 0}
-  camera: {fileID: 1100134127}
+  playerCamera: {fileID: 0}
   cameraSlack: 1
   cameraDistance: 10
   lockOnDistance: 84.31
   maxHeight: 5
   minHeight: -0.01
   cinemachineBrain: {fileID: 1100134125}
-  lockOn: 0
 --- !u!114 &1100134125
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,10 +23,16 @@ public class PlayerNetwork : NetworkBehaviour
     private TeamHandler teamHandler;
     public Team team;
 
+    private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
+    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
+
+
 
 
     private void Start()
     {
+
+
         arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
@@ -49,17 +55,7 @@ public class PlayerNetwork : NetworkBehaviour
             teamHandler.AddPlayer(this);
         }
 
-        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
-
-
-        if (teHa.forrestTeam.Contains(this))
-        {
-            transform.position = new Vector3(2.5f, 3.3f, 16.0f);
-
-        } else
-        {
-            transform.position = new Vector3(2.5f, 3.3f, -15.0f);
-        }
+        
     }
 
     public override void OnNetworkDespawn()
@@ -131,15 +127,37 @@ public class PlayerNetwork : NetworkBehaviour
     {
         if(teamRemovedTicket == Team.Forrest)
         {
-            snowTeamTicket--;
-            Debug.Log(teamRemovedTicket+" "+snowTeamTicket);
-        }
-        else
-        {
             forestTeamTicket--;
             Debug.Log(teamRemovedTicket+" "+forestTeamTicket);
         }
+        else
+        {
+            snowTeamTicket--;
+            Debug.Log(teamRemovedTicket+" "+snowTeamTicket);
+        }
     }
+
+    public void playerSpawn(){
+
+        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
+        CharacterController con = this.GetComponent<CharacterController>();
+        con.enabled = false;
+        if (teHa.forrestTeam.Contains(this))
+        {
+            transform.position = forestSpawn;
+            PlayerDeathServerRpc(new ServerRpcParams());
+
+        } else
+        {
+            transform.position = winterSpawn;
+            PlayerDeathServerRpc(new ServerRpcParams());
+
+        }
+        con.enabled = true;
+
+    }
+
+
 
     [ServerRpc]
     private void PlayerDeathServerRpc(ServerRpcParams _rpc)

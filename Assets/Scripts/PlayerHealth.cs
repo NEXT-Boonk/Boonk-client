@@ -11,6 +11,8 @@ public class PlayerHealth : NetworkBehaviour
     [SerializeField] private float currentHealth;
     public Slider healthBar;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class PlayerHealth : NetworkBehaviour
 
         if(currentHealth <= 0)
         {
-
+            this.GetComponent<PlayerNetwork>().playerSpawn();         
             currentHealth = maxHealth;
         }
 

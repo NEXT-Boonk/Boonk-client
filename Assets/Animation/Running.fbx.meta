@@ -20,12 +20,7 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'Run_N':\n\tLeftLowerLeg
-      average position error 1.5 mm and maximum position error 9.5 mm at time 0:11
-      (55.0%) Frame 11\n\tRightLowerLeg average position error 1.4 mm and maximum
-      position error 8.7 mm at time 0: 3 (15.0%) Frame 3\n\tLeftFoot average orientation
-      error 12.8 deg and maximum orientation error 56.0 deg at time 0:10 (50.0%)
-      Frame 10\n"
+    animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
@@ -38,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run
+      name: Running
       takeName: Run_N
       internalID: 6564411413370888346
       firstFrame: 0
@@ -51,12 +46,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

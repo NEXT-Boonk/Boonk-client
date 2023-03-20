@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using System.Threading;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerMovement : NetworkBehaviour
     private bool isWalking; 
     private bool isRunning; 
     private bool isJumping; 
+    private bool isGrounded; 
 
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -39,6 +41,7 @@ public class PlayerMovement : NetworkBehaviour
 
         // NOTE: Should always get called as last thing!
         HandleAnimations();
+
         // Apply velocity.
         controller.Move(velocity * Time.deltaTime); 
     }
@@ -51,12 +54,20 @@ public class PlayerMovement : NetworkBehaviour
     
     // This function is responsible for applying gravity to the player.
     private void ApplyGravity() 
-    {   
+    {
         // Gravity is applied to the player if it isn't already grounded.
-        if (!controller.isGrounded) ApplyForce(new Vector3(0, -gravity));
-        // Otherwise the player is still pushed slightly downwards to ensure it stays grounded.
-        else velocity.y = -1f;
-        // This is to ensure the ground check works when the jump-function is called.
+        if (!controller.isGrounded)
+        {
+            ApplyForce(new Vector3(0, -gravity));
+            isGrounded = false;
+        }
+        else
+        {
+            // This ensures the ground check works.
+            velocity.y = -1f;
+        }
+        
+	    isGrounded = true;
     }
 
     // This function is responsible for making the character move.
@@ -95,7 +106,7 @@ public class PlayerMovement : NetworkBehaviour
             Vector3 moveDirection = Quaternion.Euler(0.0f, lookDirectionAngle, 0.0f) * Vector3.forward;
 
             // Apply movement to the player.
-		    controller.Move(moveDirection.normalized * moveSpeed * movementMultiplier * Time.deltaTime);
+		    controller.Move(movementMultiplier * moveSpeed * Time.deltaTime * moveDirection.normalized);
 
             return;
         }
@@ -111,42 +122,37 @@ public class PlayerMovement : NetworkBehaviour
         {
             // Check if the character is on the ground. If not, do nothing.
             if (!controller.isGrounded) return;
-            
+
             // Apply a vertical force to the character's velocity, making them jump.
             velocity.y += jumpForce;
             isJumping = true;
 
             return;
         }
+
+        isJumping = false;
     }
 
     private void HandleAnimations() 
     {
         if (isWalking)
-		{
             animator.SetBool("isWalking", true);
-		}
         else
-        { 
             animator.SetBool("isWalking", false);
-	    }
 
         if (isWalking && isRunning)
-        {
             animator.SetBool("isRunning", true);
-	    }
         else
-        { 
             animator.SetBool("isRunning", false);
-	    }
 
         if (isJumping)
-        {
-            animator.SetTrigger("isJumping");
-	    }
+            animator.SetBool("isJumping", true);
         else
-	    { 
-            animator.ResetTrigger("isJumping");
-	    }
+            animator.SetBool("isJumping", false);
+
+        if (isGrounded)
+            animator.SetBool("isGrounded", true);
+        else
+            animator.SetBool("isGrounded", false);
     }
 }

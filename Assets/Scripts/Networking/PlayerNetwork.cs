@@ -31,7 +31,6 @@ public class PlayerNetwork : NetworkBehaviour
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
         playerCamera.gameObject.SetActive(false);
-        
     }
    
     // This will send the struct defined above when one of it's values changes.

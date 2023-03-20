@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: -807253297451510934}
   - component: {fileID: 6935672989330760947}
   - component: {fileID: 5901291334239498804}
+  - component: {fileID: 8915455788334827594}
   m_Layer: 0
   m_Name: Player
   m_TagString: Character
@@ -430,6 +431,20 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 472241f6d84bf2548a53f763c3e96998, type: 2}
   currentHealth: 0
   healthBar: {fileID: 3383143726306881494}
+--- !u!136 &8915455788334827594
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4196876361671034216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.53218746
+  m_Height: 1.894325
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.94854224, z: 0.0011646748}
 --- !u!1 &4196876363266683523
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +796,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182305898662585623}
-  m_LocalRotation: {x: 0.16374181, y: 0.13696238, z: -0.02296196, w: 0.97667944}
+  m_LocalRotation: {x: 0.16374181, y: 0.13696241, z: -0.022961967, w: 0.97667944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -859,7 +874,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6286101250951355749}
-  m_LocalRotation: {x: 0.11816922, y: 0.13788165, z: -0.016571192, w: 0.9832345}
+  m_LocalRotation: {x: 0.118169226, y: 0.13788162, z: -0.016571188, w: 0.9832345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

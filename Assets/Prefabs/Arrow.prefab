@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4669339851997949223}
   - component: {fileID: 6992558006088884377}
   - component: {fileID: 8334746089140968957}
+  - component: {fileID: -7979107540174699973}
+  - component: {fileID: 4290177690302078874}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Arrow
@@ -120,6 +122,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7979107540174699973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078174943099427934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3364ff23467d6d04e9b740f6182798d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &4290177690302078874
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078174943099427934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.12646046
+  m_Height: 1.6390364
+  m_Direction: 2
+  m_Center: {x: -0.00018444657, y: 0.0048785806, z: 0.23940647}
 --- !u!1001 &7841370664555252665
 PrefabInstance:
   m_ObjectHideFlags: 0

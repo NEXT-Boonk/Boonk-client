@@ -46,7 +46,9 @@ public class PlayerNetwork : NetworkBehaviour
         if(networkManager != null)
 	    {
         	teamHandler = networkManager.GetComponent<TeamHandler>();
-        } else {
+        } 
+	    else
+	    {
             Debug.LogError("Missing NetworkManager");
 		}
 

@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/stylesheet.uss?fileID=7433441132597879392&amp;guid=5ffbaa56b22b37d47af3fd1620f9bfdd&amp;type=3#stylesheet" />
     <ui:VisualElement style="height: 100%; width: 100%;">
-        <ui:Label text="Pick a Team" display-tooltip-when-elided="true" style="font-size: 32px; -unity-font-style: bold; -unity-text-align: middle-center; height: auto; width: auto; align-items: auto; justify-content: flex-start; flex-direction: column; flex-wrap: nowrap; padding-top: 10px; padding-bottom: 10px;" />
+        <ui:Label text="Pick A Class" display-tooltip-when-elided="true" style="font-size: 32px; -unity-font-style: bold; -unity-text-align: middle-center; height: auto; width: auto; align-items: auto; justify-content: flex-start; flex-direction: column; flex-wrap: nowrap; padding-top: 10px; padding-bottom: 10px;" />
         <ui:GroupBox style="flex-direction: row; justify-content: center; height: 85%; align-items: center;">
             <ui:Button text="⬅" display-tooltip-when-elided="true" style="height: auto; margin-bottom: 0; margin-right: 10px;" />
             <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI%20Toolkit/SNOWMAN.png?fileID=2800000&amp;guid=75ac350d2103d6043a5a330df626304a&amp;type=3#SNOWMAN&apos;); width: 30%; height: 60%;" />

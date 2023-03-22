@@ -50,10 +50,6 @@ public class ServerSelector : MonoBehaviour
 			return;
 		}
 
-		// Set IP and Port on transport and connect as client
-		transport.ConnectionData.Address = ip;
-		transport.ConnectionData.Port = port;
-
         if (NetworkManager.Singleton.StartClient())
         {
             // Let the network change scene.
@@ -66,6 +62,12 @@ public class ServerSelector : MonoBehaviour
         {
             Debug.LogError("Failed to start client.");
         }
+
+		// Set IP and Port on transport and connect as client
+		transport.ConnectionData.Address = ip;
+		transport.ConnectionData.Port = port;
+
+        
     }
 
 	void HostButton()

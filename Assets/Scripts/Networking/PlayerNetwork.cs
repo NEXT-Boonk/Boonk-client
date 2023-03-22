@@ -4,6 +4,9 @@ using Unity.Netcode;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    [SerializeField] private int snowTeamTicket;
+    [SerializeField] private int forestTeamTicket;
+    [Space]
     [SerializeField] private GameObject rockPrefab;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform startPosition;
@@ -12,7 +15,6 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] private float rockSpeed;
     [SerializeField] private float arrowSpeedMax, arrowSpeedMin, arrowChargeSpeed;
     private float arrowSpeed;
-
     public static List<GameObject> spawnedObjects = new();
 
     private NetworkManager networkManager;
@@ -21,19 +23,30 @@ public class PlayerNetwork : NetworkBehaviour
     private TeamHandler teamHandler;
     public Team team;
 
+    private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
+    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
+
+    
+
+
     private void Start()
     {
+
+        if(IsServer){
+            snowTeamTicket = 3;
+            forestTeamTicket = 3;
+        }
+
+        arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
         playerCamera.gameObject.SetActive(false);
-        arrowSpeed = arrowSpeedMin;
     }
    
     // This will send the struct defined above when one of it's values changes.
     public override void OnNetworkSpawn()
     {
         networkManager = FindObjectOfType<NetworkManager>();
-
         if(networkManager != null)
 	    {
         	teamHandler = networkManager.GetComponent<TeamHandler>();
@@ -47,6 +60,10 @@ public class PlayerNetwork : NetworkBehaviour
         if (IsServer) {
             teamHandler.AddPlayer(this);
         }
+
+        playerSpawn();
+
+        
     }
 
     public override void OnNetworkDespawn()
@@ -60,6 +77,12 @@ public class PlayerNetwork : NetworkBehaviour
         if(!IsOwner) return; 
         playerCamera.gameObject.SetActive(true);
 
+        // v  replace with death function
+        if(Input.GetKeyDown(KeyCode.Y))
+	    {
+            PlayerDeathServerRpc(new ServerRpcParams());
+        }
+      
         // Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
         if(Input.GetKeyDown(KeyCode.C))
 	    {
@@ -95,19 +118,73 @@ public class PlayerNetwork : NetworkBehaviour
         
         newObject.GetComponent<NetworkObject>().Spawn(true);
         spawnedObjects.Add(newObject);
+    }
 
-        // Despawn objects if too many. Should be refactored to disapear over time.
-        if(spawnedObjects.Count > 100)
-	    {
-            for (int i = 0; i < spawnedObjects.Count; i++)
-	        {
-                Destroy(spawnedObjects[i]);
-            }
+    private void killFunction(){
+        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
+        for(int i = 0; i < teHa.forrestTeam.Count; i++){
+            GameObject t = teHa.forrestTeam[i].gameObject;
+            t.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
 
-            spawnedObjects.Clear();
+        for(int i = 0; i < teHa.snowTeam.Count; i++){
+            GameObject t = teHa.snowTeam[i].gameObject;
+            t.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
+        
+    }
+
+    private void PlayerTicketRemove(Team teamRemovedTicket)
+    {
+        if(snowTeamTicket <= 0){
+            killFunction();
+            snowTeamTicket = 48;
+            forestTeamTicket = 48;
+            Debug.Log("Forest team wins");
+        }else if(forestTeamTicket <= 0){
+            killFunction();
+            snowTeamTicket = 48;
+            forestTeamTicket = 48;
+            Debug.Log("Snow team wins");
+        }else if(teamRemovedTicket == Team.Forrest)
+        {
+            forestTeamTicket--;
+            Debug.Log(teamRemovedTicket+" "+forestTeamTicket);
+        }
+        else
+        {
+            snowTeamTicket--;
+            Debug.Log(teamRemovedTicket+" "+snowTeamTicket);
         }
     }
 
+    public void playerSpawn(){
+
+        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
+        CharacterController con = this.GetComponent<CharacterController>();
+        con.enabled = false;
+        if (teHa.forrestTeam.Contains(this))
+        {
+            transform.position = forestSpawn;
+            PlayerDeathServerRpc(new ServerRpcParams());
+
+        } else
+        {
+            transform.position = winterSpawn;
+            PlayerDeathServerRpc(new ServerRpcParams());
+
+        }
+        con.enabled = true;
+
+    }
+
+
+
+    [ServerRpc]
+    private void PlayerDeathServerRpc(ServerRpcParams _rpc)
+    {
+        PlayerTicketRemove(team);
+    }
     [ServerRpc]
     private void StoneServerRpc(ServerRpcParams _rpc)
     {
@@ -119,4 +196,6 @@ public class PlayerNetwork : NetworkBehaviour
     {
         ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
     }
+
+    
 }

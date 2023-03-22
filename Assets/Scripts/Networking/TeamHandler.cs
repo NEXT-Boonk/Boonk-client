@@ -12,8 +12,8 @@ public enum Team
 public class TeamHandler : MonoBehaviour
 {
     // Serialized for testing
-    [SerializeField] private List<PlayerNetwork> forrestTeam = new List<PlayerNetwork>();
-    [SerializeField] private List<PlayerNetwork> snowTeam = new List<PlayerNetwork>(); 
+    [SerializeField] public List<PlayerNetwork> forrestTeam = new List<PlayerNetwork>();
+    [SerializeField] public List<PlayerNetwork> snowTeam = new List<PlayerNetwork>(); 
 
     public void AddPlayer(PlayerNetwork player)
     {

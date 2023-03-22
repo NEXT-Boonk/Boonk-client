@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+        UnityEngine.Cursor.visible = true;
+        
         UIDocument document = GetComponent<UIDocument>();
         VisualElement root = document.rootVisualElement;
 

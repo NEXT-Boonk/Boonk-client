@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponDamage : MonoBehaviour
 {
 //    [SerializeField] PlayerStats stats;
-
+    [SerializeField] int projectileDespawnTime;
     float damageGiven;
 
     void Start()
@@ -27,6 +27,11 @@ public class WeaponDamage : MonoBehaviour
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject,projectileDespawnTime);
             }
         }
 
@@ -34,6 +39,11 @@ public class WeaponDamage : MonoBehaviour
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject,projectileDespawnTime);
             }
         }
     }

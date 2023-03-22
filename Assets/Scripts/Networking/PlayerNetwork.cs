@@ -26,12 +26,16 @@ public class PlayerNetwork : NetworkBehaviour
     private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
     private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
 
-
+    
 
 
     private void Start()
     {
 
+        if(IsServer){
+            snowTeamTicket = 3;
+            forestTeamTicket = 3;
+        }
 
         arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
@@ -127,9 +131,33 @@ public class PlayerNetwork : NetworkBehaviour
         }
     }
 
+    private void killFunction(){
+        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
+        for(int i = 0; i < teHa.forrestTeam.Count; i++){
+            GameObject t = teHa.forrestTeam[i].gameObject;
+            t.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
+
+        for(int i = 0; i < teHa.snowTeam.Count; i++){
+            GameObject t = teHa.snowTeam[i].gameObject;
+            t.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
+        
+    }
+
     private void PlayerTicketRemove(Team teamRemovedTicket)
     {
-        if(teamRemovedTicket == Team.Forrest)
+        if(snowTeamTicket <= 0){
+            killFunction();
+            snowTeamTicket = 48;
+            forestTeamTicket = 48;
+            Debug.Log("Forest team wins");
+        }else if(forestTeamTicket <= 0){
+            killFunction();
+            snowTeamTicket = 48;
+            forestTeamTicket = 48;
+            Debug.Log("Snow team wins");
+        }else if(teamRemovedTicket == Team.Forrest)
         {
             forestTeamTicket--;
             Debug.Log(teamRemovedTicket+" "+forestTeamTicket);

@@ -180,7 +180,7 @@ public class PlayerNetwork : NetworkBehaviour
 
 
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void PlayerDeathServerRpc(ServerRpcParams _rpc)
     {
         PlayerTicketRemove(team);

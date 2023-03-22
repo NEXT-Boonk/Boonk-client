@@ -118,17 +118,6 @@ public class PlayerNetwork : NetworkBehaviour
         
         newObject.GetComponent<NetworkObject>().Spawn(true);
         spawnedObjects.Add(newObject);
-
-        // Despawn objects if too many. Should be refactored to disapear over time.
-        if(spawnedObjects.Count > 100)
-	    {
-            for (int i = 0; i < spawnedObjects.Count; i++)
-	        {
-                Destroy(spawnedObjects[i]);
-            }
-
-            spawnedObjects.Clear();
-        }
     }
 
     private void killFunction(){

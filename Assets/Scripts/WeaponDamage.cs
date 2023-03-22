@@ -10,6 +10,11 @@ public class WeaponDamage : MonoBehaviour
         damageGiven = stats.damage;
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (CompareTag("Club")) {

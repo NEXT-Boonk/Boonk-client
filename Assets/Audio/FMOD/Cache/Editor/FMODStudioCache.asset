@@ -62,7 +62,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowRelease.bank
   Name: BankBowRelease
   StudioPath: bank:/BankBowRelease
-  lastModified: 638143011774066162
+  lastModified: 638145152001626962
   FileSizes:
   - Name: Desktop
     Value: 51552
@@ -102,7 +102,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankWalk.bank
   Name: BankWalk
   StudioPath: bank:/BankWalk
-  lastModified: 638143011774135982
+  lastModified: 638145152001637546
   FileSizes:
   - Name: Desktop
     Value: 1616
@@ -232,7 +232,7 @@ MonoBehaviour:
   - {fileID: 5876519015097543310}
   StringsBanks:
   - {fileID: 3182642832125176993}
-  cacheTime: 638143011774165884
+  cacheTime: 638145152001642530
   cacheVersion: 131601
 --- !u!114 &170872078440429344
 MonoBehaviour:
@@ -249,7 +249,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankRun.bank
   Name: BankRun
   StudioPath: bank:/BankRun
-  lastModified: 638143011774086108
+  lastModified: 638145152001625805
   FileSizes:
   - Name: Desktop
     Value: 1488
@@ -269,7 +269,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowHit.bank
   Name: BankBowHit
   StudioPath: bank:/BankBowHit
-  lastModified: 638143011774036235
+  lastModified: 638145152001622758
   FileSizes:
   - Name: Desktop
     Value: 98976
@@ -397,7 +397,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638143011774165884
+  lastModified: 638145152001642530
   FileSizes:
   - Name: Desktop
     Value: 1174
@@ -464,7 +464,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638143011774155914
+  lastModified: 638145152001640007
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -551,7 +551,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankThrow.bank
   Name: BankThrow
   StudioPath: bank:/BankThrow
-  lastModified: 638143011774106048
+  lastModified: 638145152001634294
   FileSizes:
   - Name: Desktop
     Value: 64640

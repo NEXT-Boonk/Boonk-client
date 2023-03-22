@@ -8,7 +8,7 @@ public class PlayerHealth : NetworkBehaviour
     [SerializeField] PlayerStats stats;
 
     float maxHealth;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float currentHealth;
     public Slider healthBar;
 
     public GameObject player;

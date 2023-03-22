@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Club
+  - Character
+  - Spear
+  - LockOn
+  - Arrow
+  - lockOnObjectTag
   layers:
   - Default
   - TransparentFX

@@ -102,7 +102,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankWalk.bank
   Name: BankWalk
   StudioPath: bank:/BankWalk
-  lastModified: 638144865305768709
+  lastModified: 638150799181715660
   FileSizes:
   - Name: Desktop
     Value: 1616
@@ -232,7 +232,7 @@ MonoBehaviour:
   - {fileID: 5876519015097543310}
   StringsBanks:
   - {fileID: 3182642832125176993}
-  cacheTime: 638144865305793516
+  cacheTime: 638150799181740749
   cacheVersion: 131601
 --- !u!114 &170872078440429344
 MonoBehaviour:
@@ -249,7 +249,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankRun.bank
   Name: BankRun
   StudioPath: bank:/BankRun
-  lastModified: 638144865305745986
+  lastModified: 638150799181693983
   FileSizes:
   - Name: Desktop
     Value: 1488
@@ -397,7 +397,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638144865305793516
+  lastModified: 638150799181740749
   FileSizes:
   - Name: Desktop
     Value: 1174

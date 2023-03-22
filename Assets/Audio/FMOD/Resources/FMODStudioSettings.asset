@@ -43,7 +43,9 @@ MonoBehaviour:
   - BankBowHit
   - BankBowRelease
   - BankRun
+  - BankStartMenuMusic
   - BankThrow
+  - BankVictory
   - BankWalk
   BanksToLoad: []
   LiveUpdatePort: 9264

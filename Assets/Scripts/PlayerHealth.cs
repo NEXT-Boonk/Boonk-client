@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] PlayerStats stats;
+
     float maxHealth;
     public float currentHealth;
     public Slider healthBar;
-
-    [SerializeField] PlayerStats stats;
 
     // Start is called before the first frame update
     void Start()

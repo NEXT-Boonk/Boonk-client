@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponDamage : MonoBehaviour
 {
     [SerializeField] PlayerStats stats;
+
     float damageGiven;
 
     void Start()

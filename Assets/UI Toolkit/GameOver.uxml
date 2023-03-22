@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:GroupBox name="GroupBox" style="height: 100%; justify-content: center; align-items: center; background-image: url(&apos;project://database/Assets/UI%20Toolkit/GameOver.jpg?fileID=2800000&amp;guid=25eebc3e00d157d46986491dea29a559&amp;type=3#GameOver&apos;); bottom: 0;">
+        <ui:VisualElement style="flex-direction: column-reverse; background-image: url(&apos;project://database/Assets/UI%20Toolkit/DetErEnommer.png?fileID=2800000&amp;guid=52623434a6e11744cbff4a1588fb1edb&amp;type=3#DetErEnommer&apos;); width: 900px; height: 600px; top: -200px;" />
+        <ui:Button text="Prøv Igen" display-tooltip-when-elided="true" style="left: -350px; bottom: 10px; width: 300px; height: 50px; font-size: 25px;" />
+        <ui:Button text="Sluk Spillet" display-tooltip-when-elided="true" style="right: -350px; justify-content: flex-end; align-items: auto; width: 300px; height: 50px; top: -60px; font-size: 25px;" />
+    </ui:GroupBox>
+</ui:UXML>

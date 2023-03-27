@@ -16,7 +16,8 @@ public class PlayerMovement : NetworkBehaviour
     private bool isWalking; 
     private bool isRunning; 
     private bool isJumping; 
-    private bool isGrounded; 
+    private bool isGrounded;
+    private bool isAttacking;
 
     private readonly float turnSmoothTime = 0.1f; 
     private float turnSmoothVelocity;
@@ -38,7 +39,7 @@ public class PlayerMovement : NetworkBehaviour
         ApplyGravity();  
         Jump();  
         Move();
-
+        Attack();
         // NOTE: Should always get called as last thing!
         HandleAnimations();
 
@@ -114,6 +115,18 @@ public class PlayerMovement : NetworkBehaviour
         isWalking = false;
     }
 
+    private void Attack()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log("i tried");
+            isAttacking = true;
+        } else
+        {
+            isAttacking = false;
+        }
+    }
+
     // This function is responsible for making the character jump.
     private void Jump() 
     {   
@@ -154,5 +167,13 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetBool("isGrounded", true);
         else
             animator.SetBool("isGrounded", false);
+
+        if (isAttacking) { 
+            animator.SetBool("atkAnim", true);
+            Debug.Log("Attacking");
+        }
+        else
+            animator.SetBool("atkAnim", false);
+
     }
 }

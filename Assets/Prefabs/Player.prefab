@@ -132,8 +132,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3835915582833127018}
-  m_LocalRotation: {x: 0.2910839, y: -0.6157013, z: 0.26212627, w: 0.68371916}
-  m_LocalPosition: {x: 6.3202977, y: 8.486636, z: -0.66348594}
+  m_LocalRotation: {x: 0.515016, y: -0.4600489, z: 0.3882842, w: 0.61020404}
+  m_LocalPosition: {x: 1.0620508, y: 8.05774, z: -0.3039919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -561,7 +561,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4855474923358037547}
-  m_LocalRotation: {x: 0.28338844, y: -0.6186058, z: 0.2551964, w: 0.6869445}
+  m_LocalRotation: {x: 0.50085944, y: -0.46884903, z: 0.37761128, w: 0.6218763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8.486636, z: -6.3550277}
+  m_FollowOffset: {x: 0, y: 8.05774, z: -1.1047004}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -694,7 +694,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -84.0072
+    Value: -74.02724
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -766,7 +766,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6182305898662585623}
-  m_LocalRotation: {x: 0.29931492, y: -0.61249274, z: 0.26953846, w: 0.68015605}
+  m_LocalRotation: {x: 0.5152109, y: -0.4599249, z: 0.3884313, w: 0.6100393}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -844,7 +844,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6286101250951355749}
-  m_LocalRotation: {x: 0.2673781, y: -0.6243588, z: 0.24077871, w: 0.693333}
+  m_LocalRotation: {x: 0.4862997, y: -0.47748208, z: 0.36663458, w: 0.63332665}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8.486636, z: -6.3550277}
+  m_FollowOffset: {x: 0, y: 8.05774, z: -1.1047004}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -977,7 +977,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -84.0072
+    Value: -74.02724
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1128,7 +1128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7094231188086395120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.3202977, y: 8.486636, z: -0.66348594}
+  m_LocalPosition: {x: 1.0620508, y: 8.05774, z: -0.3039919}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1177,7 +1177,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.74097484
+    Value: 0.9931409
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
@@ -1201,7 +1201,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -84.0072
+    Value: -74.02724
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 8.486636, z: -6.3550277}
+  m_FollowOffset: {x: 0, y: 8.05774, z: -1.1047004}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1442,7 +1442,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -84.0072
+    Value: -74.02724
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1726,6 +1726,19 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 340da6c1e4c0eb74cb4bb4c3c36a288a, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5a8ee3164c637224aa934f6039929699, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 5a8ee3164c637224aa934f6039929699, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'upper_arm.R'\n\tTransform 'forearm.R'\n\tTransform
+        'shoulder.R'\n\tTransform 'thigh.L'\n\tTransform 'toe.L'\n\tTransform 'upper_arm.L'\n\tTransform
+        'spine.006'\n\tTransform 'shin.R'\n\tTransform 'spine.003'\n\tTransform 'spine'\n\tand
+        more ...\n\tFrom animation clip 'metarig|StickAttack'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5a8ee3164c637224aa934f6039929699, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

@@ -66,9 +66,8 @@ public class PlayerMovement : NetworkBehaviour
         {
             // This ensures the ground check works.
             velocity.y = -1f;
+	        isGrounded = true;
         }
-        
-	    isGrounded = true;
     }
 
     // This function is responsible for making the character move.

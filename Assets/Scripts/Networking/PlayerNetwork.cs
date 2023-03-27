@@ -31,12 +31,11 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void Start()
     {
-
-        if(IsServer){
+        //needs to be removed
+        if(IsServer || IsHost){
             snowTeamTicket = 3;
             forestTeamTicket = 3;
         }
-
         arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
@@ -61,8 +60,10 @@ public class PlayerNetwork : NetworkBehaviour
             teamHandler.AddPlayer(this);
         }
 
+        
         playerSpawn();
 
+        Debug.Log(snowTeamTicket+" first");
         
     }
 
@@ -73,6 +74,7 @@ public class PlayerNetwork : NetworkBehaviour
     
     private void Update()
     {
+        Debug.Log(snowTeamTicket);
 		// This checks if the code is NOT run by the owner, if so it does nothing.
         if(!IsOwner) return; 
         playerCamera.gameObject.SetActive(true);
@@ -141,12 +143,14 @@ public class PlayerNetwork : NetworkBehaviour
             forestTeamTicket = 48;
             killFunction();
             Debug.Log("Forest team wins");
-        }else if(forestTeamTicket <= 0){
+        }
+        else if(forestTeamTicket <= 0){
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             killFunction();
             Debug.Log("Snow team wins");
-        }else if(teamRemovedTicket == Team.Forrest)
+        }
+        else if(teamRemovedTicket == Team.Forrest)
         {
             forestTeamTicket--;
             Debug.Log(teamRemovedTicket+" "+forestTeamTicket);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{44fff243-cbb4-4cb3-b3cf-2d10a874be29}">
+		<property name="assetPath">
+			<value>DeathSoundsFolder/DIE_2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.69712018140589571</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6989cba3-5e26-4e07-9aa2-d090ed9f0eec}</destination>
+		</relationship>
+	</object>
+</objects>

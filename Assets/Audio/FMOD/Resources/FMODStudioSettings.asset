@@ -40,13 +40,20 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
+  - BankBackgroundMusic
   - BankBowHit
   - BankBowRelease
+  - BankClickOne
+  - BankClickTwo
+  - BankDamage
+  - BankDeath
   - BankRun
   - BankStartMenuMusic
   - BankThrow
   - BankVictory
   - BankWalk
+  - BankWalkForest
+  - BankWalkSnow
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

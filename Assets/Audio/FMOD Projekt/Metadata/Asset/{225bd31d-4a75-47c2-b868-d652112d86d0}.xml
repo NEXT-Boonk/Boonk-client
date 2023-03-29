@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{225bd31d-4a75-47c2-b868-d652112d86d0}">
+		<property name="assetPath">
+			<value>ClickSoundsFolder/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{6989cba3-5e26-4e07-9aa2-d090ed9f0eec}</destination>
+		</relationship>
+	</object>
+</objects>

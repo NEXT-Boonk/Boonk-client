@@ -104,6 +104,8 @@ public class PlayerNetwork : NetworkBehaviour
             ArrowServerRpc(new ServerRpcParams());
             arrowSpeed = arrowSpeedMin;
         }
+
+        Deathbox();
     }
 
 
@@ -137,13 +139,14 @@ public class PlayerNetwork : NetworkBehaviour
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
         }else{
-            this.GetComponent<PlayerHealth>().currentHealth = 0;
+            gameObject.GetComponent<PlayerHealth>().currentHealth = 0;
         }
         
     }
 
     private void Deathbox(){
         if(this.GetComponent<Transform>().position.y < -10){
+            Debug.Log("I work");
             KillFunction(false);
         } 
     } 
@@ -154,13 +157,13 @@ public class PlayerNetwork : NetworkBehaviour
             KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
-            killFunction();
+            KillFunction(true);
             Debug.Log("Forest team wins");
         }else if(forestTeamTicket <= 0){
             KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
-            killFunction();
+            KillFunction(true);
             Debug.Log("Snow team wins");
         }
         else if(teamRemovedTicket == Team.Forrest)
@@ -202,6 +205,7 @@ public class PlayerNetwork : NetworkBehaviour
     {
         PlayerTicketRemove(team);
     }
+    
     [ServerRpc]
     private void StoneServerRpc(ServerRpcParams _rpc)
     {

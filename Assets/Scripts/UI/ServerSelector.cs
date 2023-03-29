@@ -82,7 +82,7 @@ public class ServerSelector : MonoBehaviour
             NetworkManager
 		        .Singleton
 		        .SceneManager
-		        .LoadScene("Game", LoadSceneMode.Single);
+		        .LoadScene("Map", LoadSceneMode.Single);
         }
         else
         {

@@ -193,8 +193,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3835915582833127018}
-  m_LocalRotation: {x: 0.459621, y: -0.44985226, z: 0.29209495, w: 0.7078574}
-  m_LocalPosition: {x: 2.7874048, y: 8.661507, z: -1.3073208}
+  m_LocalRotation: {x: 0.29108393, y: -0.61570126, z: 0.2621263, w: 0.68371916}
+  m_LocalPosition: {x: 6.3202977, y: 8.486636, z: -0.66348594}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -442,9 +442,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 3347560219344688493}
   animator: {fileID: 6191304606482018819}
   gravity: 50
-  moveSpeed: 3
+  moveSpeed: 5
   jumpForce: 20
-  sprintMultiplier: 2
+  sprintMultiplier: 2.5
 --- !u!114 &-807253297451510934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,10 +462,10 @@ MonoBehaviour:
   rockPrefab: {fileID: 8773276557215669945, guid: 4a352d0ba33af1a42b8b4e3c81e47ae0, type: 3}
   arrowPrefab: {fileID: 3078174943099427934, guid: 52c716621002a644a85ccce3e9c74b66, type: 3}
   startPosition: {fileID: 636240723261715611}
-  rockSpeed: 10
-  arrowSpeedMax: 50
-  arrowSpeedMin: 20
-  arrowChargeSpeed: 50
+  rockSpeed: 25
+  arrowSpeedMax: 200
+  arrowSpeedMin: 30
+  arrowChargeSpeed: 20
   playerCamera: {fileID: 6976744443921172053}
   team: 0
 --- !u!114 &6935672989330760947
@@ -657,7 +657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4855474923358037547}
-  m_LocalRotation: {x: 0.4467523, y: -0.45505807, z: 0.28391674, w: 0.71604884}
+  m_LocalRotation: {x: 0.28338847, y: -0.61860585, z: 0.25519642, w: 0.6869445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1833,6 +1833,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5a8ee3164c637224aa934f6039929699, type: 3}
   m_PrefabInstance: {fileID: 324675980123246482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &594495786156569283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a8ee3164c637224aa934f6039929699, type: 3}
+  m_PrefabInstance: {fileID: 324675980123246482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8802399997990893117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594495786156569283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fdf21c2da1a0d46ad686f36a3860ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 6191304606482018819}
 --- !u!95 &6191304606482018819 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5a8ee3164c637224aa934f6039929699, type: 3}

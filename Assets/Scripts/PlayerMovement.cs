@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 using Unity.Netcode;
 using System.Threading;
 
@@ -119,11 +119,8 @@ public class PlayerMovement : NetworkBehaviour
         if (Input.GetMouseButton(0))
         {
             Debug.Log("i tried");
-            isAttacking = true;
-        } else
-        {
-            isAttacking = false;
-        }
+            animator.SetTrigger("isAttacking");
+        } 
     }
 
     // This function is responsible for making the character jump.
@@ -167,12 +164,7 @@ public class PlayerMovement : NetworkBehaviour
         else
             animator.SetBool("isGrounded", false);
 
-        if (isAttacking) { 
-            animator.SetBool("isAttacking", true);
-            Debug.Log("Attacking");
-        }
-        else
-            animator.SetBool("isAttacking", false);
+
 
     }
 }

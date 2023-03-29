@@ -24,7 +24,7 @@ public class PlayerNetwork : NetworkBehaviour
     public Team team;
 
     private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
-    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
+    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, 17.0f);
 
     
 
@@ -60,7 +60,9 @@ public class PlayerNetwork : NetworkBehaviour
             teamHandler.AddPlayer(this);
         }
 
-        
+        if(!IsOwner){
+            return;
+        }
         playerSpawn();
 
         Debug.Log(snowTeamTicket+" first");

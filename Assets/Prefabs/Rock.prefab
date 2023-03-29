@@ -96,9 +96,11 @@ GameObject:
   - component: {fileID: 2479578688422379700}
   - component: {fileID: 7438257350234879184}
   - component: {fileID: -4727117164387643318}
+  - component: {fileID: 258032157983422102}
+  - component: {fileID: 8917194432521762454}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,3 +192,30 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &258032157983422102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773276557215669945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3364ff23467d6d04e9b740f6182798d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileDespawnTime: 3
+--- !u!136 &8917194432521762454
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773276557215669945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6117493
+  m_Height: 1.2234986
+  m_Direction: 1
+  m_Center: {x: -0.08844292, y: 0.07038045, z: -0.007971168}

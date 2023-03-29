@@ -168,11 +168,11 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetBool("isGrounded", false);
 
         if (isAttacking) { 
-            animator.SetBool("atkAnim", true);
+            animator.SetBool("isAttacking", true);
             Debug.Log("Attacking");
         }
         else
-            animator.SetBool("atkAnim", false);
+            animator.SetBool("isAttacking", false);
 
     }
 }

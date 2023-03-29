@@ -6,6 +6,7 @@ public class PlayerNetwork : NetworkBehaviour
 {
     [SerializeField] private int snowTeamTicket;
     [SerializeField] private int forestTeamTicket;
+
     [Space]
     [SerializeField] private GameObject rockPrefab;
     [SerializeField] private GameObject arrowPrefab;
@@ -31,7 +32,6 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void Start()
     {
-
         if(IsServer){
             snowTeamTicket = 3;
             forestTeamTicket = 3;
@@ -122,12 +122,14 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void killFunction(){
         TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
-        for(int i = 0; i < teHa.forrestTeam.Count; i++){
+        for(int i = 0; i < teHa.forrestTeam.Count; i++)
+	    {
             GameObject t = teHa.forrestTeam[i].gameObject;
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
 
-        for(int i = 0; i < teHa.snowTeam.Count; i++){
+        for(int i = 0; i < teHa.snowTeam.Count; i++)
+	    {
             GameObject t = teHa.snowTeam[i].gameObject;
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
@@ -136,17 +138,22 @@ public class PlayerNetwork : NetworkBehaviour
 
     private void PlayerTicketRemove(Team teamRemovedTicket)
     {
-        if(snowTeamTicket <= 0){
+        if (IsServer) return;
+        if(snowTeamTicket <= 0)
+	    {
             killFunction();
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             Debug.Log("Forest team wins");
-        }else if(forestTeamTicket <= 0){
+        }
+	    else if(forestTeamTicket <= 0)
+	    {
             killFunction();
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             Debug.Log("Snow team wins");
-        }else if(teamRemovedTicket == Team.Forrest)
+        }
+	    else if(teamRemovedTicket == Team.Forrest)
         {
             forestTeamTicket--;
             Debug.Log(teamRemovedTicket+" "+forestTeamTicket);
@@ -159,22 +166,22 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
     public void playerSpawn(){
-
-        TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
-        CharacterController con = this.GetComponent<CharacterController>();
-        con.enabled = false;
-        if (teHa.forrestTeam.Contains(this))
+        TeamHandler teamHandler = NetworkManager.GetComponent<TeamHandler>();
+        CharacterController characterController = this.GetComponent<CharacterController>();
+        characterController.enabled = false;
+        if (teamHandler.forrestTeam.Contains(this))
         {
             transform.position = forestSpawn;
             PlayerDeathServerRpc(new ServerRpcParams());
 
-        } else
+        }
+	    else
         {
             transform.position = winterSpawn;
             PlayerDeathServerRpc(new ServerRpcParams());
 
         }
-        con.enabled = true;
+        characterController.enabled = true;
 
     }
 

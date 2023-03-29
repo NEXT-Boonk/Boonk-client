@@ -16,14 +16,16 @@ public class WeaponDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (CompareTag("Club")) { 
+        if (CompareTag("Club"))
+	    { 
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
             }
         }
 
-        if (CompareTag("Rock")) { 
+        if (CompareTag("Rock"))
+	    { 
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
@@ -35,7 +37,8 @@ public class WeaponDamage : MonoBehaviour
             }
         }
 
-        if (CompareTag("Arrow")) { 
+        if (CompareTag("Arrow"))
+	    { 
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);

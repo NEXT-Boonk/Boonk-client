@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/stylesheet.uss?fileID=7433441132597879392&amp;guid=5ffbaa56b22b37d47af3fd1620f9bfdd&amp;type=3#stylesheet" />
-    <ui:VisualElement style="justify-content: center; align-items: center; height: 447px;">
+    <ui:VisualElement style="justify-content: center; align-items: center; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.43);">
         <ui:VisualElement style="height: 133px; width: 495px; align-items: center; justify-content: center;">
             <ui:VisualElement style="width: 236px; align-items: center;">
                 <ui:Button text="Leave" display-tooltip-when-elided="true" name="LeaveButton" style="-unity-text-align: middle-center; background-color: rgba(0, 0, 0, 0); font-size: 28px; height: 50px; align-items: center; width: 151px;" />

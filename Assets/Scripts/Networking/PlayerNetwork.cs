@@ -25,6 +25,8 @@ public class PlayerNetwork : NetworkBehaviour
 
     private Vector3 forestSpawn = new Vector3(-301f, 10.0f, 297.88f);
     private Vector3 winterSpawn = new Vector3(285.36f, 10.0f, 297.88f);
+    private float fireRate = 0.5f;
+    private float timeSinceLastShot = Mathf.Infinity;
 
     
 
@@ -65,7 +67,6 @@ public class PlayerNetwork : NetworkBehaviour
         }
         playerSpawn();
 
-        Debug.Log(snowTeamTicket+" first");
         
     }
 
@@ -76,7 +77,6 @@ public class PlayerNetwork : NetworkBehaviour
     
     private void Update()
     {
-        Debug.Log(snowTeamTicket);
 		// This checks if the code is NOT run by the owner, if so it does nothing.
         if(!IsOwner) return; 
         playerCamera.gameObject.SetActive(true);
@@ -88,24 +88,25 @@ public class PlayerNetwork : NetworkBehaviour
         }
       
         // Debug.Log(OwnerClientId + "number: " + randomNumber.Value); //this code sends the command of the random number, which is sent at all times
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.C) && timeSinceLastShot >= fireRate)
 	    {
+            timeSinceLastShot = 0f;
             StoneServerRpc(new ServerRpcParams());
         }
-
         if(Input.GetKey(KeyCode.V))
 	    {
             if(arrowSpeed < arrowSpeedMax)
                 arrowSpeed += arrowChargeSpeed * Time.deltaTime;
         }
 
-        if(Input.GetKeyUp(KeyCode.V))
+        if(Input.GetKeyUp(KeyCode.V)&& timeSinceLastShot >= fireRate)
 	    {
+            timeSinceLastShot = 0f;
             ArrowServerRpc(new ServerRpcParams());
             arrowSpeed = arrowSpeedMin;
         }
 
-        Deathbox();
+        timeSinceLastShot += Time.deltaTime;
     }
 
 
@@ -139,14 +140,13 @@ public class PlayerNetwork : NetworkBehaviour
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
         }else{
-            gameObject.GetComponent<PlayerHealth>().currentHealth = 0;
+            this.GetComponent<PlayerHealth>().currentHealth = 0;
         }
         
     }
 
     private void Deathbox(){
         if(this.GetComponent<Transform>().position.y < -10){
-            Debug.Log("I work");
             KillFunction(false);
         } 
     } 
@@ -197,13 +197,11 @@ public class PlayerNetwork : NetworkBehaviour
     }
 
 
-
     [ServerRpc(RequireOwnership = false)]
     private void PlayerDeathServerRpc(ServerRpcParams _rpc)
     {
         PlayerTicketRemove(team);
     }
-    
     [ServerRpc]
     private void StoneServerRpc(ServerRpcParams _rpc)
     {
@@ -216,5 +214,4 @@ public class PlayerNetwork : NetworkBehaviour
         ServerSpawnTool(arrowPrefab, startPosition, arrowSpeed);
     }
 
-    
 }

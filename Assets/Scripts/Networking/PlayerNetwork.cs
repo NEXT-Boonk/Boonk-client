@@ -23,8 +23,8 @@ public class PlayerNetwork : NetworkBehaviour
     private TeamHandler teamHandler;
     public Team team;
 
-    private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
-    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
+    private Vector3 forestSpawn = new Vector3(-301f, 10.0f, 297.88f);
+    private Vector3 winterSpawn = new Vector3(285.36f, 10.0f, 297.88f);
 
     
 
@@ -120,7 +120,8 @@ public class PlayerNetwork : NetworkBehaviour
         spawnedObjects.Add(newObject);
     }
 
-    private void killFunction(){
+    private void KillFunction(bool killAll){
+        if(killAll){
         TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
         for(int i = 0; i < teHa.forrestTeam.Count; i++){
             GameObject t = teHa.forrestTeam[i].gameObject;
@@ -131,18 +132,27 @@ public class PlayerNetwork : NetworkBehaviour
             GameObject t = teHa.snowTeam[i].gameObject;
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
+        }else{
+            this.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
         
     }
+
+    private void Deathbox(){
+        if(this.GetComponent<Transform>().position.y < -10){
+            KillFunction(false);
+        } 
+    } 
 
     private void PlayerTicketRemove(Team teamRemovedTicket)
     {
         if(snowTeamTicket <= 0){
-            killFunction();
+            KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             Debug.Log("Forest team wins");
         }else if(forestTeamTicket <= 0){
-            killFunction();
+            KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             Debug.Log("Snow team wins");

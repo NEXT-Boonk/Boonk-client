@@ -47,6 +47,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-8657295068708470841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StartmenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/StartmenuMusic
+  Guid:
+    Data1: 995609308
+    Data2: 1277551235
+    Data3: -1659912794
+    Data4: 2026297365
+  Banks:
+  - {fileID: 6742534667464692814}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150000
 --- !u!114 &-8226109285289061141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +89,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowRelease.bank
   Name: BankBowRelease
   StudioPath: bank:/BankBowRelease
-  lastModified: 638143011774066162
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
     Value: 51552
@@ -87,6 +114,24 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1174
   Exists: 1
+--- !u!114 &-8017408627152262812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7041165364678061993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,11 +147,65 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankWalk.bank
   Name: BankWalk
   StudioPath: bank:/BankWalk
-  lastModified: 638143011774135982
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
-    Value: 1616
+    Value: 51552
   Exists: 1
+--- !u!114 &-6031337492152837253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BowReleaseSound
+  m_EditorClassIdentifier: 
+  Path: event:/BowReleaseSound
+  Guid:
+    Data1: -1615809537
+    Data2: 1122355420
+    Data3: -1552498765
+    Data4: -768754789
+  Banks:
+  - {fileID: -392757214947439176}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 812
+--- !u!114 &-4625532160806868947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StartmenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/StartmenuMusic
+  Guid:
+    Data1: 995609308
+    Data2: 1277551235
+    Data3: -1659912794
+    Data4: 2026297365
+  Banks:
+  - {fileID: 4072586277586311140}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 150000
 --- !u!114 &-4462178200716955099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +252,161 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 64640
+  Exists: 1
+--- !u!114 &-4336417417306933888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VictorySound
+  m_EditorClassIdentifier: 
+  Path: event:/VictorySound
+  Guid:
+    Data1: 1125780979
+    Data2: 1194620446
+    Data3: -799360109
+    Data4: 1244113813
+  Banks:
+  - {fileID: 7526574515921624332}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3433
+--- !u!114 &-4008003334082200986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankThrow.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankThrow.bank
+  Name: BankThrow
+  StudioPath: bank:/BankThrow
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-3085766294487832655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WalkingSound
+  m_EditorClassIdentifier: 
+  Path: event:/WalkingSound
+  Guid:
+    Data1: -821266698
+    Data2: 1236907768
+    Data3: -1835585895
+    Data4: -1249316794
+  Banks:
+  - {fileID: -1738078160212774503}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 771
+--- !u!114 &-2669975536600529876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankBowHit.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowHit.bank
+  Name: BankBowHit
+  StudioPath: bank:/BankBowHit
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2543233791979180026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638144834780000000
+  FileSizes:
+  - Name: 
+    Value: 1346
+  Exists: 1
+--- !u!114 &-1817086392689447874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RunningSound
+  m_EditorClassIdentifier: 
+  Path: event:/RunningSound
+  Guid:
+    Data1: -610165611
+    Data2: 1161686293
+    Data3: 340736655
+    Data4: -590459742
+  Banks:
+  - {fileID: 7735218844933367513}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 771
+--- !u!114 &-1738078160212774503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankWalk.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankWalk.bank
+  Name: BankWalk
+  StudioPath: bank:/BankWalk
+  lastModified: 638144834780000000
+  FileSizes: []
   Exists: 1
 --- !u!114 &-1378539646637184212
 MonoBehaviour:
@@ -201,6 +455,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 930
+--- !u!114 &-392757214947439176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankBowRelease.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowRelease.bank
+  Name: BankBowRelease
+  StudioPath: bank:/BankBowRelease
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,25 +486,29 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3182642832125176993}
-  - {fileID: 445811357765309819}
-  - {fileID: -8226109285289061141}
-  - {fileID: 170872078440429344}
-  - {fileID: 8622646813981451231}
-  - {fileID: -7041165364678061993}
-  - {fileID: 5876519015097543310}
+  - {fileID: -2543233791979180026}
+  - {fileID: -2669975536600529876}
+  - {fileID: -392757214947439176}
+  - {fileID: 7735218844933367513}
+  - {fileID: 4072586277586311140}
+  - {fileID: -4008003334082200986}
+  - {fileID: 5778411636572822821}
+  - {fileID: -1738078160212774503}
+  - {fileID: -8017408627152262812}
   EditorEvents:
-  - {fileID: -1143272617182355365}
-  - {fileID: 1717144989237522491}
-  - {fileID: 3035399726889483735}
-  - {fileID: -8933723079743031102}
-  - {fileID: 1997027688189154451}
+  - {fileID: 8118144924871883977}
+  - {fileID: -6031337492152837253}
+  - {fileID: -1817086392689447874}
+  - {fileID: -4625532160806868947}
+  - {fileID: 2771321544217081091}
+  - {fileID: 2981135487979504454}
+  - {fileID: -3085766294487832655}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 5876519015097543310}
+  - {fileID: -8017408627152262812}
   StringsBanks:
-  - {fileID: 3182642832125176993}
-  cacheTime: 638143011774165884
+  - {fileID: -2543233791979180026}
+  cacheTime: 638144834780000000
   cacheVersion: 131601
 --- !u!114 &170872078440429344
 MonoBehaviour:
@@ -249,10 +525,10 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankRun.bank
   Name: BankRun
   StudioPath: bank:/BankRun
-  lastModified: 638143011774086108
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
-    Value: 1488
+    Value: 51680
   Exists: 1
 --- !u!114 &445811357765309819
 MonoBehaviour:
@@ -269,7 +545,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankBowHit.bank
   Name: BankBowHit
   StudioPath: bank:/BankBowHit
-  lastModified: 638143011774036235
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
     Value: 98976
@@ -323,11 +599,11 @@ MonoBehaviour:
   - {fileID: -7041165364678061993}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 12000
+  Length: 771
 --- !u!114 &2398776696608533615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +631,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12000
+--- !u!114 &2771321544217081091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ThrowSound
+  m_EditorClassIdentifier: 
+  Path: event:/ThrowSound
+  Guid:
+    Data1: -806858926
+    Data2: 1336017359
+    Data3: 94949536
+    Data4: -1570001125
+  Banks:
+  - {fileID: -4008003334082200986}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 697
+--- !u!114 &2981135487979504454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VictorySound
+  m_EditorClassIdentifier: 
+  Path: event:/VictorySound
+  Guid:
+    Data1: 1125780979
+    Data2: 1194620446
+    Data3: -799360109
+    Data4: 1244113813
+  Banks:
+  - {fileID: 5778411636572822821}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3433
 --- !u!114 &3035399726889483735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,11 +707,11 @@ MonoBehaviour:
   - {fileID: 170872078440429344}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 771
 --- !u!114 &3182642832125176993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,10 +727,28 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638143011774165884
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
-    Value: 1174
+    Value: 1346
+  Exists: 1
+--- !u!114 &4072586277586311140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankStartMenuMusic.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankStartMenuMusic.bank
+  Name: BankStartMenuMusic
+  StudioPath: bank:/BankStartMenuMusic
+  lastModified: 638144834780000000
+  FileSizes: []
   Exists: 1
 --- !u!114 &4217131298198701630
 MonoBehaviour:
@@ -449,6 +797,24 @@ MonoBehaviour:
   - Name: Desktop
     Value: 51552
   Exists: 1
+--- !u!114 &5778411636572822821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankVictory.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankVictory.bank
+  Name: BankVictory
+  StudioPath: bank:/BankVictory
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
 --- !u!114 &5876519015097543310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +830,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638143011774155914
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -488,6 +854,26 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 1488
+  Exists: 1
+--- !u!114 &6742534667464692814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankStartMenuMusic.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankStartMenuMusic.bank
+  Name: BankStartMenuMusic
+  StudioPath: bank:/BankStartMenuMusic
+  lastModified: 638144834780000000
+  FileSizes:
+  - Name: Desktop
+    Value: 2004960
   Exists: 1
 --- !u!114 &6840344442448224637
 MonoBehaviour:
@@ -536,6 +922,71 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7526574515921624332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankVictory.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankVictory.bank
+  Name: BankVictory
+  StudioPath: bank:/BankVictory
+  lastModified: 638144834780000000
+  FileSizes:
+  - Name: Desktop
+    Value: 46016
+  Exists: 1
+--- !u!114 &7735218844933367513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankRun.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankRun.bank
+  Name: BankRun
+  StudioPath: bank:/BankRun
+  lastModified: 638144834780000000
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8118144924871883977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BowHitSound
+  m_EditorClassIdentifier: 
+  Path: event:/BowHitSound
+  Guid:
+    Data1: -414307165
+    Data2: 1293915464
+    Data3: 1543434684
+    Data4: 1978709900
+  Banks:
+  - {fileID: -2669975536600529876}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 930
 --- !u!114 &8622646813981451231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +1002,7 @@ MonoBehaviour:
   Path: Assets/Audio/FMOD Projekt/Build/Desktop/BankThrow.bank
   Name: BankThrow
   StudioPath: bank:/BankThrow
-  lastModified: 638143011774106048
+  lastModified: 638144834780000000
   FileSizes:
   - Name: Desktop
     Value: 64640

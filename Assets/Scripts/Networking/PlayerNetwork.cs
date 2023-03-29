@@ -154,13 +154,11 @@ public class PlayerNetwork : NetworkBehaviour
     private void PlayerTicketRemove(Team teamRemovedTicket)
     {
         if(snowTeamTicket <= 0){
-            KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             KillFunction(true);
             Debug.Log("Forest team wins");
         }else if(forestTeamTicket <= 0){
-            KillFunction(true);
             snowTeamTicket = 48;
             forestTeamTicket = 48;
             KillFunction(true);

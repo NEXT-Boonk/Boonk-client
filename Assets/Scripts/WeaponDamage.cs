@@ -27,7 +27,7 @@ public class WeaponDamage : MonoBehaviour
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
-                Destroy(gameObject);
+                Destroy(gameObject,1);
             }
             else
             {
@@ -39,7 +39,7 @@ public class WeaponDamage : MonoBehaviour
             if (collider.gameObject.CompareTag("Character"))
             {
                 collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damageGiven);
-                Destroy(gameObject);
+                Destroy(gameObject,1);
             }
             else
             {

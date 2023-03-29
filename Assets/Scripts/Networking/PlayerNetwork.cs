@@ -23,20 +23,19 @@ public class PlayerNetwork : NetworkBehaviour
     private TeamHandler teamHandler;
     public Team team;
 
-    private Vector3 forestSpawn = new Vector3(2.5f, 3.3f, 16.0f);
-    private Vector3 winterSpawn = new Vector3(2.5f, 3.3f, -15.0f);
+    private Vector3 forestSpawn = new Vector3(-301f, 10.0f, 297.88f);
+    private Vector3 winterSpawn = new Vector3(285.36f, 10.0f, 297.88f);
 
     
 
 
     private void Start()
     {
-
-        if(IsServer){
+        //needs to be removed
+        if(IsServer || IsHost){
             snowTeamTicket = 3;
             forestTeamTicket = 3;
         }
-
         arrowSpeed = arrowSpeedMin;
         // Don't despawn camera if we are the owner.
         if (!IsOwner) return;
@@ -61,8 +60,12 @@ public class PlayerNetwork : NetworkBehaviour
             teamHandler.AddPlayer(this);
         }
 
+        if(!IsOwner){
+            return;
+        }
         playerSpawn();
 
+        Debug.Log(snowTeamTicket+" first");
         
     }
 
@@ -73,6 +76,7 @@ public class PlayerNetwork : NetworkBehaviour
     
     private void Update()
     {
+        Debug.Log(snowTeamTicket);
 		// This checks if the code is NOT run by the owner, if so it does nothing.
         if(!IsOwner) return; 
         playerCamera.gameObject.SetActive(true);
@@ -100,6 +104,8 @@ public class PlayerNetwork : NetworkBehaviour
             ArrowServerRpc(new ServerRpcParams());
             arrowSpeed = arrowSpeedMin;
         }
+
+        Deathbox();
     }
 
 
@@ -120,7 +126,8 @@ public class PlayerNetwork : NetworkBehaviour
         spawnedObjects.Add(newObject);
     }
 
-    private void killFunction(){
+    private void KillFunction(bool killAll){
+        if(killAll){
         TeamHandler teHa = NetworkManager.GetComponent<TeamHandler>();
         for(int i = 0; i < teHa.forrestTeam.Count; i++){
             GameObject t = teHa.forrestTeam[i].gameObject;
@@ -131,22 +138,33 @@ public class PlayerNetwork : NetworkBehaviour
             GameObject t = teHa.snowTeam[i].gameObject;
             t.GetComponent<PlayerHealth>().currentHealth = 0;
         }
+        }else{
+            gameObject.GetComponent<PlayerHealth>().currentHealth = 0;
+        }
         
     }
+
+    private void Deathbox(){
+        if(this.GetComponent<Transform>().position.y < -10){
+            Debug.Log("I work");
+            KillFunction(false);
+        } 
+    } 
 
     private void PlayerTicketRemove(Team teamRemovedTicket)
     {
         if(snowTeamTicket <= 0){
-            killFunction();
             snowTeamTicket = 48;
             forestTeamTicket = 48;
+            KillFunction(true);
             Debug.Log("Forest team wins");
         }else if(forestTeamTicket <= 0){
-            killFunction();
             snowTeamTicket = 48;
             forestTeamTicket = 48;
+            KillFunction(true);
             Debug.Log("Snow team wins");
-        }else if(teamRemovedTicket == Team.Forrest)
+        }
+        else if(teamRemovedTicket == Team.Forrest)
         {
             forestTeamTicket--;
             Debug.Log(teamRemovedTicket+" "+forestTeamTicket);
@@ -180,11 +198,12 @@ public class PlayerNetwork : NetworkBehaviour
 
 
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     private void PlayerDeathServerRpc(ServerRpcParams _rpc)
     {
         PlayerTicketRemove(team);
     }
+    
     [ServerRpc]
     private void StoneServerRpc(ServerRpcParams _rpc)
     {
